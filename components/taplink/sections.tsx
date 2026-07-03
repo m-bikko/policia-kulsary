@@ -421,7 +421,7 @@ export function SiteFooter({ dict }: { dict: Dictionary }) {
       </p>
       <a
         href="/"
-        className="mt-4 inline-flex items-center gap-1.5 text-xs text-ink-dim underline-offset-4 transition-colors hover:text-gold-300 hover:underline"
+        className="mt-2 inline-flex min-h-11 items-center gap-1.5 px-4 text-xs text-ink-dim underline-offset-4 transition-colors hover:text-gold-300 hover:underline"
       >
         <Globe className="h-3.5 w-3.5" aria-hidden />
         {dict.footer.backToLang}
