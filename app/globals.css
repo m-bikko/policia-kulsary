@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy-950: #050b1a;
+  --color-navy-900: #0a1428;
+  --color-navy-850: #0d1a35;
+  --color-navy-800: #122142;
+  --color-navy-700: #1c3161;
+  --color-navy-600: #2a4380;
+
+  --color-gold-300: #f0d98c;
+  --color-gold-400: #e6c65c;
+  --color-gold-500: #d4af37;
+  --color-gold-600: #b8942a;
+  --color-gold-700: #8f711d;
+
+  --color-sky-accent: #4da3ff;
+
+  --color-ink: #eef2fb;
+  --color-ink-soft: #a8b8d8;
+  --color-ink-dim: #6d7fa3;
+
+  --font-display: var(--font-unbounded), system-ui, sans-serif;
+  --font-body: var(--font-manrope), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-navy-950);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Атмосфера: глубокий синий с золотым свечением сверху и тонкой сеткой */
+.bg-ceremonial {
+  background-color: var(--color-navy-950);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212, 175, 55, 0.13), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 110%, rgba(28, 49, 97, 0.5), transparent 70%),
+    linear-gradient(rgba(212, 175, 55, 0.024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 175, 55, 0.024) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+}
+
+/* Зерно поверх фона, чтобы избежать бандинга градиентов */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* Золотая тонкая линия-разделитель с ромбом по центру */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(212, 175, 55, 0.55);
+}
+.gold-divider::before,
+.gold-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4));
+}
+.gold-divider::after {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.4), transparent);
+}
+
+/* Карточка-ссылка в духе служебного удостоверения */
+.card-official {
+  position: relative;
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  background:
+    linear-gradient(160deg, rgba(18, 33, 66, 0.85), rgba(10, 20, 40, 0.95));
+  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+.card-official:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+  box-shadow: 0 8px 32px -12px rgba(212, 175, 55, 0.18);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-official,
+  .card-official:hover {
+    transform: none !important;
+  }
+}
+
+/* Уголки-акценты как на бланках */
+.corner-accents::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(212, 175, 55, 0.5), rgba(212, 175, 55, 0.5)) top left / 12px 1px,
+    linear-gradient(rgba(212, 175, 55, 0.5), rgba(212, 175, 55, 0.5)) top left / 1px 12px,
+    linear-gradient(rgba(212, 175, 55, 0.5), rgba(212, 175, 55, 0.5)) bottom right / 12px 1px,
+    linear-gradient(rgba(212, 175, 55, 0.5), rgba(212, 175, 55, 0.5)) bottom right / 1px 12px;
+  background-repeat: no-repeat;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.35);
+  color: #fff;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-gold-400);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
