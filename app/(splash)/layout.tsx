@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Жылыой полициясы · Полиция Жылыойского района · Zhylyoi Police",
   description:
     "Полиция Жылыойского района, Атырауская область, МВД РК. Экстренный вызов — 102. Тілді таңдаңыз · Выберите язык · Choose your language.",
+  icons: { icon: "/images/logo-mvd-sm.png" },
 };
 
 export const viewport: Viewport = {

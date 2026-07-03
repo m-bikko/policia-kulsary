@@ -399,7 +399,7 @@ export function SocialSection({ dict }: { dict: Dictionary }) {
             >
               <span>{link.icon}</span>
               {link.name}
-              <span className="rounded-full border border-gold-500/25 px-2 py-0.5 text-[10px] text-gold-500/70">
+              <span className="rounded-full border border-gold-500/25 px-2 py-0.5 text-xs text-gold-500/70">
                 {social.comingSoon}
               </span>
             </div>

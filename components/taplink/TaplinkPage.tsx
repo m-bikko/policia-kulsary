@@ -146,7 +146,7 @@ function StatsStrip({ dict }: { dict: Dictionary }) {
             </div>
           ))}
         </dl>
-        <p className="mt-4 text-center text-[10px] text-ink-dim">
+        <p className="mt-4 text-center text-xs text-ink-dim">
           {dict.stats.source}
         </p>
       </div>
