@@ -121,7 +121,7 @@ function PointCard({
           href={point.maps.twoGis}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex min-h-10 items-center justify-center rounded-lg border border-gold-500/25 px-3 py-2 text-xs font-semibold text-gold-300 transition-colors hover:border-gold-400/60 hover:bg-gold-500/10"
+          className="flex min-h-11 items-center justify-center rounded-lg border border-gold-500/25 px-3 py-2 text-xs font-semibold text-gold-300 transition-colors hover:border-gold-400/60 hover:bg-gold-500/10"
         >
           {dict.points.open2gis}
         </a>
@@ -129,7 +129,7 @@ function PointCard({
           href={point.maps.google}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex min-h-10 items-center justify-center rounded-lg border border-navy-600 px-3 py-2 text-xs font-semibold text-ink-soft transition-colors hover:border-gold-500/40 hover:text-gold-300"
+          className="flex min-h-11 items-center justify-center rounded-lg border border-navy-600 px-3 py-2 text-xs font-semibold text-ink-soft transition-colors hover:border-gold-500/40 hover:text-gold-300"
         >
           {dict.points.openGoogle}
         </a>
