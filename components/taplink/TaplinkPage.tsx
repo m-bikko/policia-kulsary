@@ -30,7 +30,7 @@ function LangSwitcher({ current }: { current: Locale }) {
           key={locale}
           href={`/${locale}`}
           aria-current={locale === current ? "page" : undefined}
-          className={`rounded-full px-3 py-1.5 text-[11px] font-bold tracking-widest transition-colors ${
+          className={`flex min-h-11 items-center rounded-full px-4 text-[11px] font-bold tracking-widest transition-colors ${
             locale === current
               ? "bg-gold-500 text-navy-950"
               : "text-ink-soft hover:text-gold-300"
