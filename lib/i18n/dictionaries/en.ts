@@ -2,9 +2,9 @@ import type { Dictionary } from "../types";
 
 export const en: Dictionary = {
   meta: {
-    title: "Zhylyoi District Police — Kulsary | Atyrau Region",
+    title: "Zhylyoi District Police - Kulsary | Atyrau Region",
     description:
-      "Official information page of the Zhylyoi District Police Department, Police Department of Atyrau Region, Ministry of Internal Affairs of Kazakhstan. Emergency — 102.",
+      "Official information page of the Zhylyoi District Police Department, Police Department of Atyrau Region, Ministry of Internal Affairs of Kazakhstan. Emergency - 102.",
   },
   splash: {
     title: "Zhylyoi Police",
@@ -41,7 +41,7 @@ export const en: Dictionary = {
     title: "Information",
     subtitle: "About the district and the department",
     paragraphs: [
-      "The Zhylyoi District Police Department maintains public order and safety across 29,400 km² — from the town of Kulsary to the rural districts of Akkiiztogay, Zhem, Karaton, Koschagyl and Maikomgen.",
+      "The Zhylyoi District Police Department maintains public order and safety across 29,400 km² - from the town of Kulsary to the rural districts of Akkiiztogay, Zhem, Karaton, Koschagyl and Maikomgen.",
       "Zhylyoi District is the oil heart of Atyrau Region: over 40 fields, including Tengiz. More than 87,000 people live in the district, about 60,000 of them in Kulsary.",
       "During the 2024 flood, police officers together with rescuers helped evacuate more than 30,000 residents and guarded property in the flooded areas.",
     ],
@@ -52,9 +52,9 @@ export const en: Dictionary = {
   },
   points: {
     title: "Police stations",
-    subtitle: "Police near you — in town and villages",
+    subtitle: "Police near you - in town and villages",
     headquarters: {
-      name: "Police Department — Kulsary",
+      name: "Police Department - Kulsary",
       note: "Duty unit, open 24/7",
       maps: {
         twoGis: "https://2gis.kz/atyrau/firm/70000001077001378",
@@ -100,7 +100,7 @@ export const en: Dictionary = {
     drones: {
       title: "Drones",
       description:
-        "UAVs record oncoming-lane violations and dangerous manoeuvres on highways and help search for missing people — including with thermal cameras.",
+        "UAVs record oncoming-lane violations and dangerous manoeuvres on highways and help search for missing people - including with thermal cameras.",
       facts: ["320+ violations detected from the air", "Search operations in the steppe"],
     },
     radar: {
@@ -178,7 +178,7 @@ export const en: Dictionary = {
       {
         title: "Highway patrol",
         description:
-          "Monitoring the Atyrau — Kulsary — Tengiz highways: speed control, help for drivers in the steppe.",
+          "Monitoring the Atyrau - Kulsary - Tengiz highways: speed control, help for drivers in the steppe.",
       },
     ],
   },
@@ -186,8 +186,8 @@ export const en: Dictionary = {
     title: "Hazardous road sections",
     subtitle: "Stay alert on the district's roads",
     body: [
-      "The Atyrau — Kulsary highway (230 km) and the Tengiz road carry heavy truck traffic. Ice and snowstorms are possible in winter; sun glare and mirages in summer.",
-      "Observe the speed limit: drones and Sergek cameras operate on the highways. In case of an accident or danger, call 102 — help will be dispatched from the nearest station.",
+      "The Atyrau - Kulsary highway (230 km) and the Tengiz road carry heavy truck traffic. Ice and snowstorms are possible in winter; sun glare and mirages in summer.",
+      "Observe the speed limit: drones and Sergek cameras operate on the highways. In case of an accident or danger, call 102 - help will be dispatched from the nearest station.",
     ],
     infoLabel: "Information",
   },
@@ -208,7 +208,7 @@ export const en: Dictionary = {
   },
   footer: {
     org: "Zhylyoi District Police Department, PD of Atyrau Region, MIA RK",
-    disclaimer: "Police emergency — 102, unified rescue service — 112",
+    disclaimer: "Police emergency - 102, unified rescue service - 112",
     backToLang: "Change language",
   },
 };
