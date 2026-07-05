@@ -12,6 +12,7 @@ import {
   Globe,
   IdCard,
   MapPin,
+  Phone,
   Play,
   Radar,
   ScrollText,
@@ -210,10 +211,54 @@ export function RecruitmentSection({ dict }: { dict: Dictionary }) {
       <SectionTitle overline="04" title={recruitment.title} id="s-recruitment" />
       <p className="-mt-2 mb-4 text-sm text-ink-soft">{recruitment.subtitle}</p>
       <div className="flex flex-col gap-3">
+        <div className="card-official corner-accents rounded-2xl px-5 py-4">
+          <div className="flex gap-3">
+            <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-gold-400" aria-hidden />
+            <p className="text-sm leading-relaxed text-ink-soft">
+              {recruitment.noTestNote}
+            </p>
+          </div>
+        </div>
+        <div className="card-official rounded-2xl px-5 py-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-gold-500/80">
+            {recruitment.salaryTitle}
+          </p>
+          <dl className="mt-3 grid grid-cols-2 gap-3">
+            {recruitment.salary.map((item) => (
+              <div key={item.label}>
+                <dd className="font-display text-lg font-bold text-gold-400 tabular-nums">
+                  {item.value}
+                </dd>
+                <dt className="mt-0.5 text-xs leading-snug text-ink-soft">
+                  {item.label}
+                </dt>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <Collapsible
+          icon={<ShieldCheck className="h-5 w-5" aria-hidden />}
+          summary={recruitment.benefitsTitle}
+          defaultOpen
+        >
+          <ul className="space-y-2.5">
+            {recruitment.benefits.map((benefit) => (
+              <li
+                key={benefit}
+                className="flex gap-2.5 text-sm leading-relaxed text-ink-soft"
+              >
+                <span
+                  aria-hidden
+                  className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold-400"
+                />
+                {benefit}
+              </li>
+            ))}
+          </ul>
+        </Collapsible>
         <Collapsible
           icon={<UserCheck className="h-5 w-5" aria-hidden />}
           summary={recruitment.requirementsTitle}
-          defaultOpen
         >
           <ul className="space-y-2.5">
             {recruitment.requirements.map((req) => (
@@ -247,6 +292,22 @@ export function RecruitmentSection({ dict }: { dict: Dictionary }) {
           icon={<ScrollText className="h-5 w-5" aria-hidden />}
           title={recruitment.infoLabel}
         />
+        <div className="card-official corner-accents rounded-2xl px-5 py-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-gold-500/80">
+            {recruitment.contactLabel}
+          </p>
+          <div className="mt-3 flex items-start gap-2.5 text-sm text-ink-soft">
+            <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden />
+            {recruitment.contactAddress}
+          </div>
+          <a
+            href={`tel:${recruitment.contactPhoneRaw}`}
+            className="mt-3 flex min-h-11 items-center justify-center gap-2.5 rounded-xl border border-gold-500/40 bg-gold-500/10 px-4 py-2.5 text-sm font-bold text-gold-300 transition-colors hover:bg-gold-500/20"
+          >
+            <Phone className="h-4 w-4" aria-hidden />
+            <span className="tabular-nums">{recruitment.contactPhone}</span>
+          </a>
+        </div>
       </div>
     </Reveal>
   );

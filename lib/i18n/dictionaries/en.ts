@@ -112,15 +112,30 @@ export const en: Dictionary = {
   },
   recruitment: {
     title: "Join the police",
-    subtitle: "Become part of Kazakhstan's police team",
+    subtitle: "The Zhylyoi District Police Department invites you to serve",
+    noTestNote:
+      "Candidates for junior command (sergeant) positions who have completed military service or a military department are accepted without testing, in accordance with the legislation of Kazakhstan.",
+    salaryTitle: "Stable monthly salary",
+    salary: [
+      { value: "220,000+ ₸", label: "command staff" },
+      { value: "180,000+ ₸", label: "junior command staff" },
+    ],
+    benefitsTitle: "Benefits and guarantees",
+    benefits: [
+      "Free medical care",
+      "Monetary compensation for housing rental",
+      "Home ownership through a state-paid mortgage",
+      "45 days of paid leave every year",
+      "Marine police unit: 21 days on / 7 days off rotation, free dormitory and meals",
+      "One year of service in Atyrau Region counts as one and a half years",
+      "Early retirement option",
+      "Free uniform",
+    ],
     requirementsTitle: "Candidate requirements",
     requirements: [
-      "Citizenship of the Republic of Kazakhstan, age 18 to 35",
-      "Education: at least secondary (higher education for officers)",
-      "Fitness confirmed by the military medical commission",
-      "Passing physical fitness standards",
-      "Psychophysiological and polygraph examination",
-      "Mandatory special background check",
+      "Age 18 to 35",
+      "Fit for service on health grounds",
+      "Specialized secondary or higher education",
     ],
     documentsTitle: "List of documents",
     documents: [
@@ -136,6 +151,10 @@ export const en: Dictionary = {
     downloadUrl: "https://adilet.zan.kz/rus/docs/V2100022478",
     infoLabel: "Law “On Law Enforcement Service”",
     infoUrl: "https://adilet.zan.kz/rus/docs/Z1100000380",
+    contactLabel: "Contact the HR service",
+    contactAddress: "Kulsary, B. Bisenkulov st., 46",
+    contactPhone: "+7 775 488 20 58",
+    contactPhoneRaw: "+77754882058",
   },
   units: {
     title: "Units",

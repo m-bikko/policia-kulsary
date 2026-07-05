@@ -71,6 +71,11 @@ export type Dictionary = {
   recruitment: {
     title: string;
     subtitle: string;
+    noTestNote: string;
+    salaryTitle: string;
+    salary: { value: string; label: string }[];
+    benefitsTitle: string;
+    benefits: string[];
     requirementsTitle: string;
     requirements: string[];
     documentsTitle: string;
@@ -79,6 +84,10 @@ export type Dictionary = {
     downloadUrl: string;
     infoLabel: string;
     infoUrl: string;
+    contactLabel: string;
+    contactAddress: string;
+    contactPhone: string;
+    contactPhoneRaw: string;
   };
   units: {
     title: string;
