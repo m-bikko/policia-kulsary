@@ -274,19 +274,19 @@ export const en: Dictionary = {
   units: {
     title: "Units",
     subtitle: "Who works for your safety",
-    staffTitle: "Staff list",
-    staffNote: "Local police inspectors",
-    close: "Close",
+    officerLabel: "Officer in charge",
     items: [
       {
         title: "Patrol police company",
         description:
           "Round-the-clock patrolling of Kulsary streets and district villages, responding to 102 calls.",
+        officer: { name: "Adilet", photo: "/images/units/adilet.jpg" },
       },
       {
         title: "Migration service",
         description:
           "Residence registration, documentation, registration of foreign citizens.",
+        officer: { name: "Makhambet", photo: "/images/units/makhambet.jpg" },
       },
       {
         title: "District inspectors",

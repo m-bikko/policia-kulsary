@@ -274,19 +274,19 @@ export const kz: Dictionary = {
   units: {
     title: "Бөлімшелер",
     subtitle: "Сіздің қауіпсіздігіңіз үшін кім жұмыс істейді",
-    staffTitle: "Қызметкерлер тізімі",
-    staffNote: "Учаскелік полиция инспекторлары",
-    close: "Жабу",
+    officerLabel: "Жауапты тұлға",
     items: [
       {
         title: "Патрульдік полиция ротасы",
         description:
           "Құлсары көшелері мен аудан ауылдарын тәулік бойы патрульдеу, 102 шақыруларына ден қою.",
+        officer: { name: "Адилет", photo: "/images/units/adilet.jpg" },
       },
       {
         title: "Көші-қон қызметі",
         description:
           "Тұрғылықты жері бойынша тіркеу, құжаттандыру, шетел азаматтарын есепке алу.",
+        officer: { name: "Махамбет", photo: "/images/units/makhambet.jpg" },
       },
       {
         title: "Учаскелік инспекторлар",

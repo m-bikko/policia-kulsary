@@ -274,19 +274,19 @@ export const ru: Dictionary = {
   units: {
     title: "Подразделения",
     subtitle: "Кто работает для вашей безопасности",
-    staffTitle: "Список сотрудников",
-    staffNote: "Участковые инспекторы полиции",
-    close: "Закрыть",
+    officerLabel: "Ответственное лицо",
     items: [
       {
         title: "Рота патрульной полиции",
         description:
           "Круглосуточное патрулирование улиц Кульсары и сёл района, реагирование на вызовы 102.",
+        officer: { name: "Адилет", photo: "/images/units/adilet.jpg" },
       },
       {
         title: "Миграционная служба",
         description:
           "Регистрация по месту жительства, документирование, учёт иностранных граждан.",
+        officer: { name: "Махамбет", photo: "/images/units/makhambet.jpg" },
       },
       {
         title: "Участковые инспекторы",

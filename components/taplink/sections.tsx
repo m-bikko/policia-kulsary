@@ -515,83 +515,52 @@ const unitIcons = [
 
 export function UnitsSection({ dict }: { dict: Dictionary }) {
   const { units } = dict;
-  const [staffOpen, setStaffOpen] = useState(false);
-  const staff = dict.points.groups
-    .flatMap((group) => group.points)
-    .filter((point) => point.inspector);
-
-  const unitCardBody = (unit: Unit, i: number) => (
-    <>
-      <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-gold-500/30 bg-gold-500/10 text-gold-400">
-        {unitIcons[i]}
-      </span>
-      <h3 className="mt-3.5 text-sm font-bold text-ink">{unit.title}</h3>
-      <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">
-        {unit.description}
-      </p>
-    </>
-  );
 
   return (
     <Reveal aria-labelledby="s-units">
       <SectionTitle overline="05" title={units.title} id="s-units" />
       <p className="-mt-2 mb-4 text-sm text-ink-soft">{units.subtitle}</p>
       <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2">
-        {units.items.map((unit, i) =>
-          i === 0 ? (
-            <button
-              key={unit.title}
-              type="button"
-              onClick={() => setStaffOpen(true)}
-              className="card-official group flex w-full cursor-pointer flex-col rounded-2xl px-5 py-5 text-left"
-            >
-              {unitCardBody(unit, i)}
-              <span className="mt-2.5 inline-flex items-center gap-1 text-xs font-semibold text-gold-300 transition-colors group-hover:text-gold-400">
-                {units.staffTitle}
-                <ChevronRight className="h-3.5 w-3.5" aria-hidden />
-              </span>
-            </button>
-          ) : (
-            <div
-              key={unit.title}
-              className="card-official flex flex-col rounded-2xl px-5 py-5"
-            >
-              {unitCardBody(unit, i)}
-            </div>
-          ),
-        )}
+        {units.items.map((unit, i) => (
+          <div
+            key={unit.title}
+            className="card-official flex flex-col rounded-2xl px-5 py-5"
+          >
+            <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-gold-500/30 bg-gold-500/10 text-gold-400">
+              {unitIcons[i]}
+            </span>
+            <h3 className="mt-3.5 text-sm font-bold text-ink">{unit.title}</h3>
+            <p className="mt-1.5 flex-1 text-xs leading-relaxed text-ink-soft">
+              {unit.description}
+            </p>
+            {unit.officer && (
+              <div className="mt-3.5 flex items-center gap-2.5 border-t border-gold-500/15 pt-3">
+                {unit.officer.photo ? (
+                  <Image
+                    src={unit.officer.photo}
+                    alt={unit.officer.name}
+                    width={44}
+                    height={44}
+                    className="h-11 w-11 shrink-0 rounded-full border border-gold-500/40 object-cover object-top"
+                  />
+                ) : (
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold-500/30 bg-gold-500/10 text-gold-400">
+                    <UserCheck className="h-5 w-5" aria-hidden />
+                  </span>
+                )}
+                <span className="min-w-0">
+                  <span className="block text-xs text-ink-dim">
+                    {units.officerLabel}
+                  </span>
+                  <span className="block text-sm font-semibold text-ink">
+                    {unit.officer.name}
+                  </span>
+                </span>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
-
-      <Modal
-        open={staffOpen}
-        onClose={() => setStaffOpen(false)}
-        title={units.staffTitle}
-        closeLabel={units.close}
-      >
-        <p className="text-xs font-semibold uppercase tracking-wider text-gold-500/80">
-          {units.staffNote}
-        </p>
-        <div className="mt-3 flex flex-col gap-2.5">
-          {staff.map((member) => (
-            <div
-              key={`${member.name}-${member.inspector}`}
-              className="rounded-xl border border-gold-500/15 bg-navy-900/60 px-4 py-3.5"
-            >
-              <p className="text-sm font-semibold text-ink">{member.inspector}</p>
-              <p className="mt-1 text-xs text-ink-dim">{member.name}</p>
-              {member.phone && member.phoneRaw && (
-                <a
-                  href={`tel:${member.phoneRaw}`}
-                  className="mt-2.5 inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-gold-500/40 bg-gold-500/10 px-3 text-xs font-bold text-gold-300 transition-colors hover:bg-gold-500/20"
-                >
-                  <Phone className="h-3.5 w-3.5" aria-hidden />
-                  <span className="tabular-nums">{member.phone}</span>
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
-      </Modal>
     </Reveal>
   );
 }

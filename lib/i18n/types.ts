@@ -28,6 +28,8 @@ export type PointGroup = {
 export type Unit = {
   title: string;
   description: string;
+  /** Ответственное лицо раздела; фото опционально - данные передаются постепенно */
+  officer?: { name: string; photo?: string };
 };
 
 export type DeviceImage = {
@@ -130,9 +132,7 @@ export type Dictionary = {
   units: {
     title: string;
     subtitle: string;
-    staffTitle: string;
-    staffNote: string;
-    close: string;
+    officerLabel: string;
     items: Unit[];
   };
   roadSafety: {

@@ -20,7 +20,8 @@
       "TodoRead",
       "TodoWrite",
       "WebSearch",
-      "pnpm"
+      "Bash(sips -Z 500 'public/image copy.png' --out /private/tmp/claude-501/-Users-beimbetmaratov-Development-policia-kulsary/6074c1d9-0395-4dbe-bc57-9c6882c2f690/scratchpad/officer-patrol.png)",
+      "Bash(sips -Z 500 public/image.png --out /private/tmp/claude-501/-Users-beimbetmaratov-Development-policia-kulsary/6074c1d9-0395-4dbe-bc57-9c6882c2f690/scratchpad/officer-migration.png)"
     ],
     "additionalDirectories": [
       "/tmp",
