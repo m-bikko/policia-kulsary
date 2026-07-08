@@ -1,16 +1,18 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import {
   BookOpen,
   Camera,
   Car,
+  ChevronRight,
   Download,
   Drone,
   ExternalLink,
   FileText,
   Globe,
   IdCard,
+  Landmark,
   MapPin,
   Phone,
   Play,
@@ -24,8 +26,8 @@ import {
   Users,
 } from "lucide-react";
 import type { Dictionary } from "@/lib/i18n";
-import type { SupportPoint } from "@/lib/i18n/types";
-import { Reveal, SectionTitle, Collapsible } from "./primitives";
+import type { PolicePoint } from "@/lib/i18n/types";
+import { Reveal, SectionTitle, Collapsible, Modal } from "./primitives";
 
 function ExternalCard({
   href,
@@ -95,45 +97,51 @@ export function InfoSection({ dict }: { dict: Dictionary }) {
 
 /* ── Опорные пункты ─────────────────────────────────────────── */
 
-function PointCard({
-  point,
-  dict,
-  highlight = false,
-}: {
-  point: SupportPoint;
-  dict: Dictionary;
-  highlight?: boolean;
-}) {
+function PointRow({ point, dict }: { point: PolicePoint; dict: Dictionary }) {
   return (
-    <div
-      className={`card-official rounded-2xl px-5 py-4 ${
-        highlight ? "corner-accents border-gold-500/30" : ""
-      }`}
-    >
-      <div className="flex items-start gap-3">
-        <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden />
-        <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-ink">{point.name}</p>
-          <p className="mt-0.5 text-xs text-ink-soft">{point.note}</p>
-        </div>
-      </div>
-      <div className="mt-3 grid grid-cols-2 gap-2">
-        <a
-          href={point.maps.twoGis}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex min-h-11 items-center justify-center rounded-lg border border-gold-500/25 px-3 py-2 text-xs font-semibold text-gold-300 transition-colors hover:border-gold-400/60 hover:bg-gold-500/10"
-        >
-          {dict.points.open2gis}
-        </a>
-        <a
-          href={point.maps.google}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex min-h-11 items-center justify-center rounded-lg border border-navy-600 px-3 py-2 text-xs font-semibold text-ink-soft transition-colors hover:border-gold-500/40 hover:text-gold-300"
-        >
-          {dict.points.openGoogle}
-        </a>
+    <div className="rounded-xl border border-gold-500/15 bg-navy-900/60 px-4 py-3.5">
+      <p className="text-sm font-semibold text-ink">{point.name}</p>
+      {point.address && (
+        <p className="mt-1 flex items-start gap-1.5 text-xs text-ink-soft">
+          <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold-500/70" aria-hidden />
+          {point.address}
+        </p>
+      )}
+      {point.inspector && (
+        <p className="mt-1.5 text-xs leading-relaxed text-ink-dim">
+          {point.inspector}
+        </p>
+      )}
+      <div className="mt-3 flex flex-wrap gap-2">
+        {point.phone && point.phoneRaw && (
+          <a
+            href={`tel:${point.phoneRaw}`}
+            className="flex min-h-11 items-center gap-1.5 rounded-lg border border-gold-500/40 bg-gold-500/10 px-3 text-xs font-bold text-gold-300 transition-colors hover:bg-gold-500/20"
+          >
+            <Phone className="h-3.5 w-3.5" aria-hidden />
+            <span className="tabular-nums">{point.phone}</span>
+          </a>
+        )}
+        {point.twoGis && (
+          <a
+            href={point.twoGis}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex min-h-11 items-center rounded-lg border border-gold-500/25 px-3 text-xs font-semibold text-gold-300 transition-colors hover:border-gold-400/60 hover:bg-gold-500/10"
+          >
+            {dict.points.open2gis}
+          </a>
+        )}
+        {point.google && (
+          <a
+            href={point.google}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex min-h-11 items-center rounded-lg border border-navy-600 px-3 text-xs font-semibold text-ink-soft transition-colors hover:border-gold-500/40 hover:text-gold-300"
+          >
+            {dict.points.openGoogle}
+          </a>
+        )}
       </div>
     </div>
   );
@@ -141,18 +149,86 @@ function PointCard({
 
 export function PointsSection({ dict }: { dict: Dictionary }) {
   const { points } = dict;
+  const [open, setOpen] = useState(false);
+  const hq = points.headquarters;
+
   return (
     <Reveal aria-labelledby="s-points">
       <SectionTitle overline="02" title={points.title} id="s-points" />
       <p className="-mt-2 mb-4 text-sm text-ink-soft">{points.subtitle}</p>
       <div className="flex flex-col gap-3">
-        <PointCard point={points.headquarters} dict={dict} highlight />
-        <div className="grid gap-3 sm:grid-cols-2">
-          {points.items.map((point) => (
-            <PointCard key={point.name} point={point} dict={dict} />
+        <div className="card-official corner-accents rounded-2xl border-gold-500/30 px-5 py-4">
+          <div className="flex items-start gap-3">
+            <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden />
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold text-ink">{hq.name}</p>
+              <p className="mt-0.5 text-xs text-ink-soft">{hq.note}</p>
+            </div>
+          </div>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <a
+              href={hq.maps.twoGis}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex min-h-11 items-center justify-center rounded-lg border border-gold-500/25 px-3 py-2 text-xs font-semibold text-gold-300 transition-colors hover:border-gold-400/60 hover:bg-gold-500/10"
+            >
+              {points.open2gis}
+            </a>
+            <a
+              href={hq.maps.google}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex min-h-11 items-center justify-center rounded-lg border border-navy-600 px-3 py-2 text-xs font-semibold text-ink-soft transition-colors hover:border-gold-500/40 hover:text-gold-300"
+            >
+              {points.openGoogle}
+            </a>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="card-official group flex min-h-14 w-full cursor-pointer items-center gap-3.5 rounded-2xl px-5 py-4 text-left"
+        >
+          <span className="shrink-0 text-gold-400">
+            <Landmark className="h-5 w-5" aria-hidden />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-sm font-semibold text-ink">
+              {points.openList}
+            </span>
+            <span className="mt-0.5 block text-xs text-ink-soft">
+              {points.groups.map((g) => g.label).join(" · ")}
+            </span>
+          </span>
+          <ChevronRight
+            className="h-4 w-4 shrink-0 text-gold-500/50 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-gold-400"
+            aria-hidden
+          />
+        </button>
+      </div>
+
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        title={points.modalTitle}
+        closeLabel={points.close}
+      >
+        <div className="flex flex-col gap-5">
+          {points.groups.map((group) => (
+            <div key={group.label}>
+              <p className="gold-divider text-[11px] font-bold uppercase tracking-[0.18em]">
+                {group.label}
+              </p>
+              <div className="mt-3 flex flex-col gap-2.5">
+                {group.points.map((point) => (
+                  <PointRow key={point.name} point={point} dict={dict} />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
-      </div>
+      </Modal>
     </Reveal>
   );
 }
@@ -184,17 +260,6 @@ export function TrackingSection({ dict }: { dict: Dictionary }) {
             <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-soft">
               {data.description}
             </p>
-            <ul className="mt-3 space-y-1.5">
-              {data.facts.map((fact) => (
-                <li
-                  key={fact}
-                  className="flex items-center gap-2 text-xs font-medium text-gold-300"
-                >
-                  <span aria-hidden className="h-1 w-1 rounded-full bg-gold-400" />
-                  {fact}
-                </li>
-              ))}
-            </ul>
           </div>
         ))}
       </div>

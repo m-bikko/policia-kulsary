@@ -9,6 +9,22 @@ export type SupportPoint = {
   maps: MapLinks;
 };
 
+/** Участковый пункт полиции: адрес, инспектор и ссылки на карты — поля опциональны, данные частичные */
+export type PolicePoint = {
+  name: string;
+  address?: string;
+  inspector?: string;
+  phone?: string;
+  phoneRaw?: string;
+  twoGis?: string;
+  google?: string;
+};
+
+export type PointGroup = {
+  label: string;
+  points: PolicePoint[];
+};
+
 export type Unit = {
   title: string;
   description: string;
@@ -58,15 +74,19 @@ export type Dictionary = {
     title: string;
     subtitle: string;
     headquarters: SupportPoint;
-    items: SupportPoint[];
     open2gis: string;
     openGoogle: string;
+    openList: string;
+    modalTitle: string;
+    close: string;
+    call: string;
+    groups: PointGroup[];
   };
   tracking: {
     title: string;
     subtitle: string;
-    drones: Unit & { facts: string[] };
-    radar: Unit & { facts: string[] };
+    drones: Unit;
+    radar: Unit;
   };
   recruitment: {
     title: string;

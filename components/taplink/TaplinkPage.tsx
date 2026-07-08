@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { Phone, MapPin, ShieldCheck } from "lucide-react";
+import { ExternalLink, Phone, MapPin, ShieldCheck } from "lucide-react";
 import type { Dictionary } from "@/lib/i18n";
 import { localeLabels, locales, type Locale } from "@/lib/i18n/config";
 import { Reveal } from "./primitives";
@@ -112,17 +112,26 @@ function EmergencyBar({ dict }: { dict: Dictionary }) {
           {dict.emergency.dutyPhone}
         </span>
       </a>
-      <div className="card-official col-span-2 flex items-center gap-3 rounded-xl px-4 py-3">
+      <a
+        href={dict.points.headquarters.maps.google}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="card-official group col-span-2 flex items-center gap-3 rounded-xl px-4 py-3"
+      >
         <MapPin className="h-4 w-4 shrink-0 text-gold-400" aria-hidden />
-        <div className="min-w-0 text-left">
+        <div className="min-w-0 flex-1 text-left">
           <p className="text-[11px] uppercase tracking-wider text-ink-dim">
             {dict.emergency.address}
           </p>
-          <p className="truncate text-sm font-medium text-ink">
+          <p className="text-sm font-medium leading-snug text-ink">
             {dict.emergency.addressValue}
           </p>
         </div>
-      </div>
+        <ExternalLink
+          className="h-4 w-4 shrink-0 text-gold-500/50 transition-colors group-hover:text-gold-400"
+          aria-hidden
+        />
+      </a>
     </div>
   );
 }

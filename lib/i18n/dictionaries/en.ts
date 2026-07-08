@@ -2,19 +2,19 @@ import type { Dictionary } from "../types";
 
 export const en: Dictionary = {
   meta: {
-    title: "Zhylyoi District Police - Kulsary | Atyrau Region",
+    title: "Zhylyoi District Police Department - Kulsary | Atyrau Region",
     description:
-      "Official information page of the Zhylyoi District Police Department, Police Department of Atyrau Region, Ministry of Internal Affairs of Kazakhstan. Emergency - 102.",
+      "Official information page of the Zhylyoi District Police Department, Police Department of Atyrau Region. Emergency - 102.",
   },
   splash: {
-    title: "Zhylyoi Police",
-    ministry: "Ministry of Internal Affairs of the Republic of Kazakhstan",
+    title: "Zhylyoi District Police Department",
+    ministry: "Police Department of Atyrau Region",
     choose: "Choose your language",
     hint: "You can change the language at any time",
   },
   header: {
-    name: "Zhylyoi District Police",
-    department: "Police Department of Atyrau Region · MIA RK",
+    name: "Zhylyoi District Police Department",
+    department: "Police Department of Atyrau Region",
     location: "Kulsary, Atyrau Region",
     official: "State institution",
   },
@@ -25,13 +25,13 @@ export const en: Dictionary = {
     duty: "Duty unit",
     dutyPhone: "+7 (712 37) 5-04-96",
     address: "Address",
-    addressValue: "Kulsary, Bisenbi Bisenkulov st., 46",
+    addressValue: "Kulsary, Bisenbi Bisenkulov st., 47",
   },
   stats: {
     heading: "Service in numbers",
     items: [
       { value: "87,863", label: "district residents under protection" },
-      { value: "3,500+", label: "Sergek cameras across Atyrau Region" },
+      { value: "3,500+", label: "special cameras across Atyrau Region" },
       { value: "320+", label: "highway violations detected by drones" },
       { value: "24/7", label: "duty unit works around the clock" },
     ],
@@ -39,11 +39,11 @@ export const en: Dictionary = {
   },
   info: {
     title: "Information",
-    subtitle: "About the district and the department",
+    subtitle: "About the district",
     paragraphs: [
-      "The Zhylyoi District Police Department maintains public order and safety across 29,400 km² - from the town of Kulsary to the rural districts of Akkiiztogay, Zhem, Karaton, Koschagyl and Maikomgen.",
-      "Zhylyoi District is the oil heart of Atyrau Region: over 40 fields, including Tengiz. More than 87,000 people live in the district, about 60,000 of them in Kulsary.",
-      "During the 2024 flood, police officers together with rescuers helped evacuate more than 30,000 residents and guarded property in the flooded areas.",
+      "Zhylyoi District covers 29,400 km² - from the town of Kulsary to the rural districts of Akkiiztogay, Zhem, Karaton, Koschagyl and Maikomgen. More than 87,000 people live in the district, about 60,000 of them in Kulsary.",
+      "Zhylyoi District is the oil heart of Atyrau Region: over 40 fields, including Tengiz.",
+      "The district has 416 streets. The town of Kulsary has 14,688 houses and a railway station.",
     ],
     wikipedia: "Zhylyoi District on Wikipedia",
     wikipediaUrl: "https://en.wikipedia.org/wiki/Zhylyoi_District",
@@ -51,63 +51,114 @@ export const en: Dictionary = {
     govPortalUrl: "https://www.gov.kz/memleket/entities/mvd-atyrau?lang=en",
   },
   points: {
-    title: "Police stations",
-    subtitle: "Police near you - in town and villages",
+    title: "Local police posts",
+    subtitle: "4 local police posts operate in the town and 6 in rural areas",
     headquarters: {
       name: "Police Department - Kulsary",
       note: "Duty unit, open 24/7",
       maps: {
         twoGis: "https://2gis.kz/atyrau/firm/70000001077001378",
         google:
-          "https://www.google.com/maps/search/?api=1&query=Zhylyoi+District+Police+Kulsary",
+          "https://www.google.com/maps/search/?api=1&query=Кульсары+Бисенби+Бисенкулова+47",
       },
     },
-    items: [
+    open2gis: "2GIS",
+    openGoogle: "Google Maps",
+    openList: "View all posts",
+    modalTitle: "Local police posts",
+    close: "Close",
+    call: "Call",
+    groups: [
       {
-        name: "Shokpartogay",
-        note: "Local police post",
-        maps: {
-          twoGis: "https://2gis.kz/search/Шокпартогай",
-          google:
-            "https://www.google.com/maps/search/?api=1&query=Shokpartogay+Atyrau+Region",
-        },
+        label: "Kulsary town - 4 posts",
+        points: [
+          {
+            name: "Local police post No. 1",
+            address: "U. Makhambetov st., 15",
+            inspector: "Police Senior Lieutenant Abylay Payzov",
+            phone: "+7 702 465 8745",
+            phoneRaw: "+77024658745",
+            twoGis:
+              "https://2gis.kz/atyrau/search/46.951283%2C%2053.992302/geo/70030076608616181/53.992302%2C46.951283?m=53.992284%2C46.951267%2F20",
+            google: "https://maps.app.goo.gl/D5wfJQQLcbkJnexG9",
+          },
+          {
+            name: "Local police post No. 12",
+            address: "Atyrau microdistrict, Al-Farabi st., 1, apt. 1",
+            inspector: "Police Captain Dauren Saugabayev",
+            phone: "+7 701 579 1479",
+            phoneRaw: "+77015791479",
+            twoGis: "https://go.2gis.com/GNLQQ",
+            google: "https://maps.app.goo.gl/Szfa7QeBEM7Zz4kFA",
+          },
+          {
+            name: "Samal microdistrict post",
+            address: "Samal microdistrict",
+            inspector: "Police Major Sundet Okashev",
+            phone: "+7 778 854 0666",
+            phoneRaw: "+77788540666",
+            twoGis:
+              "https://2gis.kz/atyrau/geo/70030076573578098/54.032108,46.955619",
+            google:
+              "https://www.google.com/maps/search/?api=1&query=46.955619,54.032108",
+          },
+        ],
       },
       {
-        name: "Embi (Zhem)",
-        note: "Local police post",
-        maps: {
-          twoGis: "https://2gis.kz/search/село+Емби",
-          google:
-            "https://www.google.com/maps/search/?api=1&query=Embi+Zhylyoi+District",
-        },
-      },
-      {
-        name: "Akkiiztogay",
-        note: "Local police post",
-        maps: {
-          twoGis: "https://2gis.kz/search/Аккиизтогай",
-          google:
-            "https://www.google.com/maps/search/?api=1&query=Akkiiztogay+Atyrau+Region",
-        },
+        label: "Rural areas - 6 posts",
+        points: [
+          {
+            name: "Local police post No. 10",
+            address: "Maikomgen village, Ainymas st.",
+            inspector: "Police Major Nurzhan Zhetenov",
+            phone: "+7 778 463 6900",
+            phoneRaw: "+77784636900",
+            google:
+              "https://www.google.com/maps/search/?api=1&query=46.522495,54.273186",
+          },
+          {
+            name: "Zhana Karaton settlement post",
+            address: "Zhana Karaton, 449a",
+            inspector: "Police Major Birzhan Zinullin",
+            phone: "+7 701 579 1479",
+            phoneRaw: "+77015791479",
+            twoGis: "https://go.2gis.com/VIklS",
+            google:
+              "https://www.google.com/maps/search/?api=1&query=46.924805,53.871304",
+          },
+          {
+            name: "Akkiiztogay village post",
+            inspector: "Police Captain Nurlybek Tautekin",
+            phone: "+7 778 854 0666",
+            phoneRaw: "+77788540666",
+            twoGis: "https://go.2gis.com/3nYkF",
+            google:
+              "https://www.google.com/maps/search/?api=1&query=47.096336,54.376663",
+          },
+          {
+            name: "Shokpartogay village post",
+            address: "Kara-Arna district, B. Nurmaganbetov st., 374",
+            phone: "+7 775 607 0736",
+            phoneRaw: "+77756070736",
+            google:
+              "https://www.google.com/maps/search/?api=1&query=Шокпартогай+Атырауская+область",
+          },
+        ],
       },
     ],
-    open2gis: "Open in 2GIS",
-    openGoogle: "Google Maps",
   },
   tracking: {
     title: "Monitoring systems",
-    subtitle: "Technology guarding road safety",
+    subtitle: "Special devices guarding road safety",
     drones: {
       title: "Drones",
       description:
         "UAVs record oncoming-lane violations and dangerous manoeuvres on highways and help search for missing people - including with thermal cameras.",
-      facts: ["320+ violations detected from the air", "Search operations in the steppe"],
     },
     radar: {
-      title: "Radars & Sergek",
+      title: "Radars",
       description:
-        "Over 3,500 cameras of the Sergek system monitor the region's roads around the clock: speeding, red-light running, seat belts.",
-      facts: ["3,500+ cameras in the region", "Violations recorded 24/7"],
+        "Special cameras and radars monitor the region's roads around the clock: speeding, red-light running, seat belts.",
     },
   },
   recruitment: {
@@ -152,7 +203,7 @@ export const en: Dictionary = {
     infoLabel: "Law “On Law Enforcement Service”",
     infoUrl: "https://adilet.zan.kz/rus/docs/Z1100000380",
     contactLabel: "Contact the HR service",
-    contactAddress: "Kulsary, B. Bisenkulov st., 46",
+    contactAddress: "Kulsary, B. Bisenkulov st., 47",
     contactPhone: "+7 775 488 20 58",
     contactPhoneRaw: "+77754882058",
   },
@@ -187,7 +238,7 @@ export const en: Dictionary = {
     subtitle: "Stay alert on the district's roads",
     body: [
       "The Atyrau - Kulsary highway (230 km) and the Tengiz road carry heavy truck traffic. Ice and snowstorms are possible in winter; sun glare and mirages in summer.",
-      "Observe the speed limit: drones and Sergek cameras operate on the highways. In case of an accident or danger, call 102 - help will be dispatched from the nearest station.",
+      "Observe the speed limit: drones and special cameras operate on the highways. In case of an accident or danger, call 102 - help will be dispatched from the nearest police post.",
     ],
     infoLabel: "Information",
   },

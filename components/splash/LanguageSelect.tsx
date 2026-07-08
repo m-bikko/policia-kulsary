@@ -13,7 +13,7 @@ const ORDER: Locale[] = ["kz", "ru", "en"];
 
 const trilingual = {
   choose: ["Тілді таңдаңыз", "Выберите язык", "Choose your language"],
-  ministry: "Қазақстан Республикасының Ішкі істер министрлігі",
+  ministry: "Атырау облысы полиция департаменті",
 };
 
 export default function LanguageSelect() {
@@ -63,9 +63,9 @@ export default function LanguageSelect() {
 
       <motion.h1
         {...fadeUp(0.1)}
-        className="mt-8 text-center font-display text-2xl font-semibold tracking-wide text-ink sm:text-3xl"
+        className="mt-8 text-center font-display text-xl font-semibold tracking-wide text-ink text-balance sm:text-2xl"
       >
-        Жылыой полициясы
+        Жылыой ауданы полиция басқармасы
       </motion.h1>
 
       <motion.p

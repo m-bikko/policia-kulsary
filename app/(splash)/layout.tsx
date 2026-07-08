@@ -3,9 +3,10 @@ import { fontVariables } from "@/lib/fonts";
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Жылыой полициясы · Полиция Жылыойского района · Zhylyoi Police",
+  title:
+    "Жылыой ауданы полиция басқармасы · Управление полиции Жылыойского района · Zhylyoi Police",
   description:
-    "Полиция Жылыойского района, Атырауская область, МВД РК. Экстренный вызов - 102. Тілді таңдаңыз · Выберите язык · Choose your language.",
+    "Управление полиции Жылыойского района, Атырауская область. Экстренный вызов - 102. Тілді таңдаңыз · Выберите язык · Choose your language.",
   icons: { icon: "/images/logo-mvd-sm.png" },
 };
 

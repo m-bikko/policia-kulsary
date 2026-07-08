@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
 
 /** Появление секции при прокрутке */
 export function Reveal({
@@ -50,6 +50,78 @@ export function SectionTitle({
         {title}
       </h2>
     </div>
+  );
+}
+
+/** Модальное окно: скрим + панель, Escape и клик по фону закрывают */
+export function Modal({
+  open,
+  onClose,
+  title,
+  closeLabel,
+  children,
+}: {
+  open: boolean;
+  onClose: () => void;
+  title: string;
+  closeLabel: string;
+  children: ReactNode;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open, onClose]);
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-50 flex items-end justify-center bg-navy-950/80 backdrop-blur-sm sm:items-center sm:p-6"
+          onClick={onClose}
+        >
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={title}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 32 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            onClick={(e) => e.stopPropagation()}
+            className="card-official flex max-h-[85dvh] w-full max-w-lg flex-col rounded-t-2xl sm:rounded-2xl"
+          >
+            <div className="flex items-center gap-3 border-b border-gold-500/15 px-5 py-4">
+              <h3 className="flex-1 font-display text-base font-semibold text-ink">
+                {title}
+              </h3>
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label={closeLabel}
+                className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-ink-soft transition-colors hover:bg-gold-500/10 hover:text-gold-300"
+              >
+                <X className="h-5 w-5" aria-hidden />
+              </button>
+            </div>
+            <div className="overflow-y-auto px-5 py-4">{children}</div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
