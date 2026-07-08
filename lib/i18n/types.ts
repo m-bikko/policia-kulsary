@@ -14,6 +14,7 @@ export type PolicePoint = {
   name: string;
   address?: string;
   inspector?: string;
+  photo?: string;
   phone?: string;
   phoneRaw?: string;
   twoGis?: string;

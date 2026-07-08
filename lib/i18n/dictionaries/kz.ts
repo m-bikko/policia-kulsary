@@ -78,6 +78,7 @@ export const kz: Dictionary = {
             name: "№1 учаскелік полиция пункті",
             address: "Ұ. Махамбетов көшесі, 15",
             inspector: "Полиция аға лейтенанты Пайзов Абылай Бауыржанұлы",
+            photo: "/images/officers/paizov-abylai.jpg",
             phone: "+7 702 465 8745",
             phoneRaw: "+77024658745",
             twoGis:
@@ -113,6 +114,7 @@ export const kz: Dictionary = {
             name: "№10 учаскелік полиция пункті",
             address: "Майкөмген селосы, Айнымас көшесі",
             inspector: "Полиция майоры Жетенов Нуржан Есбосынович",
+            photo: "/images/officers/zhetenov-nurzhan.jpg",
             phone: "+7 778 463 6900",
             phoneRaw: "+77784636900",
             google:
@@ -131,11 +133,19 @@ export const kz: Dictionary = {
           {
             name: "Аққиізтоғай ауылындағы пункт",
             inspector: "Полиция капитаны Таутекин Нурлыбек",
+            photo: "/images/officers/tautekin-nurlybek.jpg",
             phone: "+7 778 854 0666",
             phoneRaw: "+77788540666",
             twoGis: "https://go.2gis.com/3nYkF",
             google:
               "https://www.google.com/maps/search/?api=1&query=47.096336,54.376663",
+          },
+          {
+            name: "Ембі ауылындағы пункт",
+            inspector: "Учаскелік полиция инспекторы Максим",
+            photo: "/images/officers/embi-maksim.jpg",
+            google:
+              "https://www.google.com/maps/search/?api=1&query=Емби+Жылыойский+район",
           },
           {
             name: "Шоқпартоғай ауылындағы пункт",
@@ -280,7 +290,7 @@ export const kz: Dictionary = {
         title: "Патрульдік полиция ротасы",
         description:
           "Құлсары көшелері мен аудан ауылдарын тәулік бойы патрульдеу, 102 шақыруларына ден қою.",
-        officer: { name: "Адилет", photo: "/images/units/adilet.jpg" },
+        officer: { name: "Салимов Адилет", photo: "/images/units/adilet.jpg" },
       },
       {
         title: "Көші-қон қызметі",

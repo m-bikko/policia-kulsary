@@ -78,6 +78,7 @@ export const en: Dictionary = {
             name: "Local police post No. 1",
             address: "U. Makhambetov st., 15",
             inspector: "Police Senior Lieutenant Abylay Payzov",
+            photo: "/images/officers/paizov-abylai.jpg",
             phone: "+7 702 465 8745",
             phoneRaw: "+77024658745",
             twoGis:
@@ -113,6 +114,7 @@ export const en: Dictionary = {
             name: "Local police post No. 10",
             address: "Maikomgen village, Ainymas st.",
             inspector: "Police Major Nurzhan Zhetenov",
+            photo: "/images/officers/zhetenov-nurzhan.jpg",
             phone: "+7 778 463 6900",
             phoneRaw: "+77784636900",
             google:
@@ -131,11 +133,19 @@ export const en: Dictionary = {
           {
             name: "Akkiiztogay village post",
             inspector: "Police Captain Nurlybek Tautekin",
+            photo: "/images/officers/tautekin-nurlybek.jpg",
             phone: "+7 778 854 0666",
             phoneRaw: "+77788540666",
             twoGis: "https://go.2gis.com/3nYkF",
             google:
               "https://www.google.com/maps/search/?api=1&query=47.096336,54.376663",
+          },
+          {
+            name: "Embi village post",
+            inspector: "Local police inspector Maksim",
+            photo: "/images/officers/embi-maksim.jpg",
+            google:
+              "https://www.google.com/maps/search/?api=1&query=Емби+Жылыойский+район",
           },
           {
             name: "Shokpartogay village post",
@@ -280,7 +290,7 @@ export const en: Dictionary = {
         title: "Patrol police company",
         description:
           "Round-the-clock patrolling of Kulsary streets and district villages, responding to 102 calls.",
-        officer: { name: "Adilet", photo: "/images/units/adilet.jpg" },
+        officer: { name: "Adilet Salimov", photo: "/images/units/adilet.jpg" },
       },
       {
         title: "Migration service",

@@ -109,9 +109,20 @@ function PointRow({ point, dict }: { point: PolicePoint; dict: Dictionary }) {
         </p>
       )}
       {point.inspector && (
-        <p className="mt-1.5 text-xs leading-relaxed text-ink-dim">
-          {point.inspector}
-        </p>
+        <div className="mt-2 flex items-center gap-2.5">
+          {point.photo && (
+            <Image
+              src={point.photo}
+              alt={point.inspector}
+              width={44}
+              height={44}
+              className="h-11 w-11 shrink-0 rounded-full border border-gold-500/40 object-cover object-top"
+            />
+          )}
+          <p className="text-xs leading-relaxed text-ink-dim">
+            {point.inspector}
+          </p>
+        </div>
       )}
       <div className="mt-3 flex flex-wrap gap-2">
         {point.phone && point.phoneRaw && (

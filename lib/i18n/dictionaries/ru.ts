@@ -78,6 +78,7 @@ export const ru: Dictionary = {
             name: "Участковый пункт полиции №1",
             address: "ул. У. Махамбетова, 15",
             inspector: "Старший лейтенант полиции Пайзов Абылай Бауыржанулы",
+            photo: "/images/officers/paizov-abylai.jpg",
             phone: "+7 702 465 8745",
             phoneRaw: "+77024658745",
             twoGis:
@@ -113,6 +114,7 @@ export const ru: Dictionary = {
             name: "Участковый пункт полиции №10",
             address: "село Майкомген, ул. Айнымас",
             inspector: "Майор полиции Жетенов Нуржан Есбосынович",
+            photo: "/images/officers/zhetenov-nurzhan.jpg",
             phone: "+7 778 463 6900",
             phoneRaw: "+77784636900",
             google:
@@ -131,11 +133,19 @@ export const ru: Dictionary = {
           {
             name: "Пункт в селе Аккиизтогай",
             inspector: "Капитан полиции Таутекин Нурлыбек",
+            photo: "/images/officers/tautekin-nurlybek.jpg",
             phone: "+7 778 854 0666",
             phoneRaw: "+77788540666",
             twoGis: "https://go.2gis.com/3nYkF",
             google:
               "https://www.google.com/maps/search/?api=1&query=47.096336,54.376663",
+          },
+          {
+            name: "Пункт в селе Ембі",
+            inspector: "Участковый инспектор полиции Максим",
+            photo: "/images/officers/embi-maksim.jpg",
+            google:
+              "https://www.google.com/maps/search/?api=1&query=Емби+Жылыойский+район",
           },
           {
             name: "Пункт в селе Шокпартогай",
@@ -280,7 +290,7 @@ export const ru: Dictionary = {
         title: "Рота патрульной полиции",
         description:
           "Круглосуточное патрулирование улиц Кульсары и сёл района, реагирование на вызовы 102.",
-        officer: { name: "Адилет", photo: "/images/units/adilet.jpg" },
+        officer: { name: "Салимов Адилет", photo: "/images/units/adilet.jpg" },
       },
       {
         title: "Миграционная служба",
