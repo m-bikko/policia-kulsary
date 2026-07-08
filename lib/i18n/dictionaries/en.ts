@@ -30,9 +30,7 @@ export const en: Dictionary = {
   stats: {
     heading: "Service in numbers",
     items: [
-      { value: "87,863", label: "district residents under protection" },
-      { value: "3,500+", label: "special cameras across Atyrau Region" },
-      { value: "320+", label: "highway violations detected by drones" },
+      { value: "954", label: "Sergek cameras in Kulsary" },
       { value: "24/7", label: "duty unit works around the clock" },
     ],
     source: "Data: gov.kz, polisia.kz and regional media",
@@ -257,9 +255,9 @@ export const en: Dictionary = {
           "Crime prevention, citizen reception, community work in assigned areas.",
       },
       {
-        title: "Highway patrol",
+        title: "Republican highway patrol",
         description:
-          "Monitoring the Atyrau - Kulsary - Tengiz highways: speed control, help for drivers in the steppe.",
+          "Monitoring the Atyrau - Kulsary - Tengiz republican highway: speed control, help for drivers in the steppe.",
       },
     ],
   },
