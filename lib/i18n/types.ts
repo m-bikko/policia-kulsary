@@ -30,6 +30,17 @@ export type Unit = {
   description: string;
 };
 
+export type DeviceImage = {
+  src: string;
+  caption: string;
+};
+
+export type TrackingDevice = {
+  title: string;
+  description: string;
+  images?: DeviceImage[];
+};
+
 export type Dictionary = {
   meta: {
     title: string;
@@ -85,15 +96,17 @@ export type Dictionary = {
   tracking: {
     title: string;
     subtitle: string;
-    drones: Unit;
-    radar: Unit;
+    photoHint: string;
+    close: string;
+    devices: TrackingDevice[];
   };
   recruitment: {
     title: string;
     subtitle: string;
+    detailsLabel: string;
+    modalTitle: string;
+    close: string;
     noTestNote: string;
-    salaryTitle: string;
-    salary: { value: string; label: string }[];
     benefitsTitle: string;
     benefits: string[];
     requirementsTitle: string;
@@ -112,6 +125,9 @@ export type Dictionary = {
   units: {
     title: string;
     subtitle: string;
+    staffTitle: string;
+    staffNote: string;
+    close: string;
     items: Unit[];
   };
   roadSafety: {

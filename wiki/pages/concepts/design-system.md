@@ -16,7 +16,7 @@ sources: [app/globals.css, lib/fonts.ts]
 - Фон: `navy-950 #050b1a` … `navy-600`; карточки - градиент navy-800→900.
 - Акцент: `gold-500 #d4af37` (кнопка 102, оверлайны, иконки), `gold-300/400` для текста на тёмном.
 - Текст: `ink #eef2fb`, `ink-soft #a8b8d8`, `ink-dim #6d7fa3` (только мета, контраст ≈4.6:1).
-- Шрифты: `--font-display` Unbounded, `--font-body` Manrope - оба с `cyrillic-ext` (Ә, Ғ, Қ, Ң, Ө, Ұ, Ү, І).
+- Шрифты: `--font-display` Montserrat, `--font-body` Manrope - оба с `cyrillic-ext`. Изначально display был Unbounded, но у него неполное покрытие казахских глифов (Қ, Ұ, Ә, Ң, Ө) - в заголовках подмешивался fallback; заменён на Montserrat 2026-07-08.
 
 ## Фирменные приёмы
 

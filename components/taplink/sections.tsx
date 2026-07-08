@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import Image from "next/image";
 import {
   BookOpen,
   Camera,
@@ -26,7 +27,7 @@ import {
   Users,
 } from "lucide-react";
 import type { Dictionary } from "@/lib/i18n";
-import type { PolicePoint } from "@/lib/i18n/types";
+import type { PolicePoint, TrackingDevice, Unit } from "@/lib/i18n/types";
 import { Reveal, SectionTitle, Collapsible, Modal } from "./primitives";
 
 function ExternalCard({
@@ -235,32 +236,108 @@ export function PointsSection({ dict }: { dict: Dictionary }) {
 
 /* ── Системы отслеживания ───────────────────────────────────── */
 
+function DeviceCard({
+  device,
+  icon,
+  dict,
+  className = "",
+}: {
+  device: TrackingDevice;
+  icon: ReactNode;
+  dict: Dictionary;
+  className?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const hasPhotos = Boolean(device.images?.length);
+
+  const body = (
+    <>
+      <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-gold-500/30 bg-gold-500/10 text-gold-400">
+        {icon}
+      </span>
+      <h3 className="mt-3.5 font-display text-base font-semibold text-ink">
+        {device.title}
+      </h3>
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-soft">
+        {device.description}
+      </p>
+    </>
+  );
+
+  if (!hasPhotos) {
+    return (
+      <div
+        className={`card-official corner-accents flex flex-col rounded-2xl px-5 py-5 ${className}`}
+      >
+        {body}
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className={`card-official corner-accents group flex w-full cursor-pointer flex-col rounded-2xl px-5 py-5 text-left ${className}`}
+      >
+        {body}
+        <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-gold-300 transition-colors group-hover:text-gold-400">
+          <Camera className="h-3.5 w-3.5" aria-hidden />
+          {dict.tracking.photoHint}
+        </span>
+      </button>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        title={device.title}
+        closeLabel={dict.tracking.close}
+      >
+        <p className="text-sm leading-relaxed text-ink-soft">
+          {device.description}
+        </p>
+        <div className="mt-4 flex flex-col gap-4">
+          {device.images?.map((img) => (
+            <figure key={img.src}>
+              <Image
+                src={img.src}
+                alt={img.caption}
+                width={1280}
+                height={720}
+                sizes="(max-width: 640px) 100vw, 512px"
+                className="h-auto w-full rounded-xl border border-gold-500/15"
+              />
+              <figcaption className="mt-1.5 text-xs text-ink-dim">
+                {img.caption}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </Modal>
+    </>
+  );
+}
+
 export function TrackingSection({ dict }: { dict: Dictionary }) {
   const { tracking } = dict;
-  const cards = [
-    { data: tracking.drones, icon: <Drone className="h-6 w-6" aria-hidden /> },
-    { data: tracking.radar, icon: <Radar className="h-6 w-6" aria-hidden /> },
+  const icons = [
+    <Drone key="drone" className="h-6 w-6" aria-hidden />,
+    <Car key="cyber" className="h-6 w-6" aria-hidden />,
+    <Radar key="radar" className="h-6 w-6" aria-hidden />,
   ];
   return (
     <Reveal aria-labelledby="s-tracking">
       <SectionTitle overline="03" title={tracking.title} id="s-tracking" />
       <p className="-mt-2 mb-4 text-sm text-ink-soft">{tracking.subtitle}</p>
       <div className="grid gap-3 sm:grid-cols-2">
-        {cards.map(({ data, icon }) => (
-          <div
-            key={data.title}
-            className="card-official corner-accents flex flex-col rounded-2xl px-5 py-5"
-          >
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-gold-500/30 bg-gold-500/10 text-gold-400">
-              {icon}
-            </span>
-            <h3 className="mt-3.5 font-display text-base font-semibold text-ink">
-              {data.title}
-            </h3>
-            <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-soft">
-              {data.description}
-            </p>
-          </div>
+        {tracking.devices.map((device, i) => (
+          <DeviceCard
+            key={device.title}
+            device={device}
+            icon={icons[i]}
+            dict={dict}
+            className={i === tracking.devices.length - 1 ? "sm:col-span-2" : ""}
+          />
         ))}
       </div>
     </Reveal>
@@ -271,6 +348,8 @@ export function TrackingSection({ dict }: { dict: Dictionary }) {
 
 export function RecruitmentSection({ dict }: { dict: Dictionary }) {
   const { recruitment } = dict;
+  const [open, setOpen] = useState(false);
+
   return (
     <Reveal aria-labelledby="s-recruitment">
       <SectionTitle overline="04" title={recruitment.title} id="s-recruitment" />
@@ -284,96 +363,123 @@ export function RecruitmentSection({ dict }: { dict: Dictionary }) {
             </p>
           </div>
         </div>
-        <div className="card-official rounded-2xl px-5 py-4">
-          <p className="text-xs font-semibold uppercase tracking-wider text-gold-500/80">
-            {recruitment.salaryTitle}
-          </p>
-          <dl className="mt-3 grid grid-cols-2 gap-3">
-            {recruitment.salary.map((item) => (
-              <div key={item.label}>
-                <dd className="font-display text-lg font-bold text-gold-400 tabular-nums">
-                  {item.value}
-                </dd>
-                <dt className="mt-0.5 text-xs leading-snug text-ink-soft">
-                  {item.label}
-                </dt>
-              </div>
-            ))}
-          </dl>
-        </div>
-        <Collapsible
-          icon={<ShieldCheck className="h-5 w-5" aria-hidden />}
-          summary={recruitment.benefitsTitle}
-          defaultOpen
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="card-official group flex min-h-14 w-full cursor-pointer items-center gap-3.5 rounded-2xl px-5 py-4 text-left"
         >
-          <ul className="space-y-2.5">
-            {recruitment.benefits.map((benefit) => (
-              <li
-                key={benefit}
-                className="flex gap-2.5 text-sm leading-relaxed text-ink-soft"
-              >
-                <span
-                  aria-hidden
-                  className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold-400"
-                />
-                {benefit}
-              </li>
-            ))}
-          </ul>
-        </Collapsible>
-        <Collapsible
-          icon={<UserCheck className="h-5 w-5" aria-hidden />}
-          summary={recruitment.requirementsTitle}
-        >
-          <ul className="space-y-2.5">
-            {recruitment.requirements.map((req) => (
-              <li key={req} className="flex gap-2.5 text-sm leading-relaxed text-ink-soft">
-                <ShieldCheck
-                  className="mt-0.5 h-4 w-4 shrink-0 text-gold-500/70"
-                  aria-hidden
-                />
-                {req}
-              </li>
-            ))}
-          </ul>
-        </Collapsible>
-        <Collapsible
-          icon={<FileText className="h-5 w-5" aria-hidden />}
-          summary={recruitment.documentsTitle}
-        >
-          <ol className="list-inside list-decimal space-y-2 text-sm leading-relaxed text-ink-soft marker:text-gold-500/70">
-            {recruitment.documents.map((doc) => (
-              <li key={doc}>{doc}</li>
-            ))}
-          </ol>
-        </Collapsible>
-        <ExternalCard
-          href={recruitment.downloadUrl}
-          icon={<Download className="h-5 w-5" aria-hidden />}
-          title={recruitment.downloadLabel}
-        />
-        <ExternalCard
-          href={recruitment.infoUrl}
-          icon={<ScrollText className="h-5 w-5" aria-hidden />}
-          title={recruitment.infoLabel}
-        />
-        <div className="card-official corner-accents rounded-2xl px-5 py-4">
-          <p className="text-xs font-semibold uppercase tracking-wider text-gold-500/80">
-            {recruitment.contactLabel}
-          </p>
-          <div className="mt-3 flex items-start gap-2.5 text-sm text-ink-soft">
-            <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden />
-            {recruitment.contactAddress}
-          </div>
-          <a
-            href={`tel:${recruitment.contactPhoneRaw}`}
-            className="mt-3 flex min-h-11 items-center justify-center gap-2.5 rounded-xl border border-gold-500/40 bg-gold-500/10 px-4 py-2.5 text-sm font-bold text-gold-300 transition-colors hover:bg-gold-500/20"
-          >
-            <Phone className="h-4 w-4" aria-hidden />
-            <span className="tabular-nums">{recruitment.contactPhone}</span>
-          </a>
-        </div>
+          <span className="shrink-0 text-gold-400">
+            <UserCheck className="h-5 w-5" aria-hidden />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-sm font-semibold text-ink">
+              {recruitment.detailsLabel}
+            </span>
+            <span className="mt-0.5 block text-xs text-ink-soft">
+              {recruitment.benefitsTitle} · {recruitment.requirementsTitle} ·{" "}
+              {recruitment.documentsTitle}
+            </span>
+          </span>
+          <ChevronRight
+            className="h-4 w-4 shrink-0 text-gold-500/50 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-gold-400"
+            aria-hidden
+          />
+        </button>
       </div>
+
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        title={recruitment.modalTitle}
+        closeLabel={recruitment.close}
+      >
+        <div className="flex flex-col gap-6">
+          <p className="rounded-xl border border-gold-500/20 bg-gold-500/5 px-4 py-3 text-sm leading-relaxed text-ink-soft">
+            {recruitment.noTestNote}
+          </p>
+
+          <section>
+            <p className="gold-divider text-[11px] font-bold uppercase tracking-[0.18em]">
+              {recruitment.benefitsTitle}
+            </p>
+            <ul className="mt-3 space-y-2.5">
+              {recruitment.benefits.map((benefit) => (
+                <li
+                  key={benefit}
+                  className="flex gap-2.5 text-sm leading-relaxed text-ink-soft"
+                >
+                  <span
+                    aria-hidden
+                    className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold-400"
+                  />
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section>
+            <p className="gold-divider text-[11px] font-bold uppercase tracking-[0.18em]">
+              {recruitment.requirementsTitle}
+            </p>
+            <ul className="mt-3 space-y-2.5">
+              {recruitment.requirements.map((req) => (
+                <li
+                  key={req}
+                  className="flex gap-2.5 text-sm leading-relaxed text-ink-soft"
+                >
+                  <ShieldCheck
+                    className="mt-0.5 h-4 w-4 shrink-0 text-gold-500/70"
+                    aria-hidden
+                  />
+                  {req}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section>
+            <p className="gold-divider text-[11px] font-bold uppercase tracking-[0.18em]">
+              {recruitment.documentsTitle}
+            </p>
+            <ol className="mt-3 list-inside list-decimal space-y-2 text-sm leading-relaxed text-ink-soft marker:text-gold-500/70">
+              {recruitment.documents.map((doc) => (
+                <li key={doc}>{doc}</li>
+              ))}
+            </ol>
+          </section>
+
+          <section className="flex flex-col gap-2.5">
+            <ExternalCard
+              href={recruitment.downloadUrl}
+              icon={<Download className="h-5 w-5" aria-hidden />}
+              title={recruitment.downloadLabel}
+            />
+            <ExternalCard
+              href={recruitment.infoUrl}
+              icon={<ScrollText className="h-5 w-5" aria-hidden />}
+              title={recruitment.infoLabel}
+            />
+          </section>
+
+          <section className="rounded-xl border border-gold-500/15 bg-navy-900/60 px-4 py-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-gold-500/80">
+              {recruitment.contactLabel}
+            </p>
+            <div className="mt-3 flex items-start gap-2.5 text-sm text-ink-soft">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden />
+              {recruitment.contactAddress}
+            </div>
+            <a
+              href={`tel:${recruitment.contactPhoneRaw}`}
+              className="mt-3 flex min-h-11 items-center justify-center gap-2.5 rounded-xl border border-gold-500/40 bg-gold-500/10 px-4 py-2.5 text-sm font-bold text-gold-300 transition-colors hover:bg-gold-500/20"
+            >
+              <Phone className="h-4 w-4" aria-hidden />
+              <span className="tabular-nums">{recruitment.contactPhone}</span>
+            </a>
+          </section>
+        </div>
+      </Modal>
     </Reveal>
   );
 }
@@ -389,26 +495,83 @@ const unitIcons = [
 
 export function UnitsSection({ dict }: { dict: Dictionary }) {
   const { units } = dict;
+  const [staffOpen, setStaffOpen] = useState(false);
+  const staff = dict.points.groups
+    .flatMap((group) => group.points)
+    .filter((point) => point.inspector);
+
+  const unitCardBody = (unit: Unit, i: number) => (
+    <>
+      <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-gold-500/30 bg-gold-500/10 text-gold-400">
+        {unitIcons[i]}
+      </span>
+      <h3 className="mt-3.5 text-sm font-bold text-ink">{unit.title}</h3>
+      <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">
+        {unit.description}
+      </p>
+    </>
+  );
+
   return (
     <Reveal aria-labelledby="s-units">
       <SectionTitle overline="05" title={units.title} id="s-units" />
       <p className="-mt-2 mb-4 text-sm text-ink-soft">{units.subtitle}</p>
       <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2">
-        {units.items.map((unit, i) => (
-          <div
-            key={unit.title}
-            className="card-official flex flex-col rounded-2xl px-5 py-5"
-          >
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-gold-500/30 bg-gold-500/10 text-gold-400">
-              {unitIcons[i]}
-            </span>
-            <h3 className="mt-3.5 text-sm font-bold text-ink">{unit.title}</h3>
-            <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">
-              {unit.description}
-            </p>
-          </div>
-        ))}
+        {units.items.map((unit, i) =>
+          i === 0 ? (
+            <button
+              key={unit.title}
+              type="button"
+              onClick={() => setStaffOpen(true)}
+              className="card-official group flex w-full cursor-pointer flex-col rounded-2xl px-5 py-5 text-left"
+            >
+              {unitCardBody(unit, i)}
+              <span className="mt-2.5 inline-flex items-center gap-1 text-xs font-semibold text-gold-300 transition-colors group-hover:text-gold-400">
+                {units.staffTitle}
+                <ChevronRight className="h-3.5 w-3.5" aria-hidden />
+              </span>
+            </button>
+          ) : (
+            <div
+              key={unit.title}
+              className="card-official flex flex-col rounded-2xl px-5 py-5"
+            >
+              {unitCardBody(unit, i)}
+            </div>
+          ),
+        )}
       </div>
+
+      <Modal
+        open={staffOpen}
+        onClose={() => setStaffOpen(false)}
+        title={units.staffTitle}
+        closeLabel={units.close}
+      >
+        <p className="text-xs font-semibold uppercase tracking-wider text-gold-500/80">
+          {units.staffNote}
+        </p>
+        <div className="mt-3 flex flex-col gap-2.5">
+          {staff.map((member) => (
+            <div
+              key={`${member.name}-${member.inspector}`}
+              className="rounded-xl border border-gold-500/15 bg-navy-900/60 px-4 py-3.5"
+            >
+              <p className="text-sm font-semibold text-ink">{member.inspector}</p>
+              <p className="mt-1 text-xs text-ink-dim">{member.name}</p>
+              {member.phone && member.phoneRaw && (
+                <a
+                  href={`tel:${member.phoneRaw}`}
+                  className="mt-2.5 inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-gold-500/40 bg-gold-500/10 px-3 text-xs font-bold text-gold-300 transition-colors hover:bg-gold-500/20"
+                >
+                  <Phone className="h-3.5 w-3.5" aria-hidden />
+                  <span className="tabular-nums">{member.phone}</span>
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </Modal>
     </Reveal>
   );
 }

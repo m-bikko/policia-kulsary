@@ -19,7 +19,8 @@
       "NotebookEdit",
       "TodoRead",
       "TodoWrite",
-      "WebSearch"
+      "WebSearch",
+      "pnpm"
     ],
     "additionalDirectories": [
       "/tmp",

@@ -21,7 +21,7 @@ Next.js 16 (App Router, Turbopack), TypeScript strict, Tailwind CSS v4, motion (
 ## Слои
 
 - `lib/i18n/` - [[i18n-system]]: конфиг локалей, типизированный `Dictionary`, словари kz/ru/en.
-- `lib/fonts.ts` - Unbounded (display) + Manrope (body), оба с subset `cyrillic-ext` (казахские глифы).
+- `lib/fonts.ts` - Montserrat (display) + Manrope (body), оба с subset `cyrillic-ext` (казахские глифы). Unbounded заменён из-за неполного покрытия казахских букв.
 - `components/splash/` - клиентский экран выбора языка.
 - `components/taplink/` - `TaplinkPage` (сборка), `sections.tsx` (8 секций), `primitives.tsx` (Reveal/SectionTitle/Collapsible).
 - `app/globals.css` - [[design-system]]: токены цветов в `@theme inline`, классы `.bg-ceremonial`, `.card-official`, `.corner-accents`, `.grain`, `.gold-divider`.

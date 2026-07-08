@@ -150,27 +150,54 @@ export const en: Dictionary = {
   tracking: {
     title: "Monitoring systems",
     subtitle: "Special devices guarding road safety",
-    drones: {
-      title: "Drones",
-      description:
-        "UAVs record oncoming-lane violations and dangerous manoeuvres on highways and help search for missing people - including with thermal cameras.",
-    },
-    radar: {
-      title: "Radars",
-      description:
-        "Special cameras and radars monitor the region's roads around the clock: speeding, red-light running, seat belts.",
-    },
+    photoHint: "View photo",
+    close: "Close",
+    devices: [
+      {
+        title: "Drone",
+        description:
+          "The DJI Matrice 350 RTK UAV records oncoming-lane violations and dangerous manoeuvres on highways and helps search for missing people. Control range - 20 km, flight time - 55 minutes, speed - 82.8 km/h.",
+        images: [
+          {
+            src: "/images/tracking/dji-matrice-350.jpg",
+            caption: "DJI Matrice 350 RTK quadcopter",
+          },
+        ],
+      },
+      {
+        title: "Cyber Sheriff",
+        description:
+          "A patrol car equipped with the Ekin Patrol G2 system. Built into the roof light bar, it automatically detects speeding (including from behind and the side) and parking violations, reads licence plates and checks them against databases.",
+        images: [
+          {
+            src: "/images/tracking/ekin-patrol-bar.jpg",
+            caption: "Ekin Patrol G2 system",
+          },
+          {
+            src: "/images/tracking/cyber-sheriff-car.jpg",
+            caption: "Cyber Sheriff patrol car",
+          },
+          {
+            src: "/images/tracking/ekin-patrol-car.jpg",
+            caption: "Patrol car with the Ekin Patrol system",
+          },
+        ],
+      },
+      {
+        title: "Oracle-Insight",
+        description:
+          "A compact optical-radar system for photo and video detection of traffic violations. Mounted on a patrol car, it works both in motion and stationary - in covert and open modes.",
+      },
+    ],
   },
   recruitment: {
     title: "Join the police",
     subtitle: "The Zhylyoi District Police Department invites you to serve",
+    detailsLabel: "Full details",
+    modalTitle: "Joining the service",
+    close: "Close",
     noTestNote:
       "Candidates for junior command (sergeant) positions who have completed military service or a military department are accepted without testing, in accordance with the legislation of Kazakhstan.",
-    salaryTitle: "Stable monthly salary",
-    salary: [
-      { value: "220,000+ ₸", label: "command staff" },
-      { value: "180,000+ ₸", label: "junior command staff" },
-    ],
     benefitsTitle: "Benefits and guarantees",
     benefits: [
       "Free medical care",
@@ -210,9 +237,12 @@ export const en: Dictionary = {
   units: {
     title: "Units",
     subtitle: "Who works for your safety",
+    staffTitle: "Staff list",
+    staffNote: "Local police inspectors",
+    close: "Close",
     items: [
       {
-        title: "Patrol police",
+        title: "Patrol police company",
         description:
           "Round-the-clock patrolling of Kulsary streets and district villages, responding to 102 calls.",
       },
@@ -250,8 +280,8 @@ export const en: Dictionary = {
   },
   social: {
     title: "Follow us",
-    subtitle: "News of the Atyrau Region police",
-    instagram: "https://www.instagram.com/police.atyrau/",
+    subtitle: "News of the Zhylyoi district police - Jylyoi_police",
+    instagram: "https://www.instagram.com/jylyoi_police_/",
     facebook: "https://www.facebook.com/dvdatyrau",
     telegram: "https://t.me/POLICE_of_KZ",
     tiktok: "",
