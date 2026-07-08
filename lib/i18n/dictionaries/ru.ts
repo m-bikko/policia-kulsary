@@ -6,6 +6,10 @@ export const ru: Dictionary = {
     description:
       "Официальная информационная страница Управления полиции Жылыойского района Департамента полиции Атырауской области. Экстренный вызов - 102.",
   },
+  theme: {
+    toDark: "Тёмная тема",
+    toLight: "Светлая тема",
+  },
   splash: {
     title: "Жылыой ауданы полиция басқармасы",
     ministry: "Атырау облысы полиция департаменті",
@@ -165,15 +169,46 @@ export const ru: Dictionary = {
       {
         title: "Кибер шериф",
         description:
-          "Патрульный автомобиль с комплексом Ekin Patrol G2. Система, встроенная в световую балку на крыше, автоматически фиксирует превышение скорости (в том числе сзади и сбоку) и нарушения правил парковки, распознаёт номера и проверяет их по базам данных.",
+          "Автоматическая система на патрульном автомобиле: панорамная видеофиксация 360°, распознавание госномеров и лиц пешеходов со сверкой по базам розыска, фиксация превышения скорости, пересечения сплошной и нарушений парковки, онлайн-трансляция с места ДТП.",
         images: [
           {
-            src: "/images/tracking/ekin-patrol-bar.jpg",
-            caption: "Комплекс Ekin Patrol G2",
+            src: "/images/tracking/cyber-sheriff-1.jpg",
+            caption: "Система «Кибер шериф» на крыше патрульного автомобиля",
+          },
+          {
+            src: "/images/tracking/cyber-sheriff-2.jpg",
+            caption: "Камерный блок «Кибер шерифа»",
           },
           {
             src: "/images/tracking/cyber-sheriff-car.jpg",
             caption: "Патрульный автомобиль «Кибер шериф»",
+          },
+        ],
+        link: {
+          href: "https://msmax.kz/kiber_sherif/",
+          label: "Подробнее о «Кибер шерифе» (msmax.kz)",
+        },
+      },
+      {
+        title: "Ekin Patrol G2",
+        description:
+          "Мобильный комплекс фото- и видеофиксации с искусственным интеллектом. Работает круглосуточно в движении и на стоянке: 360°-контроль скорости в радиусе до 100 метров (спереди, сзади и сбоку), проверка номеров по базам угнанных машин и неоплаченных штрафов, контроль парковки, отдельные лимиты скорости для каждой полосы. Полицейскому достаточно задать порог скорости - дальше система работает автономно.",
+        images: [
+          {
+            src: "/images/tracking/ekin-1.jpg",
+            caption: "Световая балка Ekin Patrol G2",
+          },
+          {
+            src: "/images/tracking/ekin-2.jpg",
+            caption: "Камерный модуль Ekin Patrol G2",
+          },
+          {
+            src: "/images/tracking/ekin-3.jpg",
+            caption: "Ekin Patrol G2 на патрульном автомобиле",
+          },
+          {
+            src: "/images/tracking/ekin-patrol-bar.jpg",
+            caption: "Комплекс Ekin Patrol G2",
           },
           {
             src: "/images/tracking/ekin-patrol-car.jpg",
@@ -185,6 +220,10 @@ export const ru: Dictionary = {
         title: "«Оракул-Инсайт»",
         description:
           "Компактный оптико-радиолокационный комплекс фото- и видеофиксации нарушений ПДД. Устанавливается на патрульный автомобиль и работает как в движении, так и стационарно - в скрытом и открытом режиме.",
+        link: {
+          href: "https://olvia.ru/product/complex/oraculinside",
+          label: "«Оракул-Инсайт» на сайте производителя (olvia.ru)",
+        },
       },
     ],
   },
@@ -272,16 +311,15 @@ export const ru: Dictionary = {
   },
   video: {
     title: "Видео",
-    subtitle: "Репортажи о работе полиции Казахстана",
-    watchLabel: "Смотреть на polisia.kz",
-    url: "https://polisia.kz/ru/",
+    subtitle: "Видео о работе полиции Жылыойского района",
+    watchLabel: "Смотреть в Instagram",
+    url: "https://www.instagram.com/p/DacNY0DN3u1/",
   },
   social: {
     title: "Мы в соцсетях",
     subtitle: "Новости полиции Жылыойского района - Jylyoi_police",
     instagram: "https://www.instagram.com/jylyoi_police_/",
     facebook: "https://www.facebook.com/dvdatyrau",
-    telegram: "https://t.me/POLICE_of_KZ",
     tiktok: "",
     comingSoon: "скоро",
   },

@@ -6,6 +6,10 @@ export const en: Dictionary = {
     description:
       "Official information page of the Zhylyoi District Police Department, Police Department of Atyrau Region. Emergency - 102.",
   },
+  theme: {
+    toDark: "Dark theme",
+    toLight: "Light theme",
+  },
   splash: {
     title: "Zhylyoi District Police Department",
     ministry: "Police Department of Atyrau Region",
@@ -165,15 +169,46 @@ export const en: Dictionary = {
       {
         title: "Cyber Sheriff",
         description:
-          "A patrol car equipped with the Ekin Patrol G2 system. Built into the roof light bar, it automatically detects speeding (including from behind and the side) and parking violations, reads licence plates and checks them against databases.",
+          "An automatic system on a patrol car: 360° panoramic video recording, recognition of licence plates and pedestrians' faces checked against wanted databases, detection of speeding, solid-line crossing and parking violations, live streaming from accident scenes.",
         images: [
           {
-            src: "/images/tracking/ekin-patrol-bar.jpg",
-            caption: "Ekin Patrol G2 system",
+            src: "/images/tracking/cyber-sheriff-1.jpg",
+            caption: "Cyber Sheriff system on a patrol car roof",
+          },
+          {
+            src: "/images/tracking/cyber-sheriff-2.jpg",
+            caption: "Cyber Sheriff camera unit",
           },
           {
             src: "/images/tracking/cyber-sheriff-car.jpg",
             caption: "Cyber Sheriff patrol car",
+          },
+        ],
+        link: {
+          href: "https://msmax.kz/kiber_sherif/",
+          label: "More about Cyber Sheriff (msmax.kz)",
+        },
+      },
+      {
+        title: "Ekin Patrol G2",
+        description:
+          "An AI-powered mobile photo and video enforcement system. It works around the clock, both moving and parked: 360° speed control within 100 metres (front, rear and side), plate checks against stolen-car and unpaid-fine databases, parking control, separate speed limits per lane. The officer only sets the speed threshold - the system runs autonomously.",
+        images: [
+          {
+            src: "/images/tracking/ekin-1.jpg",
+            caption: "Ekin Patrol G2 light bar",
+          },
+          {
+            src: "/images/tracking/ekin-2.jpg",
+            caption: "Ekin Patrol G2 camera module",
+          },
+          {
+            src: "/images/tracking/ekin-3.jpg",
+            caption: "Ekin Patrol G2 on a patrol car",
+          },
+          {
+            src: "/images/tracking/ekin-patrol-bar.jpg",
+            caption: "Ekin Patrol G2 system",
           },
           {
             src: "/images/tracking/ekin-patrol-car.jpg",
@@ -185,6 +220,10 @@ export const en: Dictionary = {
         title: "Oracle-Insight",
         description:
           "A compact optical-radar system for photo and video detection of traffic violations. Mounted on a patrol car, it works both in motion and stationary - in covert and open modes.",
+        link: {
+          href: "https://olvia.ru/product/complex/oraculinside",
+          label: "Oracle-Insight on the manufacturer's site (olvia.ru)",
+        },
       },
     ],
   },
@@ -272,16 +311,15 @@ export const en: Dictionary = {
   },
   video: {
     title: "Video",
-    subtitle: "Reports on the work of Kazakhstan's police",
-    watchLabel: "Watch on polisia.kz",
-    url: "https://polisia.kz/en/",
+    subtitle: "Video about the work of the Zhylyoi district police",
+    watchLabel: "Watch on Instagram",
+    url: "https://www.instagram.com/p/DacNY0DN3u1/",
   },
   social: {
     title: "Follow us",
     subtitle: "News of the Zhylyoi district police - Jylyoi_police",
     instagram: "https://www.instagram.com/jylyoi_police_/",
     facebook: "https://www.facebook.com/dvdatyrau",
-    telegram: "https://t.me/POLICE_of_KZ",
     tiktok: "",
     comingSoon: "soon",
   },

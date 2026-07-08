@@ -1,31 +1,112 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-navy-950: #050b1a;
-  --color-navy-900: #0a1428;
-  --color-navy-850: #0d1a35;
-  --color-navy-800: #122142;
-  --color-navy-700: #1c3161;
-  --color-navy-600: #2a4380;
+  --color-navy-950: var(--t-navy-950);
+  --color-navy-900: var(--t-navy-900);
+  --color-navy-850: var(--t-navy-850);
+  --color-navy-800: var(--t-navy-800);
+  --color-navy-700: var(--t-navy-700);
+  --color-navy-600: var(--t-navy-600);
 
-  --color-gold-300: #f0d98c;
-  --color-gold-400: #e6c65c;
-  --color-gold-500: #d4af37;
-  --color-gold-600: #b8942a;
-  --color-gold-700: #8f711d;
+  --color-gold-300: var(--t-gold-300);
+  --color-gold-400: var(--t-gold-400);
+  --color-gold-500: var(--t-gold-500);
+  --color-gold-600: var(--t-gold-600);
+  --color-gold-700: var(--t-gold-700);
 
-  --color-sky-accent: #4da3ff;
+  /* Насыщенное золото для заливок (кнопка 102, активная пилюля) - одинаково в обеих темах */
+  --color-gold-solid: var(--t-gold-solid);
+  --color-on-gold: var(--t-on-gold);
 
-  --color-ink: #eef2fb;
-  --color-ink-soft: #a8b8d8;
-  --color-ink-dim: #6d7fa3;
+  --color-sky-accent: var(--t-sky-accent);
+
+  --color-ink: var(--t-ink);
+  --color-ink-soft: var(--t-ink-soft);
+  --color-ink-dim: var(--t-ink-dim);
 
   --font-display: var(--font-montserrat), system-ui, sans-serif;
   --font-body: var(--font-manrope), system-ui, sans-serif;
 }
 
+/* ── Светлая тема (по умолчанию) ───────────────────────────── */
 :root {
+  color-scheme: light;
+
+  --t-navy-950: #eef1f7;
+  --t-navy-900: #ffffff;
+  --t-navy-850: #f6f8fc;
+  --t-navy-800: #ffffff;
+  --t-navy-700: #d9e0ee;
+  --t-navy-600: #bfcae1;
+
+  --t-gold-300: #6d5514;
+  --t-gold-400: #85681a;
+  --t-gold-500: #96761c;
+  --t-gold-600: #b8942a;
+  --t-gold-700: #d4af37;
+
+  --t-gold-solid: #d4af37;
+  --t-on-gold: #0a1428;
+
+  --t-sky-accent: #2b6cb0;
+
+  --t-ink: #101b33;
+  --t-ink-soft: #3f4c6b;
+  --t-ink-dim: #64708e;
+
+  /* rgb-компоненты золота для rgba() в декоративных элементах */
+  --gold-rgb: 150, 118, 28;
+
+  --ceremonial-glow-top: rgba(212, 175, 55, 0.14);
+  --ceremonial-glow-bottom: rgba(191, 202, 225, 0.45);
+  --grid-line: rgba(16, 27, 51, 0.045);
+  --grain-opacity: 0.03;
+
+  --card-bg-a: #ffffff;
+  --card-bg-b: #f7f9fd;
+  --card-border: rgba(150, 118, 28, 0.22);
+  --card-border-hover: rgba(150, 118, 28, 0.5);
+  --card-shadow: 0 8px 32px -12px rgba(16, 27, 51, 0.18);
+}
+
+/* ── Тёмная тема ───────────────────────────────────────────── */
+[data-theme="dark"] {
   color-scheme: dark;
+
+  --t-navy-950: #050b1a;
+  --t-navy-900: #0a1428;
+  --t-navy-850: #0d1a35;
+  --t-navy-800: #122142;
+  --t-navy-700: #1c3161;
+  --t-navy-600: #2a4380;
+
+  --t-gold-300: #f0d98c;
+  --t-gold-400: #e6c65c;
+  --t-gold-500: #d4af37;
+  --t-gold-600: #b8942a;
+  --t-gold-700: #8f711d;
+
+  --t-gold-solid: #d4af37;
+  --t-on-gold: #050b1a;
+
+  --t-sky-accent: #4da3ff;
+
+  --t-ink: #eef2fb;
+  --t-ink-soft: #a8b8d8;
+  --t-ink-dim: #6d7fa3;
+
+  --gold-rgb: 212, 175, 55;
+
+  --ceremonial-glow-top: rgba(212, 175, 55, 0.13);
+  --ceremonial-glow-bottom: rgba(28, 49, 97, 0.5);
+  --grid-line: rgba(212, 175, 55, 0.024);
+  --grain-opacity: 0.05;
+
+  --card-bg-a: rgba(18, 33, 66, 0.85);
+  --card-bg-b: rgba(10, 20, 40, 0.95);
+  --card-border: rgba(212, 175, 55, 0.16);
+  --card-border-hover: rgba(212, 175, 55, 0.45);
+  --card-shadow: 0 8px 32px -12px rgba(212, 175, 55, 0.18);
 }
 
 html {
@@ -33,21 +114,22 @@ html {
 }
 
 body {
-  background-color: var(--color-navy-950);
-  color: var(--color-ink);
+  background-color: var(--t-navy-950);
+  color: var(--t-ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 250ms ease, color 250ms ease;
 }
 
-/* Атмосфера: глубокий синий с золотым свечением сверху и тонкой сеткой */
+/* Атмосфера: фон с золотым свечением сверху и тонкой сеткой */
 .bg-ceremonial {
-  background-color: var(--color-navy-950);
+  background-color: var(--t-navy-950);
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212, 175, 55, 0.13), transparent 60%),
-    radial-gradient(ellipse 60% 40% at 50% 110%, rgba(28, 49, 97, 0.5), transparent 70%),
-    linear-gradient(rgba(212, 175, 55, 0.024) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(212, 175, 55, 0.024) 1px, transparent 1px);
+    radial-gradient(ellipse 80% 50% at 50% -10%, var(--ceremonial-glow-top), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 110%, var(--ceremonial-glow-bottom), transparent 70%),
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
 }
 
@@ -58,39 +140,38 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.05;
+  opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
 }
 
-/* Золотая тонкая линия-разделитель с ромбом по центру */
+/* Золотая тонкая линия-разделитель */
 .gold-divider {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: rgba(212, 175, 55, 0.55);
+  color: rgba(var(--gold-rgb), 0.75);
 }
 .gold-divider::before,
 .gold-divider::after {
   content: "";
   height: 1px;
   flex: 1;
-  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4));
+  background: linear-gradient(90deg, transparent, rgba(var(--gold-rgb), 0.4));
 }
 .gold-divider::after {
-  background: linear-gradient(90deg, rgba(212, 175, 55, 0.4), transparent);
+  background: linear-gradient(90deg, rgba(var(--gold-rgb), 0.4), transparent);
 }
 
 /* Карточка-ссылка в духе служебного удостоверения */
 .card-official {
   position: relative;
-  border: 1px solid rgba(212, 175, 55, 0.16);
-  background:
-    linear-gradient(160deg, rgba(18, 33, 66, 0.85), rgba(10, 20, 40, 0.95));
+  border: 1px solid var(--card-border);
+  background: linear-gradient(160deg, var(--card-bg-a), var(--card-bg-b));
   transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
 }
 .card-official:hover {
-  border-color: rgba(212, 175, 55, 0.45);
-  box-shadow: 0 8px 32px -12px rgba(212, 175, 55, 0.18);
+  border-color: var(--card-border-hover);
+  box-shadow: var(--card-shadow);
 }
 @media (prefers-reduced-motion: reduce) {
   .card-official,
@@ -106,10 +187,10 @@ body {
   inset: 6px;
   pointer-events: none;
   background:
-    linear-gradient(rgba(212, 175, 55, 0.5), rgba(212, 175, 55, 0.5)) top left / 12px 1px,
-    linear-gradient(rgba(212, 175, 55, 0.5), rgba(212, 175, 55, 0.5)) top left / 1px 12px,
-    linear-gradient(rgba(212, 175, 55, 0.5), rgba(212, 175, 55, 0.5)) bottom right / 12px 1px,
-    linear-gradient(rgba(212, 175, 55, 0.5), rgba(212, 175, 55, 0.5)) bottom right / 1px 12px;
+    linear-gradient(rgba(var(--gold-rgb), 0.5), rgba(var(--gold-rgb), 0.5)) top left / 12px 1px,
+    linear-gradient(rgba(var(--gold-rgb), 0.5), rgba(var(--gold-rgb), 0.5)) top left / 1px 12px,
+    linear-gradient(rgba(var(--gold-rgb), 0.5), rgba(var(--gold-rgb), 0.5)) bottom right / 12px 1px,
+    linear-gradient(rgba(var(--gold-rgb), 0.5), rgba(var(--gold-rgb), 0.5)) bottom right / 1px 12px;
   background-repeat: no-repeat;
 }
 
@@ -118,12 +199,11 @@ body {
 }
 
 ::selection {
-  background: rgba(212, 175, 55, 0.35);
-  color: #fff;
+  background: rgba(var(--gold-rgb), 0.35);
 }
 
 *:focus-visible {
-  outline: 2px solid var(--color-gold-400);
+  outline: 2px solid var(--t-gold-600);
   outline-offset: 2px;
   border-radius: 4px;
 }

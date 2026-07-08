@@ -6,6 +6,10 @@ export const kz: Dictionary = {
     description:
       "Атырау облысы полиция департаменті Жылыой ауданы полиция басқармасының ресми ақпараттық парақшасы. Жедел шақыру - 102.",
   },
+  theme: {
+    toDark: "Қараңғы тема",
+    toLight: "Жарық тема",
+  },
   splash: {
     title: "Жылыой ауданы полиция басқармасы",
     ministry: "Атырау облысы полиция департаменті",
@@ -165,15 +169,46 @@ export const kz: Dictionary = {
       {
         title: "Кибер шериф",
         description:
-          "Ekin Patrol G2 кешені орнатылған патрульдік автокөлік. Шатырдағы жарық балкасына кірістірілген жүйе жылдамдықты асыруды (артқы және бүйір жақтан да), тұрақ ережелерін бұзуды автоматты тіркейді, нөмірлерді танып, дерекқорлар бойынша тексереді.",
+          "Патрульдік автокөлікке орнатылатын автоматты жүйе: 360° панорамалық бейнетіркеу, мемлекеттік нөмірлер мен жаяу жүргіншілердің жүзін іздеу базаларымен салыстыра тану, жылдамдықты асыруды, тұтас сызықты кесіп өтуді және тұрақ ережелерін бұзуды тіркеу, ЖКО орнынан онлайн-трансляция.",
         images: [
           {
-            src: "/images/tracking/ekin-patrol-bar.jpg",
-            caption: "Ekin Patrol G2 кешені",
+            src: "/images/tracking/cyber-sheriff-1.jpg",
+            caption: "«Кибер шериф» жүйесі патрульдік автокөліктің шатырында",
+          },
+          {
+            src: "/images/tracking/cyber-sheriff-2.jpg",
+            caption: "«Кибер шериф» камера блогы",
           },
           {
             src: "/images/tracking/cyber-sheriff-car.jpg",
             caption: "«Кибер шериф» патрульдік автокөлігі",
+          },
+        ],
+        link: {
+          href: "https://msmax.kz/kiber_sherif/",
+          label: "«Кибер шериф» туралы толығырақ (msmax.kz)",
+        },
+      },
+      {
+        title: "Ekin Patrol G2",
+        description:
+          "Жасанды интеллект қолданатын фото-бейнетіркеу мобильді кешені. Тәулік бойы қозғалыста да, тұрақта да жұмыс істейді: 100 метрге дейінгі радиуста 360° жылдамдық бақылауы (алдынан, артынан және бүйірден), нөмірлерді айдалған көліктер мен төленбеген айыппұлдар базасымен тексеру, тұрақты бақылау, әр жолаққа жеке жылдамдық шегі. Полицейге жылдамдық шегін енгізу жеткілікті - әрі қарай жүйе толық автономды.",
+        images: [
+          {
+            src: "/images/tracking/ekin-1.jpg",
+            caption: "Ekin Patrol G2 жарық балкасы",
+          },
+          {
+            src: "/images/tracking/ekin-2.jpg",
+            caption: "Ekin Patrol G2 камера модулі",
+          },
+          {
+            src: "/images/tracking/ekin-3.jpg",
+            caption: "Ekin Patrol G2 патрульдік автокөлікте",
+          },
+          {
+            src: "/images/tracking/ekin-patrol-bar.jpg",
+            caption: "Ekin Patrol G2 кешені",
           },
           {
             src: "/images/tracking/ekin-patrol-car.jpg",
@@ -185,6 +220,10 @@ export const kz: Dictionary = {
         title: "«Оракул-Инсайт»",
         description:
           "Шағын оптикалық-радиолокациялық кешен жол ережесін бұзуды фото және бейне арқылы тіркейді. Патрульдік автокөлікке орнатылып, қозғалыста да, тұрған қалпында да - жасырын және ашық режимде жұмыс істейді.",
+        link: {
+          href: "https://olvia.ru/product/complex/oraculinside",
+          label: "«Оракул-Инсайт» өндіруші сайтында (olvia.ru)",
+        },
       },
     ],
   },
@@ -272,16 +311,15 @@ export const kz: Dictionary = {
   },
   video: {
     title: "Бейне",
-    subtitle: "Қазақстан полициясының жұмысы туралы репортаждар",
-    watchLabel: "polisia.kz сайтында көру",
-    url: "https://polisia.kz/",
+    subtitle: "Жылыой полициясының жұмысы туралы бейне",
+    watchLabel: "Instagram-да көру",
+    url: "https://www.instagram.com/p/DacNY0DN3u1/",
   },
   social: {
     title: "Әлеуметтік желілерде",
     subtitle: "Жылыой полициясының жаңалықтары - Jylyoi_police",
     instagram: "https://www.instagram.com/jylyoi_police_/",
     facebook: "https://www.facebook.com/dvdatyrau",
-    telegram: "https://t.me/POLICE_of_KZ",
     tiktok: "",
     comingSoon: "жақында",
   },

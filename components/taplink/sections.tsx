@@ -6,6 +6,7 @@ import {
   BookOpen,
   Camera,
   Car,
+  Cctv,
   ChevronRight,
   Download,
   Drone,
@@ -19,7 +20,6 @@ import {
   Play,
   Radar,
   ScrollText,
-  Send,
   ShieldCheck,
   Siren,
   TriangleAlert,
@@ -264,12 +264,25 @@ function DeviceCard({
     </>
   );
 
+  const linkRow = device.link && (
+    <a
+      href={device.link.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mt-3 inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold text-gold-300 underline-offset-4 transition-colors hover:text-gold-400 hover:underline"
+    >
+      <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden />
+      {device.link.label}
+    </a>
+  );
+
   if (!hasPhotos) {
     return (
       <div
         className={`card-official corner-accents flex flex-col rounded-2xl px-5 py-5 ${className}`}
       >
         {body}
+        {linkRow}
       </div>
     );
   }
@@ -313,6 +326,7 @@ function DeviceCard({
             </figure>
           ))}
         </div>
+        {linkRow}
       </Modal>
     </>
   );
@@ -322,7 +336,8 @@ export function TrackingSection({ dict }: { dict: Dictionary }) {
   const { tracking } = dict;
   const icons = [
     <Drone key="drone" className="h-6 w-6" aria-hidden />,
-    <Car key="cyber" className="h-6 w-6" aria-hidden />,
+    <Cctv key="cyber" className="h-6 w-6" aria-hidden />,
+    <Car key="ekin" className="h-6 w-6" aria-hidden />,
     <Radar key="radar" className="h-6 w-6" aria-hidden />,
   ];
   return (
@@ -336,7 +351,12 @@ export function TrackingSection({ dict }: { dict: Dictionary }) {
             device={device}
             icon={icons[i]}
             dict={dict}
-            className={i === tracking.devices.length - 1 ? "sm:col-span-2" : ""}
+            className={
+              tracking.devices.length % 2 === 1 &&
+              i === tracking.devices.length - 1
+                ? "sm:col-span-2"
+                : ""
+            }
           />
         ))}
       </div>
@@ -660,7 +680,6 @@ export function SocialSection({ dict }: { dict: Dictionary }) {
   const links = [
     { name: "Instagram", href: social.instagram, icon: <InstagramIcon /> },
     { name: "Facebook", href: social.facebook, icon: <FacebookIcon /> },
-    { name: "Telegram", href: social.telegram, icon: <Send className="h-5 w-5" aria-hidden /> },
     { name: "TikTok", href: social.tiktok, icon: <TikTokIcon /> },
   ];
   return (

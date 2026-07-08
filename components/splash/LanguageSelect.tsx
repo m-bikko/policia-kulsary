@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import { locales, localeLabels, type Locale } from "@/lib/i18n/config";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const STORAGE_KEY = "jylyoi-lang";
 
@@ -42,10 +43,16 @@ export default function LanguageSelect() {
 
   return (
     <main className="relative z-10 mx-auto flex min-h-dvh w-full max-w-md flex-col items-center justify-center px-6 py-12">
+      <div className="absolute right-4 top-4">
+        <ThemeToggle
+          labelToDark="Қараңғы тема · Тёмная тема · Dark theme"
+          labelToLight="Жарық тема · Светлая тема · Light theme"
+        />
+      </div>
       <motion.div {...fadeUp(0)} className="relative">
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 scale-150 rounded-full bg-gold-500/20 blur-3xl"
+          className="absolute inset-0 -z-10 scale-150 rounded-full bg-gold-solid/20 blur-3xl"
         />
         <div className="rounded-full border border-gold-500/40 p-1.5">
           <div className="rounded-full border border-gold-500/70 p-1">

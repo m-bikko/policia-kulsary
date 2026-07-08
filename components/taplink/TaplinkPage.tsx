@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { ExternalLink, Phone, MapPin, ShieldCheck } from "lucide-react";
 import type { Dictionary } from "@/lib/i18n";
 import { localeLabels, locales, type Locale } from "@/lib/i18n/config";
+import ThemeToggle from "@/components/ThemeToggle";
 import { Reveal } from "./primitives";
 import {
   InfoSection,
@@ -32,7 +33,7 @@ function LangSwitcher({ current }: { current: Locale }) {
           aria-current={locale === current ? "page" : undefined}
           className={`flex min-h-11 items-center rounded-full px-4 text-[11px] font-bold tracking-widest transition-colors ${
             locale === current
-              ? "bg-gold-500 text-navy-950"
+              ? "bg-gold-solid text-on-gold"
               : "text-ink-soft hover:text-gold-300"
           }`}
         >
@@ -55,7 +56,7 @@ function ProfileHeader({ dict }: { dict: Dictionary }) {
       >
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 scale-[1.7] rounded-full bg-gold-500/15 blur-3xl"
+          className="absolute inset-0 -z-10 scale-[1.7] rounded-full bg-gold-solid/15 blur-3xl"
         />
         <div className="rounded-full border border-gold-500/40 p-1.5">
           <div className="rounded-full border border-gold-500/70 p-1">
@@ -95,7 +96,7 @@ function EmergencyBar({ dict }: { dict: Dictionary }) {
     <div className="mt-6 grid grid-cols-2 gap-3">
       <a
         href="tel:102"
-        className="corner-accents relative flex min-h-14 items-center justify-center gap-2.5 rounded-xl bg-gold-500 px-4 py-3 font-display text-navy-950 shadow-[0_8px_28px_-10px_rgba(212,175,55,0.55)] transition-transform active:scale-[0.98]"
+        className="corner-accents relative flex min-h-14 items-center justify-center gap-2.5 rounded-xl bg-gold-solid px-4 py-3 font-display text-on-gold shadow-[0_8px_28px_-10px_rgba(212,175,55,0.55)] transition-transform active:scale-[0.98]"
       >
         <Phone className="h-5 w-5" aria-hidden />
         <span className="text-lg font-bold tracking-wide">102</span>
@@ -172,7 +173,11 @@ export default function TaplinkPage({
 }) {
   return (
     <div className="relative z-10 mx-auto w-full max-w-lg px-4 pb-14 pt-4 sm:px-6">
-      <div className="flex justify-end">
+      <div className="flex items-center justify-end gap-2">
+        <ThemeToggle
+          labelToDark={dict.theme.toDark}
+          labelToLight={dict.theme.toLight}
+        />
         <LangSwitcher current={lang} />
       </div>
 

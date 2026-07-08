@@ -39,12 +39,17 @@ export type TrackingDevice = {
   title: string;
   description: string;
   images?: DeviceImage[];
+  link?: { href: string; label: string };
 };
 
 export type Dictionary = {
   meta: {
     title: string;
     description: string;
+  };
+  theme: {
+    toDark: string;
+    toLight: string;
   };
   splash: {
     title: string;
@@ -147,7 +152,6 @@ export type Dictionary = {
     subtitle: string;
     instagram: string;
     facebook: string;
-    telegram: string;
     tiktok: string;
     comingSoon: string;
   };

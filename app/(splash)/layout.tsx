@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { fontVariables } from "@/lib/fonts";
+import { themeInitScript } from "@/lib/theme-init";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#050b1a",
+  themeColor: "#eef1f7",
 };
 
 export default function SplashLayout({
@@ -22,8 +23,11 @@ export default function SplashLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="kk" className={fontVariables}>
-      <body className="bg-ceremonial grain min-h-dvh">{children}</body>
+    <html lang="kk" className={fontVariables} suppressHydrationWarning>
+      <body className="bg-ceremonial grain min-h-dvh">
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {children}
+      </body>
     </html>
   );
 }

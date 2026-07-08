@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { fontVariables } from "@/lib/fonts";
+import { themeInitScript } from "@/lib/theme-init";
 import {
   locales,
   htmlLang,
@@ -32,7 +33,7 @@ export async function generateMetadata({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#050b1a",
+  themeColor: "#eef1f7",
 };
 
 export default async function SiteLayout({
@@ -46,8 +47,15 @@ export default async function SiteLayout({
   if (!isLocale(lang)) notFound();
 
   return (
-    <html lang={htmlLang[lang as Locale]} className={fontVariables}>
-      <body className="bg-ceremonial grain min-h-dvh">{children}</body>
+    <html
+      lang={htmlLang[lang as Locale]}
+      className={fontVariables}
+      suppressHydrationWarning
+    >
+      <body className="bg-ceremonial grain min-h-dvh">
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {children}
+      </body>
     </html>
   );
 }
