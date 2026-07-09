@@ -29,8 +29,8 @@ export type PointGroup = {
 export type Unit = {
   title: string;
   description: string;
-  /** Ответственное лицо раздела; фото опционально - данные передаются постепенно */
-  officer?: { name: string; photo?: string };
+  /** Ответственное лицо раздела; фото и телефон опциональны - данные передаются постепенно */
+  officer?: { name: string; photo?: string; phone?: string; phoneRaw?: string };
 };
 
 export type DeviceImage = {

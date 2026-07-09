@@ -89,6 +89,7 @@ export const en: Dictionary = {
             name: "Local police post No. 12",
             address: "Atyrau microdistrict, Al-Farabi st., 1, apt. 1",
             inspector: "Police Captain Dauren Saugabayev",
+            photo: "/images/officers/saugabayev-dauren.jpg",
             phone: "+7 701 579 1479",
             phoneRaw: "+77015791479",
             twoGis: "https://go.2gis.com/GNLQQ",
@@ -142,14 +143,15 @@ export const en: Dictionary = {
           },
           {
             name: "Embi village post",
-            inspector: "Local police inspector Maksim",
-            photo: "/images/officers/embi-maksim.jpg",
+            inspector: "Police Major Maksim Izbergenov",
+            photo: "/images/officers/izbergenov-maksim.jpg",
             google:
               "https://www.google.com/maps/search/?api=1&query=Емби+Жылыойский+район",
           },
           {
             name: "Shokpartogay village post",
             address: "Kara-Arna district, B. Nurmaganbetov st., 374",
+            inspector: "Police Major Nurgisa Zhamalbekov",
             phone: "+7 775 607 0736",
             phoneRaw: "+77756070736",
             google:
@@ -290,23 +292,43 @@ export const en: Dictionary = {
         title: "Patrol police company",
         description:
           "Round-the-clock patrolling of Kulsary streets and district villages, responding to 102 calls.",
-        officer: { name: "Adilet Salimov", photo: "/images/units/adilet.jpg" },
+        officer: {
+          name: "Adilet Salimov",
+          photo: "/images/units/adilet.jpg",
+          phone: "+7 776 532 9126",
+          phoneRaw: "+77765329126",
+        },
       },
       {
         title: "Migration service",
         description:
           "Residence registration, documentation, registration of foreign citizens.",
-        officer: { name: "Makhambet", photo: "/images/units/makhambet.jpg" },
+        officer: {
+          name: "Makhambet Tasbolatovich",
+          photo: "/images/units/makhambet.jpg",
+          phone: "+7 775 061 7676",
+          phoneRaw: "+77750617676",
+        },
       },
       {
         title: "District inspectors",
         description:
           "Crime prevention, citizen reception, community work in assigned areas.",
+        officer: {
+          name: "Smadiyar Sydykov",
+          phone: "+7 702 524 6681",
+          phoneRaw: "+77025246681",
+        },
       },
       {
         title: "Republican highway patrol",
         description:
           "Monitoring the Atyrau - Kulsary - Tengiz republican highway: speed control, help for drivers in the steppe.",
+        officer: {
+          name: "Adilet Nuraliyev",
+          phone: "+7 778 808 7809",
+          phoneRaw: "+77788087809",
+        },
       },
     ],
   },

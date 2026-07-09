@@ -89,6 +89,7 @@ export const ru: Dictionary = {
             name: "Участковый пункт полиции №12",
             address: "мкр Атырау, ул. Аль-Фараби, д. 1, кв. 1",
             inspector: "Капитан полиции Саугабаев Даурен Сенбаевич",
+            photo: "/images/officers/saugabayev-dauren.jpg",
             phone: "+7 701 579 1479",
             phoneRaw: "+77015791479",
             twoGis: "https://go.2gis.com/GNLQQ",
@@ -142,14 +143,15 @@ export const ru: Dictionary = {
           },
           {
             name: "Пункт в селе Ембі",
-            inspector: "Участковый инспектор полиции Максим",
-            photo: "/images/officers/embi-maksim.jpg",
+            inspector: "Майор полиции Избергенов Максим",
+            photo: "/images/officers/izbergenov-maksim.jpg",
             google:
               "https://www.google.com/maps/search/?api=1&query=Емби+Жылыойский+район",
           },
           {
             name: "Пункт в селе Шокпартогай",
             address: "округ Кара-Арна, ул. Б. Нурмаганбетова, 374",
+            inspector: "Майор полиции Жамалбеков Нургиса",
             phone: "+7 775 607 0736",
             phoneRaw: "+77756070736",
             google:
@@ -290,23 +292,43 @@ export const ru: Dictionary = {
         title: "Рота патрульной полиции",
         description:
           "Круглосуточное патрулирование улиц Кульсары и сёл района, реагирование на вызовы 102.",
-        officer: { name: "Салимов Адилет", photo: "/images/units/adilet.jpg" },
+        officer: {
+          name: "Салимов Адилет",
+          photo: "/images/units/adilet.jpg",
+          phone: "+7 776 532 9126",
+          phoneRaw: "+77765329126",
+        },
       },
       {
         title: "Миграционная служба",
         description:
           "Регистрация по месту жительства, документирование, учёт иностранных граждан.",
-        officer: { name: "Махамбет", photo: "/images/units/makhambet.jpg" },
+        officer: {
+          name: "Махамбет Тасболатович",
+          photo: "/images/units/makhambet.jpg",
+          phone: "+7 775 061 7676",
+          phoneRaw: "+77750617676",
+        },
       },
       {
         title: "Участковые инспекторы",
         description:
           "Профилактика правонарушений, приём граждан, работа с населением на закреплённых участках.",
+        officer: {
+          name: "Сыдыков Смадияр Куралбекович",
+          phone: "+7 702 524 6681",
+          phoneRaw: "+77025246681",
+        },
       },
       {
         title: "Дорожный патруль на республиканской трассе",
         description:
           "Контроль республиканской трассы Атырау - Кульсары - Тенгиз: скоростной режим, помощь водителям в степи.",
+        officer: {
+          name: "Нуралиев Адилет Ерболатулы",
+          phone: "+7 778 808 7809",
+          phoneRaw: "+77788087809",
+        },
       },
     ],
   },

@@ -89,6 +89,7 @@ export const kz: Dictionary = {
             name: "№12 учаскелік полиция пункті",
             address: "Атырау ықшамауданы, Әл-Фараби көшесі, 1 үй, 1 кв.",
             inspector: "Полиция капитаны Саугабаев Даурен Сенбаевич",
+            photo: "/images/officers/saugabayev-dauren.jpg",
             phone: "+7 701 579 1479",
             phoneRaw: "+77015791479",
             twoGis: "https://go.2gis.com/GNLQQ",
@@ -142,14 +143,15 @@ export const kz: Dictionary = {
           },
           {
             name: "Ембі ауылындағы пункт",
-            inspector: "Учаскелік полиция инспекторы Максим",
-            photo: "/images/officers/embi-maksim.jpg",
+            inspector: "Полиция майоры Ізбергенов Максим",
+            photo: "/images/officers/izbergenov-maksim.jpg",
             google:
               "https://www.google.com/maps/search/?api=1&query=Емби+Жылыойский+район",
           },
           {
             name: "Шоқпартоғай ауылындағы пункт",
             address: "Қара арна округі, Б. Нұрмағанбетов көшесі, 374",
+            inspector: "Полиция майоры Жамалбеков Нұргиса",
             phone: "+7 775 607 0736",
             phoneRaw: "+77756070736",
             google:
@@ -290,23 +292,43 @@ export const kz: Dictionary = {
         title: "Патрульдік полиция ротасы",
         description:
           "Құлсары көшелері мен аудан ауылдарын тәулік бойы патрульдеу, 102 шақыруларына ден қою.",
-        officer: { name: "Салимов Адилет", photo: "/images/units/adilet.jpg" },
+        officer: {
+          name: "Салимов Адилет",
+          photo: "/images/units/adilet.jpg",
+          phone: "+7 776 532 9126",
+          phoneRaw: "+77765329126",
+        },
       },
       {
         title: "Көші-қон қызметі",
         description:
           "Тұрғылықты жері бойынша тіркеу, құжаттандыру, шетел азаматтарын есепке алу.",
-        officer: { name: "Махамбет", photo: "/images/units/makhambet.jpg" },
+        officer: {
+          name: "Махамбет Тасболатович",
+          photo: "/images/units/makhambet.jpg",
+          phone: "+7 775 061 7676",
+          phoneRaw: "+77750617676",
+        },
       },
       {
         title: "Учаскелік инспекторлар",
         description:
           "Құқық бұзушылықтың алдын алу, азаматтарды қабылдау, бекітілген учаскелерде халықпен жұмыс.",
+        officer: {
+          name: "Сыдыков Смадияр Куралбекович",
+          phone: "+7 702 524 6681",
+          phoneRaw: "+77025246681",
+        },
       },
       {
         title: "Республикалық трассадағы жол патрулі",
         description:
           "Атырау - Құлсары - Теңіз республикалық трассасын бақылау: жылдамдық режимі, даладағы жүргізушілерге көмек.",
+        officer: {
+          name: "Нұралиев Әділет Ерболатұлы",
+          phone: "+7 778 808 7809",
+          phoneRaw: "+77788087809",
+        },
       },
     ],
   },

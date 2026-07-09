@@ -566,6 +566,15 @@ export function UnitsSection({ dict }: { dict: Dictionary }) {
                   <span className="block text-sm font-semibold text-ink">
                     {unit.officer.name}
                   </span>
+                  {unit.officer.phone && unit.officer.phoneRaw && (
+                    <a
+                      href={`tel:${unit.officer.phoneRaw}`}
+                      className="mt-0.5 inline-flex min-h-6 items-center gap-1 text-xs font-bold text-gold-300 transition-colors hover:text-gold-400"
+                    >
+                      <Phone className="h-3 w-3" aria-hidden />
+                      <span className="tabular-nums">{unit.officer.phone}</span>
+                    </a>
+                  )}
                 </span>
               </div>
             )}
