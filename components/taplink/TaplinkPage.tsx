@@ -184,21 +184,40 @@ function StatsStrip({ dict }: { dict: Dictionary }) {
 export default function TaplinkPage({
   dict,
   lang,
+  heroImage,
 }: {
   dict: Dictionary;
   lang: Locale;
+  heroImage?: string;
 }) {
   return (
-    <div className="relative z-10 mx-auto w-full max-w-lg px-4 pb-14 pt-4 sm:px-6">
-      <div className="flex items-center justify-end gap-2">
-        <ThemeToggle
-          labelToDark={dict.theme.toDark}
-          labelToLight={dict.theme.toLight}
-        />
-        <LangSwitcher current={lang} />
+    <div className="relative z-10 mx-auto w-full max-w-lg px-4 pb-14 sm:px-6">
+      <div className="relative -mx-4 px-4 pb-4 pt-4 sm:-mx-6 sm:px-6">
+        {heroImage && (
+          <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
+            <Image
+              src={heroImage}
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 640px) 100vw, 512px"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-950/85 to-navy-950" />
+          </div>
+        )}
+
+        <div className="flex items-center justify-end gap-2">
+          <ThemeToggle
+            labelToDark={dict.theme.toDark}
+            labelToLight={dict.theme.toLight}
+          />
+          <LangSwitcher current={lang} />
+        </div>
+
+        <ProfileHeader dict={dict} />
       </div>
 
-      <ProfileHeader dict={dict} />
       <EmergencyBar dict={dict} />
       <StatsStrip dict={dict} />
 
