@@ -131,8 +131,8 @@ export const ru: Dictionary = {
             name: "Пункт в посёлке Жана Каратон",
             address: "пос. Жана Каратон, 449а",
             inspector: "Майор полиции Зинуллин Биржан Абилькайырович",
-            phone: "+7 701 579 1479",
-            phoneRaw: "+77015791479",
+            phone: "+7 778 854 0666",
+            phoneRaw: "+77788540666",
             twoGis: "https://go.2gis.com/VIklS",
             google:
               "https://www.google.com/maps/search/?api=1&query=46.924805,53.871304",
@@ -321,15 +321,15 @@ export const ru: Dictionary = {
         description:
           "Профилактика правонарушений, приём граждан, работа с населением на закреплённых участках.",
         officer: {
-          name: "Сыдыков Смадияр Куралбекович",
-          phone: "+7 702 524 6681",
-          phoneRaw: "+77025246681",
+          name: "Халел Асылбек Тилекулы",
+          phone: "+7 778 100 4150",
+          phoneRaw: "+77781004150",
         },
       },
       {
         title: "Дорожный патруль на республиканской трассе",
         description:
-          "Контроль республиканской трассы Атырау - Кульсары - Тенгиз: скоростной режим, помощь водителям в степи.",
+          "Контроль республиканской трассы Атырау - Кульсары - Бейнеу: скоростной режим, помощь водителям в степи.",
         officer: {
           name: "Нуралиев Адилет Ерболатулы",
           phone: "+7 778 808 7809",
@@ -358,7 +358,7 @@ export const ru: Dictionary = {
     subtitle: "Новости полиции Жылыойского района - Jylyoi_police",
     instagram: "https://www.instagram.com/jylyoi_police_/",
     facebook: "https://www.facebook.com/dvdatyrau",
-    tiktok: "",
+    tiktok: "https://www.tiktok.com/@gulzada0106",
     comingSoon: "скоро",
   },
   footer: {

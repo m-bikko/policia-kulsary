@@ -131,8 +131,8 @@ export const en: Dictionary = {
             name: "Zhana Karaton settlement post",
             address: "Zhana Karaton, 449a",
             inspector: "Police Major Birzhan Zinullin",
-            phone: "+7 701 579 1479",
-            phoneRaw: "+77015791479",
+            phone: "+7 778 854 0666",
+            phoneRaw: "+77788540666",
             twoGis: "https://go.2gis.com/VIklS",
             google:
               "https://www.google.com/maps/search/?api=1&query=46.924805,53.871304",
@@ -321,15 +321,15 @@ export const en: Dictionary = {
         description:
           "Crime prevention, citizen reception, community work in assigned areas.",
         officer: {
-          name: "Smadiyar Sydykov",
-          phone: "+7 702 524 6681",
-          phoneRaw: "+77025246681",
+          name: "Assylbek Khalel",
+          phone: "+7 778 100 4150",
+          phoneRaw: "+77781004150",
         },
       },
       {
         title: "Republican highway patrol",
         description:
-          "Monitoring the Atyrau - Kulsary - Tengiz republican highway: speed control, help for drivers in the steppe.",
+          "Monitoring the Atyrau - Kulsary - Beyneu republican highway: speed control, help for drivers in the steppe.",
         officer: {
           name: "Adilet Nuraliyev",
           phone: "+7 778 808 7809",
@@ -358,7 +358,7 @@ export const en: Dictionary = {
     subtitle: "News of the Zhylyoi district police - Jylyoi_police",
     instagram: "https://www.instagram.com/jylyoi_police_/",
     facebook: "https://www.facebook.com/dvdatyrau",
-    tiktok: "",
+    tiktok: "https://www.tiktok.com/@gulzada0106",
     comingSoon: "soon",
   },
   footer: {

@@ -131,8 +131,8 @@ export const kz: Dictionary = {
             name: "Жаңа Қаратон кентіндегі пункт",
             address: "Жаңа Қаратон кенті, 449а",
             inspector: "Полиция майоры Зинуллин Биржан Абилькайырович",
-            phone: "+7 701 579 1479",
-            phoneRaw: "+77015791479",
+            phone: "+7 778 854 0666",
+            phoneRaw: "+77788540666",
             twoGis: "https://go.2gis.com/VIklS",
             google:
               "https://www.google.com/maps/search/?api=1&query=46.924805,53.871304",
@@ -321,15 +321,15 @@ export const kz: Dictionary = {
         description:
           "Құқық бұзушылықтың алдын алу, азаматтарды қабылдау, бекітілген учаскелерде халықпен жұмыс.",
         officer: {
-          name: "Сыдыков Смадияр Куралбекович",
-          phone: "+7 702 524 6681",
-          phoneRaw: "+77025246681",
+          name: "Халел Асылбек Тілекұлы",
+          phone: "+7 778 100 4150",
+          phoneRaw: "+77781004150",
         },
       },
       {
         title: "Республикалық трассадағы жол патрулі",
         description:
-          "Атырау - Құлсары - Теңіз республикалық трассасын бақылау: жылдамдық режимі, даладағы жүргізушілерге көмек.",
+          "Атырау - Құлсары - Бейнеу республикалық трассасын бақылау: жылдамдық режимі, даладағы жүргізушілерге көмек.",
         officer: {
           name: "Нұралиев Әділет Ерболатұлы",
           phone: "+7 778 808 7809",
@@ -358,7 +358,7 @@ export const kz: Dictionary = {
     subtitle: "Жылыой полициясының жаңалықтары - Jylyoi_police",
     instagram: "https://www.instagram.com/jylyoi_police_/",
     facebook: "https://www.facebook.com/dvdatyrau",
-    tiktok: "",
+    tiktok: "https://www.tiktok.com/@gulzada0106",
     comingSoon: "жақында",
   },
   footer: {
