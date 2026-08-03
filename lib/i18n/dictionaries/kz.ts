@@ -332,6 +332,7 @@ export const kz: Dictionary = {
           "Атырау - Құлсары - Бейнеу республикалық трассасын бақылау: жылдамдық режимі, даладағы жүргізушілерге көмек.",
         officer: {
           name: "Нұралиев Әділет Ерболатұлы",
+          photo: "/images/officers/nuraliyev-adilet.jpg",
           phone: "+7 778 808 7809",
           phoneRaw: "+77788087809",
         },

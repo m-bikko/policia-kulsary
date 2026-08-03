@@ -332,6 +332,7 @@ export const en: Dictionary = {
           "Monitoring the Atyrau - Kulsary - Beyneu republican highway: speed control, help for drivers in the steppe.",
         officer: {
           name: "Adilet Nuraliyev",
+          photo: "/images/officers/nuraliyev-adilet.jpg",
           phone: "+7 778 808 7809",
           phoneRaw: "+77788087809",
         },

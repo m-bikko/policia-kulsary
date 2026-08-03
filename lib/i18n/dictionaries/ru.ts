@@ -332,6 +332,7 @@ export const ru: Dictionary = {
           "Контроль республиканской трассы Атырау - Кульсары - Бейнеу: скоростной режим, помощь водителям в степи.",
         officer: {
           name: "Нуралиев Адилет Ерболатулы",
+          photo: "/images/officers/nuraliyev-adilet.jpg",
           phone: "+7 778 808 7809",
           phoneRaw: "+77788087809",
         },
