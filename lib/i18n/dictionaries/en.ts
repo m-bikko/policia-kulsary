@@ -28,6 +28,12 @@ export const en: Dictionary = {
     unified: "Unified rescue service",
     duty: "Duty unit",
     dutyPhone: "+7 (712 37) 5-04-96",
+    chief: {
+      label: "Head of the police department",
+      name: "Police Colonel Anuar Kokalov",
+      phone: "+7 701 260 6260",
+      phoneRaw: "+77012606260",
+    },
     address: "Address",
     addressValue: "Kulsary, Bisenbi Bisenkulov st., 47",
   },
@@ -112,7 +118,7 @@ export const en: Dictionary = {
         label: "Rural areas - 6 posts",
         points: [
           {
-            name: "Local police post No. 10",
+            name: "Maikomgen village local police post",
             address: "Maikomgen village, Ainymas st.",
             inspector: "Police Major Nurzhan Zhetenov",
             photo: "/images/officers/zhetenov-nurzhan.jpg",

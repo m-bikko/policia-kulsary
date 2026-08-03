@@ -72,6 +72,12 @@ export type Dictionary = {
     unified: string;
     duty: string;
     dutyPhone: string;
+    chief: {
+      label: string;
+      name: string;
+      phone: string;
+      phoneRaw: string;
+    };
     address: string;
     addressValue: string;
   };

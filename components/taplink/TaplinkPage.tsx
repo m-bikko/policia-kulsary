@@ -113,6 +113,23 @@ function EmergencyBar({ dict }: { dict: Dictionary }) {
           {dict.emergency.dutyPhone}
         </span>
       </a>
+      <div className="card-official corner-accents col-span-2 flex flex-wrap items-center gap-x-4 gap-y-2.5 rounded-xl px-4 py-3.5">
+        <div className="min-w-0 flex-1 basis-52 text-left">
+          <p className="text-[11px] uppercase tracking-wider text-ink-dim">
+            {dict.emergency.chief.label}
+          </p>
+          <p className="mt-0.5 text-sm font-semibold leading-snug text-ink">
+            {dict.emergency.chief.name}
+          </p>
+        </div>
+        <a
+          href={`tel:${dict.emergency.chief.phoneRaw}`}
+          className="flex min-h-11 shrink-0 items-center gap-2 rounded-lg border border-gold-500/40 bg-gold-500/10 px-3.5 text-sm font-bold text-gold-300 transition-colors hover:bg-gold-500/20"
+        >
+          <Phone className="h-4 w-4" aria-hidden />
+          <span className="tabular-nums">{dict.emergency.chief.phone}</span>
+        </a>
+      </div>
       <a
         href={dict.points.headquarters.maps.google}
         target="_blank"
