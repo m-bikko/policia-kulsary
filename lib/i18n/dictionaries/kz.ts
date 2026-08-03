@@ -104,7 +104,8 @@ export const kz: Dictionary = {
           {
             name: "Самал шағын ауданындағы пункт",
             address: "Самал шағын ауданы",
-            inspector: "Полиция майоры Окашев Сундет",
+            inspector: "Полиция майоры Окашев Сундет Борисович",
+            photo: "/images/officers/okashev-sundet.jpg",
             phone: "+7 778 854 0666",
             phoneRaw: "+77788540666",
             twoGis:
@@ -157,7 +158,8 @@ export const kz: Dictionary = {
           {
             name: "Шоқпартоғай ауылындағы пункт",
             address: "Қара арна округі, Б. Нұрмағанбетов көшесі, 374",
-            inspector: "Полиция майоры Жамалбеков Нұргиса",
+            inspector: "Полиция майоры Жамалбеков Нуркиса Магауияевич",
+            photo: "/images/officers/zhamalbekov-nurkisa.jpg",
             phone: "+7 775 607 0736",
             phoneRaw: "+77756070736",
             google:

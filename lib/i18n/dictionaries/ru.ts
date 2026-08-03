@@ -104,7 +104,8 @@ export const ru: Dictionary = {
           {
             name: "Пункт в микрорайоне Самал",
             address: "микрорайон Самал",
-            inspector: "Майор полиции Окашев Сундет",
+            inspector: "Майор полиции Окашев Сундет Борисович",
+            photo: "/images/officers/okashev-sundet.jpg",
             phone: "+7 778 854 0666",
             phoneRaw: "+77788540666",
             twoGis:
@@ -157,7 +158,8 @@ export const ru: Dictionary = {
           {
             name: "Пункт в селе Шокпартогай",
             address: "округ Кара-Арна, ул. Б. Нурмаганбетова, 374",
-            inspector: "Майор полиции Жамалбеков Нургиса",
+            inspector: "Майор полиции Жамалбеков Нуркиса Магауияевич",
+            photo: "/images/officers/zhamalbekov-nurkisa.jpg",
             phone: "+7 775 607 0736",
             phoneRaw: "+77756070736",
             google:

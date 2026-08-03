@@ -105,6 +105,7 @@ export const en: Dictionary = {
             name: "Samal microdistrict post",
             address: "Samal microdistrict",
             inspector: "Police Major Sundet Okashev",
+            photo: "/images/officers/okashev-sundet.jpg",
             phone: "+7 778 854 0666",
             phoneRaw: "+77788540666",
             twoGis:
@@ -157,7 +158,8 @@ export const en: Dictionary = {
           {
             name: "Shokpartogay village post",
             address: "Kara-Arna district, B. Nurmaganbetov st., 374",
-            inspector: "Police Major Nurgisa Zhamalbekov",
+            inspector: "Police Major Nurkisa Zhamalbekov",
+            photo: "/images/officers/zhamalbekov-nurkisa.jpg",
             phone: "+7 775 607 0736",
             phoneRaw: "+77756070736",
             google:
