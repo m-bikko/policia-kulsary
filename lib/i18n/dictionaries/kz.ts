@@ -322,6 +322,7 @@ export const kz: Dictionary = {
           "Құқық бұзушылықтың алдын алу, азаматтарды қабылдау, бекітілген учаскелерде халықпен жұмыс.",
         officer: {
           name: "Халел Асылбек Тілекұлы",
+          photo: "/images/officers/khalel-assylbek.jpg",
           phone: "+7 778 100 4150",
           phoneRaw: "+77781004150",
         },

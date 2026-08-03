@@ -322,6 +322,7 @@ export const en: Dictionary = {
           "Crime prevention, citizen reception, community work in assigned areas.",
         officer: {
           name: "Assylbek Khalel",
+          photo: "/images/officers/khalel-assylbek.jpg",
           phone: "+7 778 100 4150",
           phoneRaw: "+77781004150",
         },

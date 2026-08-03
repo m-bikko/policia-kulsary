@@ -322,6 +322,7 @@ export const ru: Dictionary = {
           "Профилактика правонарушений, приём граждан, работа с населением на закреплённых участках.",
         officer: {
           name: "Халел Асылбек Тилекулы",
+          photo: "/images/officers/khalel-assylbek.jpg",
           phone: "+7 778 100 4150",
           phoneRaw: "+77781004150",
         },
