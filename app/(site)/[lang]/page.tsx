@@ -5,7 +5,7 @@ import { getDictionary, isLocale } from "@/lib/i18n";
 import TaplinkPage from "@/components/taplink/TaplinkPage";
 
 /** Фон hero-секции включается автоматически, как только файл появляется в public/ */
-const HERO_IMAGE = "/images/hq-building.jpg";
+const HERO_IMAGE = "/images/hero-bg.jpg";
 
 export default async function LangPage({
   params,
