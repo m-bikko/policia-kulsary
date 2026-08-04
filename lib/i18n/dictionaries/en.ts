@@ -361,7 +361,7 @@ export const en: Dictionary = {
     title: "Follow us",
     subtitle: "News of the Zhylyoi district police - Jylyoi_police",
     instagram: "https://www.instagram.com/jylyoi_police_/",
-    facebook: "https://www.facebook.com/share/r/1C3jdUeZuD/?mibextid=wwXIfr",
+    facebook: "https://www.facebook.com/zylyoj.policia/",
     tiktok: "https://www.tiktok.com/@gulzada0106",
     comingSoon: "soon",
   },
