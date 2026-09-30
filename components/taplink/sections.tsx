@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   BookOpen,
   Camera,
@@ -11,7 +12,6 @@ import {
   Download,
   Drone,
   ExternalLink,
-  FileText,
   Globe,
   IdCard,
   Landmark,
@@ -27,7 +27,7 @@ import {
   Users,
 } from "lucide-react";
 import type { Dictionary } from "@/lib/i18n";
-import type { PolicePoint, TrackingDevice, Unit } from "@/lib/i18n/types";
+import type { PolicePoint, TrackingDevice } from "@/lib/i18n/types";
 import { Reveal, SectionTitle, Collapsible, Modal } from "./primitives";
 
 function ExternalCard({
@@ -41,6 +41,7 @@ function ExternalCard({
   title: string;
   note?: string;
 }) {
+  if (!href) return null;
   return (
     <a
       href={href}
@@ -614,6 +615,7 @@ export function RoadSafetySection({ dict }: { dict: Dictionary }) {
 
 export function VideoSection({ dict }: { dict: Dictionary }) {
   const { video } = dict;
+  if (!video.url) return null;
   return (
     <Reveal aria-labelledby="s-video">
       <SectionTitle overline="07" title={video.title} id="s-video" />
@@ -716,13 +718,13 @@ export function SiteFooter({ dict }: { dict: Dictionary }) {
       <p className="mt-2 text-xs font-semibold text-gold-500/80">
         {dict.footer.disclaimer}
       </p>
-      <a
+      <Link
         href="/"
         className="mt-2 inline-flex min-h-11 items-center gap-1.5 px-4 text-xs text-ink-dim underline-offset-4 transition-colors hover:text-gold-300 hover:underline"
       >
         <Globe className="h-3.5 w-3.5" aria-hidden />
         {dict.footer.backToLang}
-      </a>
+      </Link>
     </footer>
   );
 }

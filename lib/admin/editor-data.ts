@@ -1,0 +1,35 @@
+import { coerce } from "@/lib/content/schema-dsl";
+import { contentSchema, type Content } from "@/lib/content/schema";
+import { defaultContent } from "@/lib/content/default-content";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { CONTENT_ROW_ID, CONTENT_TABLE, isSupabaseConfigured } from "@/lib/supabase/env";
+
+export type EditorData = {
+  content: Content;
+  /** updated_at строки в базе - для защиты от одновременных правок */
+  version: string | null;
+  /** false - в базе ещё нет строки, показан эталонный контент */
+  seeded: boolean;
+};
+
+/** Свежие (некэшированные) данные для редактора */
+export async function loadEditorData(): Promise<EditorData> {
+  if (!isSupabaseConfigured()) return { content: defaultContent, version: null, seeded: false };
+  try {
+    const { data, error } = await createAdminClient()
+      .from(CONTENT_TABLE)
+      .select("data, updated_at")
+      .eq("id", CONTENT_ROW_ID)
+      .maybeSingle();
+    if (error) throw error;
+    if (!data) return { content: defaultContent, version: null, seeded: false };
+    return {
+      content: coerce(contentSchema, data.data),
+      version: String(data.updated_at),
+      seeded: true,
+    };
+  } catch (error) {
+    console.error("[edit] failed to load content", error);
+    return { content: defaultContent, version: null, seeded: false };
+  }
+}

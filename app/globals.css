@@ -207,3 +207,17 @@ body {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* Редактор /edit: заголовок элемента списка сжимается, а не растягивает страницу */
+.admin-collapse .ant-collapse-header {
+  min-width: 0;
+}
+.admin-collapse .ant-collapse-title {
+  min-width: 0;
+  overflow: hidden;
+}
+@media (max-width: 480px) {
+  .admin-collapse .ant-collapse-body {
+    padding-inline: 12px !important;
+  }
+}

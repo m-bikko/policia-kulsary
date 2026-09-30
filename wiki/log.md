@@ -1,5 +1,12 @@
 # Лог wiki
 
+## [2026-09-30] feat | контент в Supabase + редактор /edit по PIN
+
+- feat: весь контент (включая фото) перенесён в Supabase - [[content-model]]: один JSON с переводами kz/ru/en, схема-DSL, RLS (публичное чтение, запись только service role), история версий, бакет `site-media`.
+- feat: [[content-editor]] - `/edit`, вход по `ADMIN_PIN`, antd v6, 16 вкладок, загрузка фото с сжатием в браузере, защита от одновременных правок, восстановление черновика.
+- refactor: словари `lib/i18n/dictionaries` удалены, сайт читает контент через `getContent()` с тегом кэша, ISR + `updateTag` ([[architecture]], [[i18n-system]]).
+- fix: `dynamicParams = false` давал 404 после ревалидации - убран.
+
 ## [2026-08-04] fix | телефон начальника и собственный Facebook
 
 - fix: [[taplink-page]] - телефон начальника управления исправлен на +7 702 387 4360; Facebook заменён на собственную страницу управления (share-ссылка) вместо областного dvdatyrau ([[zhylyoi-police-research]]).

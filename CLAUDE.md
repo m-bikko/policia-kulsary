@@ -2,7 +2,7 @@
 
 ## Проект
 
-Jylyoi Police - trilingual (kz/ru/en) taplink-сайт отдела полиции Жылыойского района (г. Кульсары, Атырауская область, МВД РК). Next.js 16 App Router + Tailwind v4 + motion. `pnpm dev` / `pnpm build`.
+Jylyoi Police - trilingual (kz/ru/en) taplink-сайт отдела полиции Жылыойского района (г. Кульсары, Атырауская область, МВД РК). Next.js 16 App Router + Tailwind v4 + motion; контент и фото - в Supabase, редактор `/edit` (PIN из `ADMIN_PIN`, antd v6). `pnpm dev` / `pnpm build` / `pnpm db:migrate` / `pnpm db:seed`.
 
 ## Wiki (База знаний)
 
@@ -22,7 +22,9 @@ Jylyoi Police - trilingual (kz/ru/en) taplink-сайт отдела полици
 
 ## Ключевые правила
 
-- Любой UI-текст - сразу во все три словаря `lib/i18n/dictionaries/` (тип `Dictionary` форсирует).
+- Контент сайта - только через схему `lib/content/schema.ts` (переводимые поля `loc` = kz/ru/en, подписи полей тоже на трёх языках) и `resolveDictionary`. Хардкодить тексты в компонентах нельзя - их не отредактировать в /edit.
+- Надписи админки - во все три ветки `components/admin/admin-strings.ts`.
+- Service-ключ Supabase - только на сервере (`lib/supabase/admin.ts`), никогда не `NEXT_PUBLIC_`.
 - Дизайн - только через токены из `app/globals.css` (navy+gold), карточки - `.card-official`.
 - Иконки - lucide-react/инлайн SVG, эмодзи в UI запрещены.
 - Тач-таргеты ≥44px, анимации только transform/opacity + reduced-motion.

@@ -6,12 +6,14 @@
 
 - [[architecture]] - Next.js App Router, route groups, слои проекта
 - [[design-system]] - токены navy+gold, церемониальный стиль, правила
-- [[i18n-system]] - три локали kz/ru/en, типизированные словари
+- [[i18n-system]] - три локали kz/ru/en, фолбэк переводов, надписи админки
+- [[content-model]] - контент в Supabase: схема-DSL, таблицы, RLS, фото в Storage, откат версий
 
 ## Entities
 
 - [[splash-language-select]] - входной экран выбора языка (`/`)
 - [[taplink-page]] - главная taplink-страница (`/kz|/ru|/en`), 8 секций
+- [[content-editor]] - редактор `/edit`: вход по PIN, правка всего контента и фото
 
 ## Sources
 

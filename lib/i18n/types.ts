@@ -54,22 +54,20 @@ export type Dictionary = {
     toDark: string;
     toLight: string;
   };
-  splash: {
-    title: string;
-    ministry: string;
-    choose: string;
-    hint: string;
+  /** Публичные URL фото из Supabase Storage (пустая строка - фото нет) */
+  media: {
+    logo: string;
+    heroBackground: string;
   };
   header: {
     name: string;
     department: string;
     location: string;
     official: string;
+    logoAlt: string;
   };
   emergency: {
-    label: string;
     police: string;
-    unified: string;
     duty: string;
     dutyPhone: string;
     chief: {
@@ -104,7 +102,6 @@ export type Dictionary = {
     openList: string;
     modalTitle: string;
     close: string;
-    call: string;
     groups: PointGroup[];
   };
   tracking: {

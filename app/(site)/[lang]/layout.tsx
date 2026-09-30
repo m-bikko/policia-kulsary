@@ -2,13 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { fontVariables } from "@/lib/fonts";
 import { themeInitScript } from "@/lib/theme-init";
-import {
-  locales,
-  htmlLang,
-  isLocale,
-  getDictionary,
-  type Locale,
-} from "@/lib/i18n";
+import { locales, htmlLang, isLocale, type Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/content/get-dictionary";
+import { faviconUrl } from "@/lib/content/media";
 import "../../globals.css";
 
 export function generateStaticParams() {
@@ -22,11 +18,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   if (!isLocale(lang)) return {};
-  const dict = getDictionary(lang);
+  const dict = await getDictionary(lang);
+  const icon = faviconUrl(dict.media.logo);
   return {
     title: dict.meta.title,
     description: dict.meta.description,
-    icons: { icon: "/images/logo-mvd-sm.png" },
+    icons: icon ? { icon } : undefined,
   };
 }
 

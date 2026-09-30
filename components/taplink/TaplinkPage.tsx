@@ -60,14 +60,24 @@ function ProfileHeader({ dict }: { dict: Dictionary }) {
         />
         <div className="rounded-full border border-gold-500/40 p-1.5">
           <div className="rounded-full border border-gold-500/70 p-1">
-            <Image
-              src="/images/logo-mvd.png"
-              alt="Эмблема МВД Республики Казахстан"
-              width={120}
-              height={120}
-              priority
-              className="rounded-full"
-            />
+            {dict.media.logo ? (
+              <Image
+                src={dict.media.logo}
+                alt={dict.header.logoAlt}
+                width={120}
+                height={120}
+                priority
+                className="rounded-full"
+              />
+            ) : (
+              <span
+                role="img"
+                aria-label={dict.header.logoAlt}
+                className="flex h-[120px] w-[120px] items-center justify-center rounded-full bg-navy-800 text-gold-400"
+              >
+                <ShieldCheck className="h-12 w-12" aria-hidden />
+              </span>
+            )}
           </div>
         </div>
       </motion.div>
@@ -184,12 +194,11 @@ function StatsStrip({ dict }: { dict: Dictionary }) {
 export default function TaplinkPage({
   dict,
   lang,
-  heroImage,
 }: {
   dict: Dictionary;
   lang: Locale;
-  heroImage?: string;
 }) {
+  const heroImage = dict.media.heroBackground;
   return (
     <div className="relative z-10 mx-auto w-full max-w-lg px-4 pb-14 sm:px-6">
       <div className="relative -mx-4 px-4 pb-4 pt-4 sm:-mx-6 sm:px-6">

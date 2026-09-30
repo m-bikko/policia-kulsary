@@ -1,15 +1,22 @@
 import type { Metadata, Viewport } from "next";
 import { fontVariables } from "@/lib/fonts";
 import { themeInitScript } from "@/lib/theme-init";
+import { getContent } from "@/lib/content/get-content";
+import { faviconUrl, mediaUrl } from "@/lib/content/media";
+import { mediaBaseUrl } from "@/lib/supabase/env";
 import "../globals.css";
 
-export const metadata: Metadata = {
-  title:
-    "Жылыой ауданы полиция басқармасы · Управление полиции Жылыойского района · Zhylyoi Police",
-  description:
-    "Управление полиции Жылыойского района, Атырауская область. Экстренный вызов - 102. Тілді таңдаңыз · Выберите язык · Choose your language.",
-  icons: { icon: "/images/logo-mvd-sm.png" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getContent();
+  const icon = faviconUrl(mediaUrl(content.media.logo, mediaBaseUrl()));
+  return {
+    title: [content.splash.title, content.header.name.ru, content.header.name.en]
+      .filter(Boolean)
+      .join(" · "),
+    description: content.meta.description.ru || content.meta.description.kz,
+    icons: icon ? { icon } : undefined,
+  };
+}
 
 export const viewport: Viewport = {
   width: "device-width",

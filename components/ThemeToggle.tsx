@@ -1,9 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 
 const STORAGE_KEY = "jylyoi-theme";
+
+/** Подписка на атрибут data-theme у <html> - источник правды о теме */
+function subscribe(onChange: () => void): () => void {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  return () => observer.disconnect();
+}
+
+const isDarkNow = (): boolean => document.documentElement.dataset.theme === "dark";
 
 /**
  * Переключатель светлой/тёмной темы. Светлая - по умолчанию;
@@ -16,15 +25,10 @@ export default function ThemeToggle({
   labelToDark: string;
   labelToLight: string;
 }) {
-  const [dark, setDark] = useState(false);
-
-  useEffect(() => {
-    setDark(document.documentElement.dataset.theme === "dark");
-  }, []);
+  const dark = useSyncExternalStore(subscribe, isDarkNow, () => false);
 
   const toggle = () => {
     const next = !dark;
-    setDark(next);
     if (next) {
       document.documentElement.dataset.theme = "dark";
     } else {

@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import { locales, localeLabels, type Locale } from "@/lib/i18n/config";
+import { ShieldCheck } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const STORAGE_KEY = "jylyoi-lang";
@@ -12,21 +13,48 @@ const STORAGE_KEY = "jylyoi-lang";
 /** Порядок кнопок как в макете: KAZ → RUS → ENG */
 const ORDER: Locale[] = ["kz", "ru", "en"];
 
-const trilingual = {
-  choose: ["Тілді таңдаңыз", "Выберите язык", "Choose your language"],
-  ministry: "Атырау облысы полиция департаменті",
+/** Последний выбранный язык из localStorage (подсвечивается точкой) */
+function readRememberedLocale(): Locale | null {
+  try {
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+    return saved && (locales as readonly string[]).includes(saved) ? (saved as Locale) : null;
+  } catch {
+    return null;
+  }
+}
+
+function subscribeStorage(onChange: () => void): () => void {
+  window.addEventListener("storage", onChange);
+  return () => window.removeEventListener("storage", onChange);
+}
+
+/** Тексты экрана выбора языка - приходят из контента (Supabase), редактируются в /edit */
+export type SplashProps = {
+  title: string;
+  subtitle: string;
+  chooseLabel: string;
+  footerNote: string;
+  logoUrl: string;
+  logoAlt: string;
+  themeToDark: string;
+  themeToLight: string;
 };
 
-export default function LanguageSelect() {
+export default function LanguageSelect({
+  title,
+  subtitle,
+  chooseLabel,
+  footerNote,
+  logoUrl,
+  logoAlt,
+  themeToDark,
+  themeToLight,
+}: SplashProps) {
   const router = useRouter();
   const shouldReduceMotion = useReducedMotion();
-  const [remembered, setRemembered] = useState<Locale | null>(null);
+  const remembered = useSyncExternalStore(subscribeStorage, readRememberedLocale, () => null);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem(STORAGE_KEY);
-    if (saved && (locales as readonly string[]).includes(saved)) {
-      setRemembered(saved as Locale);
-    }
     ORDER.forEach((l) => router.prefetch(`/${l}`));
   }, [router]);
 
@@ -44,10 +72,7 @@ export default function LanguageSelect() {
   return (
     <main className="relative z-10 mx-auto flex min-h-dvh w-full max-w-md flex-col items-center justify-center px-6 py-12">
       <div className="absolute right-4 top-4">
-        <ThemeToggle
-          labelToDark="Қараңғы тема · Тёмная тема · Dark theme"
-          labelToLight="Жарық тема · Светлая тема · Light theme"
-        />
+        <ThemeToggle labelToDark={themeToDark} labelToLight={themeToLight} />
       </div>
       <motion.div {...fadeUp(0)} className="relative">
         <div
@@ -56,14 +81,24 @@ export default function LanguageSelect() {
         />
         <div className="rounded-full border border-gold-500/40 p-1.5">
           <div className="rounded-full border border-gold-500/70 p-1">
-            <Image
-              src="/images/logo-mvd.png"
-              alt="Эмблема МВД Республики Казахстан"
-              width={148}
-              height={148}
-              priority
-              className="rounded-full"
-            />
+            {logoUrl ? (
+              <Image
+                src={logoUrl}
+                alt={logoAlt}
+                width={148}
+                height={148}
+                priority
+                className="rounded-full"
+              />
+            ) : (
+              <span
+                role="img"
+                aria-label={logoAlt}
+                className="flex h-[148px] w-[148px] items-center justify-center rounded-full bg-navy-800 text-gold-400"
+              >
+                <ShieldCheck className="h-14 w-14" aria-hidden />
+              </span>
+            )}
           </div>
         </div>
       </motion.div>
@@ -72,19 +107,19 @@ export default function LanguageSelect() {
         {...fadeUp(0.1)}
         className="mt-8 text-center font-display text-xl font-semibold tracking-wide text-ink text-balance sm:text-2xl"
       >
-        Жылыой ауданы полиция басқармасы
+        {title}
       </motion.h1>
 
       <motion.p
         {...fadeUp(0.18)}
         className="mt-3 max-w-xs text-center text-sm leading-relaxed text-ink-soft text-balance"
       >
-        {trilingual.ministry}
+        {subtitle}
       </motion.p>
 
       <motion.div {...fadeUp(0.26)} className="mt-8 w-full">
         <p className="gold-divider text-[11px] font-semibold uppercase tracking-[0.2em]">
-          {trilingual.choose[0]}
+          {chooseLabel}
         </p>
       </motion.div>
 
@@ -138,7 +173,7 @@ export default function LanguageSelect() {
         {...fadeUp(0.62)}
         className="mt-8 text-center text-xs text-ink-dim"
       >
-        102 · Полиция · Police
+        {footerNote}
       </motion.p>
     </main>
   );
