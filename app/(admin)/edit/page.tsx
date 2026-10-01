@@ -1,5 +1,5 @@
 import { isAdminConfigured, isAuthenticated } from "@/lib/admin/session";
-import { loadEditorData } from "@/lib/admin/editor-data";
+import { loadEditorData, loadKeepAliveStatus } from "@/lib/admin/editor-data";
 import { isSupabaseConfigured, mediaBaseUrl } from "@/lib/supabase/env";
 import LoginScreen from "@/components/admin/LoginScreen";
 import ContentEditor from "@/components/admin/ContentEditor";
@@ -12,12 +12,16 @@ export default async function EditPage() {
     return <LoginScreen adminConfigured={isAdminConfigured()} />;
   }
 
-  const { content, version, seeded } = await loadEditorData();
+  const [{ content, version, seeded }, keepAlive] = await Promise.all([
+    loadEditorData(),
+    loadKeepAliveStatus(),
+  ]);
   return (
     <ContentEditor
       initialContent={content}
       initialVersion={version}
       seeded={seeded}
+      keepAlive={keepAlive}
       supabaseConfigured={isSupabaseConfigured()}
       mediaBase={mediaBaseUrl()}
     />

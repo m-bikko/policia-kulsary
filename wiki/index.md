@@ -8,6 +8,7 @@
 - [[design-system]] - токены navy+gold, церемониальный стиль, правила
 - [[i18n-system]] - три локали kz/ru/en, фолбэк переводов, надписи админки
 - [[content-model]] - контент в Supabase: схема-DSL, таблицы, RLS, фото в Storage, откат версий
+- [[keep-alive]] - чтобы бесплатный Supabase не засыпал: Vercel Cron + GitHub Actions + монитор в /edit
 
 ## Entities
 

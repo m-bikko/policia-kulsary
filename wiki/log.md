@@ -1,5 +1,9 @@
 # Лог wiki
 
+## [2026-10-01] feat | keep-alive базы Supabase
+
+- feat: [[keep-alive]] - функция `keep_alive()` + таблица `heartbeat` (миграция 0002), `/api/keep-alive` для Vercel Cron (2 раза в сутки), резервный GitHub Actions (2 раза в сутки), предупреждение в [[content-editor]] при отсутствии пингов > 48 ч.
+
 ## [2026-09-30] feat | контент в Supabase + редактор /edit по PIN
 
 - feat: весь контент (включая фото) перенесён в Supabase - [[content-model]]: один JSON с переводами kz/ru/en, схема-DSL, RLS (публичное чтение, запись только service role), история версий, бакет `site-media`.

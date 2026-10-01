@@ -3,7 +3,7 @@ title: Модель контента
 type: concept
 tags: [content, schema, i18n, supabase]
 created: 2026-09-30
-updated: 2026-09-30
+updated: 2026-10-01
 sources: [lib/content/, supabase/migrations/0001_site_content.sql]
 ---
 
@@ -41,6 +41,8 @@ sources: [lib/content/, supabase/migrations/0001_site_content.sql]
 - `site_content_history` - триггер `before update` копирует прежнюю версию (хранятся последние 200). RLS без политик - читает только service role. Используется для ручного отката.
 - `updated_at` сдвигается триггером - по нему редактор ловит одновременные правки (оптимистичная блокировка).
 - Бакет `site-media`: публичный на чтение по URL, лимит 5 МБ, только image/*. Загрузка и листинг для `anon` запрещены (проверено).
+
+- `heartbeat` + функция `keep_alive()` - пинги, чтобы бесплатный проект не уходил на паузу ([[keep-alive]]).
 
 ## Откат к прежней версии
 

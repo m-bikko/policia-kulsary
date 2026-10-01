@@ -49,6 +49,9 @@ export type AdminStrings = {
   draftRestore: string;
   draftDiscard: string;
   leaveWarning: string;
+  keepAliveNever: string;
+  keepAliveStale: (days: number) => string;
+  keepAliveHint: string;
   errors: Record<AdminErrorCode, string>;
 };
 
@@ -103,6 +106,10 @@ export const adminStrings: Record<Locale, AdminStrings> = {
     draftRestore: "Қалпына келтіру",
     draftDiscard: "Қажет емес",
     leaveWarning: "Сақталмаған өзгерістер жоғалады",
+    keepAliveNever: "Дерекқорды автоматты пингтеу әлі бір рет те іске қосылмаған",
+    keepAliveStale: (d) => `Дерекқорды автоматты пингтеу ${d} күннен бері жұмыс істемейді`,
+    keepAliveHint:
+      "Тегін Supabase 7 күн белсенділік болмаса, дерекқорды тоқтатады. Vercel Cron (/api/keep-alive) және GitHub Actions «Supabase keep-alive» жұмысын тексеріңіз.",
     errors: {
       unauthorized: "Сессия аяқталды - қайта кіріңіз",
       not_configured: "Supabase қосылмаған",
@@ -162,6 +169,10 @@ export const adminStrings: Record<Locale, AdminStrings> = {
     draftRestore: "Восстановить",
     draftDiscard: "Не нужно",
     leaveWarning: "Несохранённые изменения будут потеряны",
+    keepAliveNever: "Автопинг базы данных ещё ни разу не срабатывал",
+    keepAliveStale: (d) => `Автопинг базы данных не срабатывает уже ${d} дн.`,
+    keepAliveHint:
+      "Бесплатный Supabase останавливает базу после 7 дней без активности. Проверьте Vercel Cron (/api/keep-alive) и GitHub Actions «Supabase keep-alive».",
     errors: {
       unauthorized: "Сессия истекла - войдите снова",
       not_configured: "Supabase не подключён",
@@ -221,6 +232,10 @@ export const adminStrings: Record<Locale, AdminStrings> = {
     draftRestore: "Restore",
     draftDiscard: "Discard",
     leaveWarning: "Unsaved changes will be lost",
+    keepAliveNever: "The database keep-alive ping has never run yet",
+    keepAliveStale: (d) => `The database keep-alive ping hasn't run for ${d} days`,
+    keepAliveHint:
+      "Free Supabase pauses the database after 7 days without activity. Check Vercel Cron (/api/keep-alive) and the “Supabase keep-alive” GitHub Action.",
     errors: {
       unauthorized: "Session expired - sign in again",
       not_configured: "Supabase is not connected",

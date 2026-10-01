@@ -8,6 +8,7 @@ import { coerce } from "@/lib/content/schema-dsl";
 import { contentSchema, type Content, type ContentSectionKey } from "@/lib/content/schema";
 import { setIn } from "@/lib/admin/set-in";
 import type { AdminErrorCode } from "@/lib/admin/types";
+import type { KeepAliveStatus } from "@/lib/admin/editor-data";
 import { localeLabels, locales, type Locale } from "@/lib/i18n/config";
 import { useAdminLang } from "./AdminProviders";
 import { EditorEnvContext, NodeField } from "./fields";
@@ -17,6 +18,7 @@ type Props = {
   initialContent: Content;
   initialVersion: string | null;
   seeded: boolean;
+  keepAlive: KeepAliveStatus;
   supabaseConfigured: boolean;
   mediaBase: string;
 };
@@ -53,6 +55,7 @@ export default function ContentEditor({
   initialContent,
   initialVersion,
   seeded,
+  keepAlive,
   supabaseConfigured,
   mediaBase,
 }: Props) {
@@ -235,6 +238,14 @@ export default function ContentEditor({
         <main className="mx-auto flex max-w-6xl flex-col gap-4 px-4 pt-5">
           {!supabaseConfigured && <Alert type="error" showIcon title={a.supabaseNotConfigured} />}
           {supabaseConfigured && !seeded && <Alert type="warning" showIcon title={a.notSeeded} />}
+          {keepAlive !== null && (
+            <Alert
+              type="warning"
+              showIcon
+              title={keepAlive === "never" ? a.keepAliveNever : a.keepAliveStale(keepAlive)}
+              description={a.keepAliveHint}
+            />
+          )}
 
           <div className="rounded-2xl border border-navy-700 bg-navy-900 p-3 sm:p-5">
             <Tabs

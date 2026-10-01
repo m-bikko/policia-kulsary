@@ -3,7 +3,7 @@ title: Архитектура сайта
 type: concept
 tags: [nextjs, app-router, architecture, supabase]
 created: 2026-07-03
-updated: 2026-09-30
+updated: 2026-10-01
 sources: [app/, components/, lib/, supabase/]
 ---
 
@@ -41,6 +41,7 @@ Next.js 16 (App Router, Turbopack), TypeScript strict, Tailwind CSS v4, motion, 
 
 - `pnpm dev` / `pnpm build` / `pnpm start`
 - `pnpm db:migrate` - применить `supabase/migrations/*.sql` (идемпотентно, через `POSTGRES_URL_NON_POOLING`)
+- `GET /api/keep-alive` - пинг базы по расписанию, см. [[keep-alive]]
 - `pnpm db:seed` - загрузить фото из `supabase/seed-media` в Storage и записать эталонный контент, если базы ещё нет (`--force-content` - перезаписать)
 
 ## Подводные камни
