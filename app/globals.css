@@ -221,3 +221,59 @@ body {
     padding-inline: 12px !important;
   }
 }
+
+/* ── Карта Казахстана (components/map/KzMapView) ───────────── */
+:root {
+  --map-idle: #dfe5f1;
+  --map-active: #e8d9a8;
+  --map-published: #d4af37;
+  --map-draft: #c9d1e2;
+  --map-selected: #1c3161;
+  --map-stroke: #ffffff;
+}
+[data-theme="dark"] {
+  --map-idle: #16264a;
+  --map-active: #5a4a1c;
+  --map-published: #d4af37;
+  --map-draft: #23365f;
+  --map-selected: #f0d98c;
+  --map-stroke: #050b1a;
+}
+.kz-map-region,
+.kz-map-district {
+  stroke: var(--map-stroke);
+  stroke-width: 1;
+  cursor: pointer;
+  outline: none;
+  transition: fill 200ms ease, opacity 300ms ease;
+}
+.kz-map-region {
+  fill: var(--map-idle);
+}
+.kz-map-region.is-active {
+  fill: var(--map-active);
+}
+.kz-map-region.is-dimmed {
+  opacity: 0.35;
+}
+.kz-map-region.is-selected {
+  cursor: default;
+  fill: transparent;
+  stroke-width: 2;
+}
+.kz-map-district {
+  stroke-width: 0.8;
+}
+.kz-map-region:not(.is-selected):hover,
+.kz-map-region:focus-visible,
+.kz-map-district:hover,
+.kz-map-district:focus-visible {
+  filter: brightness(0.9);
+  stroke: var(--t-gold-600);
+  stroke-width: 2;
+}
+@media (prefers-reduced-motion: reduce) {
+  .kz-map-zoom {
+    transition: none !important;
+  }
+}

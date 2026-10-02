@@ -9,14 +9,17 @@ export function Reveal({
   children,
   delay = 0,
   className,
+  "aria-labelledby": labelledBy,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
+  "aria-labelledby"?: string;
 }) {
   const shouldReduceMotion = useReducedMotion();
   return (
     <motion.section
+      aria-labelledby={labelledBy}
       initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}

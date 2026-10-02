@@ -4,6 +4,12 @@ import type { Localized } from "./schema-dsl";
 import type { Content } from "./schema";
 import { mediaUrl, toTelHref } from "./media";
 
+/** Текст на нужном языке; пустой перевод подменяется другим языком (kz, ru, en) */
+export function pickLocale(value: Localized, locale: Locale): string {
+  for (const l of [locale, ...locales.filter((other) => other !== locale)]) if (value[l].trim()) return value[l];
+  return "";
+}
+
 /**
  * Собирает из общего контента словарь одного языка - ровно в той форме,
  * которую ждут компоненты сайта. Пустой перевод подменяется другим языком
@@ -15,17 +21,14 @@ export function resolveDictionary(
   locale: Locale,
   mediaBase: string,
 ): Dictionary {
-  const fallbackOrder: Locale[] = [locale, ...locales.filter((l) => l !== locale)];
-  const s = (value: Localized): string => {
-    for (const l of fallbackOrder) if (value[l].trim()) return value[l];
-    return "";
-  };
+  const s = (value: Localized): string => pickLocale(value, locale);
   const opt = (value: string): string | undefined => (value.trim() ? value : undefined);
   const img = (path: string): string => mediaUrl(path, mediaBase);
   const c = content;
 
   return {
-    meta: { title: s(c.meta.title), description: s(c.meta.description) },
+    // Пустой заголовок вкладки - название управления (черновик ещё не заполнен)
+    meta: { title: s(c.meta.title) || s(c.header.name), description: s(c.meta.description) },
     theme: { toDark: s(c.theme.toDark), toLight: s(c.theme.toLight) },
     media: { logo: img(c.media.logo), heroBackground: img(c.media.heroBackground) },
     header: {
@@ -167,10 +170,15 @@ export function resolveDictionary(
       tiktok: c.social.tiktok,
       comingSoon: s(c.social.comingSoon),
     },
+    regionDistricts: {
+      title: s(c.regionDistricts.title),
+      subtitle: s(c.regionDistricts.subtitle),
+      comingSoon: s(c.regionDistricts.comingSoon),
+    },
     footer: {
-      org: s(c.footer.org),
+      org: s(c.footer.org) || s(c.header.name),
       disclaimer: s(c.footer.disclaimer),
-      backToLang: s(c.footer.backToLang),
+      portalLink: s(c.footer.portalLink),
     },
   };
 }

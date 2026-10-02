@@ -6,7 +6,8 @@
 
 export const MEDIA_BUCKET = "site-media";
 export const CONTENT_TABLE = "site_content";
-export const CONTENT_ROW_ID = "main";
+/** Строка общего шаблона: всегда есть и всегда публична (её читает keep-alive) */
+export const TEMPLATE_ROW_ID = "template";
 
 export const supabaseUrl = (): string =>
   (process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL ?? "").replace(/\/+$/, "");

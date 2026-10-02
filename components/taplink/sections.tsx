@@ -15,6 +15,7 @@ import {
   Globe,
   IdCard,
   Landmark,
+  Map as MapIcon,
   MapPin,
   Phone,
   Play,
@@ -62,13 +63,87 @@ function ExternalCard({
   );
 }
 
+/** Подзаголовок раздела; пустой (черновик, ещё не заполнен) не рисуется */
+function SectionSubtitle({ text }: { text: string }) {
+  return text ? <p className="-mt-2 mb-4 text-sm text-ink-soft">{text}</p> : null;
+}
+
+/**
+ * Какие разделы показывать: пустой раздел (например, у нового лендинга, где
+ * заполнено только название) скрывается, а номера оставшихся идут подряд.
+ */
+export const sectionVisible = {
+  info: (d: Dictionary) => d.info.paragraphs.length > 0 || Boolean(d.info.wikipediaUrl || d.info.govPortalUrl),
+  points: (d: Dictionary) =>
+    Boolean(d.points.headquarters.name) || d.points.groups.some((group) => group.points.length > 0),
+  tracking: (d: Dictionary) => d.tracking.devices.length > 0,
+  recruitment: (d: Dictionary) =>
+    Boolean(d.recruitment.noTestNote) ||
+    d.recruitment.benefits.length + d.recruitment.requirements.length + d.recruitment.documents.length > 0,
+  units: (d: Dictionary) => d.units.items.length > 0,
+  roadSafety: (d: Dictionary) => d.roadSafety.body.length > 0,
+  video: (d: Dictionary) => Boolean(d.video.url),
+  social: (d: Dictionary) => Boolean(d.social.instagram || d.social.facebook || d.social.tiktok),
+};
+
+/* ── Районы области (только на лендинге области) ───────────── */
+
+export type DistrictLink = { id: string; name: string; href: string | null };
+
+export function RegionDistrictsSection({
+  dict,
+  n,
+  districts,
+}: {
+  dict: Dictionary;
+  n: string;
+  districts: DistrictLink[];
+}) {
+  const { regionDistricts } = dict;
+  return (
+    <Reveal aria-labelledby="s-districts">
+      <SectionTitle overline={n} title={regionDistricts.title} id="s-districts" />
+      <SectionSubtitle text={regionDistricts.subtitle} />
+      <ul className="grid grid-cols-1 gap-2.5 min-[420px]:grid-cols-2">
+        {districts.map((district) => (
+          <li key={district.id}>
+            {district.href ? (
+              <Link
+                href={district.href}
+                className="card-official group flex min-h-14 items-center gap-3 rounded-2xl px-4 py-3"
+              >
+                <ShieldCheck className="h-4 w-4 shrink-0 text-gold-400" aria-hidden />
+                <span className="min-w-0 flex-1 text-sm font-semibold text-ink">{district.name}</span>
+                <ChevronRight
+                  className="h-4 w-4 shrink-0 text-gold-500/50 transition-transform duration-200 group-hover:translate-x-0.5"
+                  aria-hidden
+                />
+              </Link>
+            ) : (
+              <div
+                aria-disabled="true"
+                className="flex min-h-14 items-center gap-3 rounded-2xl border border-dashed border-navy-700 px-4 py-3"
+              >
+                <span className="min-w-0 flex-1 text-sm text-ink-dim">{district.name}</span>
+                <span className="shrink-0 rounded-full border border-gold-500/25 px-2 py-0.5 text-[11px] text-gold-500/80">
+                  {regionDistricts.comingSoon}
+                </span>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </Reveal>
+  );
+}
+
 /* ── Информация ─────────────────────────────────────────────── */
 
-export function InfoSection({ dict }: { dict: Dictionary }) {
+export function InfoSection({ dict, n }: { dict: Dictionary; n: string }) {
   const { info } = dict;
   return (
     <Reveal aria-labelledby="s-info">
-      <SectionTitle overline="01" title={info.title} id="s-info" />
+      <SectionTitle overline={n} title={info.title} id="s-info" />
       <div className="card-official corner-accents rounded-2xl px-5 py-5">
         <p className="text-xs font-semibold uppercase tracking-wider text-gold-500/80">
           {info.subtitle}
@@ -160,16 +235,18 @@ function PointRow({ point, dict }: { point: PolicePoint; dict: Dictionary }) {
   );
 }
 
-export function PointsSection({ dict }: { dict: Dictionary }) {
+export function PointsSection({ dict, n }: { dict: Dictionary; n: string }) {
   const { points } = dict;
   const [open, setOpen] = useState(false);
   const hq = points.headquarters;
+  const groupsFilled = points.groups.some((group) => group.points.length > 0);
 
   return (
     <Reveal aria-labelledby="s-points">
-      <SectionTitle overline="02" title={points.title} id="s-points" />
-      <p className="-mt-2 mb-4 text-sm text-ink-soft">{points.subtitle}</p>
+      <SectionTitle overline={n} title={points.title} id="s-points" />
+      <SectionSubtitle text={points.subtitle} />
       <div className="flex flex-col gap-3">
+        {hq.name && (
         <div className="card-official corner-accents rounded-2xl border-gold-500/30 px-5 py-4">
           <div className="flex items-start gap-3">
             <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden />
@@ -178,7 +255,9 @@ export function PointsSection({ dict }: { dict: Dictionary }) {
               <p className="mt-0.5 text-xs text-ink-soft">{hq.note}</p>
             </div>
           </div>
+          {(hq.maps.twoGis || hq.maps.google) && (
           <div className="mt-3 grid grid-cols-2 gap-2">
+            {hq.maps.twoGis && (
             <a
               href={hq.maps.twoGis}
               target="_blank"
@@ -187,6 +266,8 @@ export function PointsSection({ dict }: { dict: Dictionary }) {
             >
               {points.open2gis}
             </a>
+            )}
+            {hq.maps.google && (
             <a
               href={hq.maps.google}
               target="_blank"
@@ -195,9 +276,13 @@ export function PointsSection({ dict }: { dict: Dictionary }) {
             >
               {points.openGoogle}
             </a>
+            )}
           </div>
+          )}
         </div>
+        )}
 
+        {groupsFilled && (
         <button
           type="button"
           onClick={() => setOpen(true)}
@@ -219,6 +304,7 @@ export function PointsSection({ dict }: { dict: Dictionary }) {
             aria-hidden
           />
         </button>
+        )}
       </div>
 
       <Modal
@@ -344,7 +430,7 @@ function DeviceCard({
   );
 }
 
-export function TrackingSection({ dict }: { dict: Dictionary }) {
+export function TrackingSection({ dict, n }: { dict: Dictionary; n: string }) {
   const { tracking } = dict;
   const icons = [
     <Drone key="drone" className="h-6 w-6" aria-hidden />,
@@ -354,8 +440,8 @@ export function TrackingSection({ dict }: { dict: Dictionary }) {
   ];
   return (
     <Reveal aria-labelledby="s-tracking">
-      <SectionTitle overline="03" title={tracking.title} id="s-tracking" />
-      <p className="-mt-2 mb-4 text-sm text-ink-soft">{tracking.subtitle}</p>
+      <SectionTitle overline={n} title={tracking.title} id="s-tracking" />
+      <SectionSubtitle text={tracking.subtitle} />
       <div className="grid gap-3 sm:grid-cols-2">
         {tracking.devices.map((device, i) => (
           <DeviceCard
@@ -378,14 +464,14 @@ export function TrackingSection({ dict }: { dict: Dictionary }) {
 
 /* ── Приём на службу ────────────────────────────────────────── */
 
-export function RecruitmentSection({ dict }: { dict: Dictionary }) {
+export function RecruitmentSection({ dict, n }: { dict: Dictionary; n: string }) {
   const { recruitment } = dict;
   const [open, setOpen] = useState(false);
 
   return (
     <Reveal aria-labelledby="s-recruitment">
-      <SectionTitle overline="04" title={recruitment.title} id="s-recruitment" />
-      <p className="-mt-2 mb-4 text-sm text-ink-soft">{recruitment.subtitle}</p>
+      <SectionTitle overline={n} title={recruitment.title} id="s-recruitment" />
+      <SectionSubtitle text={recruitment.subtitle} />
       <div className="flex flex-col gap-3">
         <div className="card-official corner-accents rounded-2xl px-5 py-4">
           <div className="flex gap-3">
@@ -494,22 +580,28 @@ export function RecruitmentSection({ dict }: { dict: Dictionary }) {
             />
           </section>
 
+          {(recruitment.contactAddress || recruitment.contactPhone) && (
           <section className="rounded-xl border border-gold-500/15 bg-navy-900/60 px-4 py-4">
             <p className="text-xs font-semibold uppercase tracking-wider text-gold-500/80">
               {recruitment.contactLabel}
             </p>
-            <div className="mt-3 flex items-start gap-2.5 text-sm text-ink-soft">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden />
-              {recruitment.contactAddress}
-            </div>
-            <a
-              href={`tel:${recruitment.contactPhoneRaw}`}
-              className="mt-3 flex min-h-11 items-center justify-center gap-2.5 rounded-xl border border-gold-500/40 bg-gold-500/10 px-4 py-2.5 text-sm font-bold text-gold-300 transition-colors hover:bg-gold-500/20"
-            >
-              <Phone className="h-4 w-4" aria-hidden />
-              <span className="tabular-nums">{recruitment.contactPhone}</span>
-            </a>
+            {recruitment.contactAddress && (
+              <div className="mt-3 flex items-start gap-2.5 text-sm text-ink-soft">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden />
+                {recruitment.contactAddress}
+              </div>
+            )}
+            {recruitment.contactPhone && (
+              <a
+                href={`tel:${recruitment.contactPhoneRaw}`}
+                className="mt-3 flex min-h-11 items-center justify-center gap-2.5 rounded-xl border border-gold-500/40 bg-gold-500/10 px-4 py-2.5 text-sm font-bold text-gold-300 transition-colors hover:bg-gold-500/20"
+              >
+                <Phone className="h-4 w-4" aria-hidden />
+                <span className="tabular-nums">{recruitment.contactPhone}</span>
+              </a>
+            )}
           </section>
+          )}
         </div>
       </Modal>
     </Reveal>
@@ -525,13 +617,13 @@ const unitIcons = [
   <Car key="highway" className="h-6 w-6" aria-hidden />,
 ];
 
-export function UnitsSection({ dict }: { dict: Dictionary }) {
+export function UnitsSection({ dict, n }: { dict: Dictionary; n: string }) {
   const { units } = dict;
 
   return (
     <Reveal aria-labelledby="s-units">
-      <SectionTitle overline="05" title={units.title} id="s-units" />
-      <p className="-mt-2 mb-4 text-sm text-ink-soft">{units.subtitle}</p>
+      <SectionTitle overline={n} title={units.title} id="s-units" />
+      <SectionSubtitle text={units.subtitle} />
       <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2">
         {units.items.map((unit, i) => (
           <div
@@ -588,12 +680,12 @@ export function UnitsSection({ dict }: { dict: Dictionary }) {
 
 /* ── Аварийные участки ──────────────────────────────────────── */
 
-export function RoadSafetySection({ dict }: { dict: Dictionary }) {
+export function RoadSafetySection({ dict, n }: { dict: Dictionary; n: string }) {
   const { roadSafety } = dict;
   return (
     <Reveal aria-labelledby="s-road">
-      <SectionTitle overline="06" title={roadSafety.title} id="s-road" />
-      <p className="-mt-2 mb-4 text-sm text-ink-soft">{roadSafety.subtitle}</p>
+      <SectionTitle overline={n} title={roadSafety.title} id="s-road" />
+      <SectionSubtitle text={roadSafety.subtitle} />
       <Collapsible
         icon={<TriangleAlert className="h-5 w-5" aria-hidden />}
         summary={roadSafety.infoLabel}
@@ -613,12 +705,12 @@ export function RoadSafetySection({ dict }: { dict: Dictionary }) {
 
 /* ── Видео ──────────────────────────────────────────────────── */
 
-export function VideoSection({ dict }: { dict: Dictionary }) {
+export function VideoSection({ dict, n }: { dict: Dictionary; n: string }) {
   const { video } = dict;
   if (!video.url) return null;
   return (
     <Reveal aria-labelledby="s-video">
-      <SectionTitle overline="07" title={video.title} id="s-video" />
+      <SectionTitle overline={n} title={video.title} id="s-video" />
       <a
         href={video.url}
         target="_blank"
@@ -666,7 +758,7 @@ const TikTokIcon = () => (
   </svg>
 );
 
-export function SocialSection({ dict }: { dict: Dictionary }) {
+export function SocialSection({ dict, n }: { dict: Dictionary; n: string }) {
   const { social } = dict;
   const links = [
     { name: "Instagram", href: social.instagram, icon: <InstagramIcon /> },
@@ -675,8 +767,8 @@ export function SocialSection({ dict }: { dict: Dictionary }) {
   ];
   return (
     <Reveal aria-labelledby="s-social">
-      <SectionTitle overline="08" title={social.title} id="s-social" />
-      <p className="-mt-2 mb-4 text-sm text-ink-soft">{social.subtitle}</p>
+      <SectionTitle overline={n} title={social.title} id="s-social" />
+      <SectionSubtitle text={social.subtitle} />
       <div className="grid grid-cols-2 gap-3">
         {links.map((link) =>
           link.href ? (
@@ -711,7 +803,7 @@ export function SocialSection({ dict }: { dict: Dictionary }) {
 
 /* ── Футер ──────────────────────────────────────────────────── */
 
-export function SiteFooter({ dict }: { dict: Dictionary }) {
+export function SiteFooter({ dict, portalHref }: { dict: Dictionary; portalHref: string }) {
   return (
     <footer className="mt-14 border-t border-gold-500/15 pt-6 text-center">
       <p className="text-xs leading-relaxed text-ink-dim">{dict.footer.org}</p>
@@ -719,11 +811,11 @@ export function SiteFooter({ dict }: { dict: Dictionary }) {
         {dict.footer.disclaimer}
       </p>
       <Link
-        href="/"
+        href={portalHref}
         className="mt-2 inline-flex min-h-11 items-center gap-1.5 px-4 text-xs text-ink-dim underline-offset-4 transition-colors hover:text-gold-300 hover:underline"
       >
-        <Globe className="h-3.5 w-3.5" aria-hidden />
-        {dict.footer.backToLang}
+        <MapIcon className="h-3.5 w-3.5" aria-hidden />
+        {dict.footer.portalLink}
       </Link>
     </footer>
   );

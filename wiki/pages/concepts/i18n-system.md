@@ -3,7 +3,7 @@ title: Система i18n
 type: concept
 tags: [i18n, kazakh, russian, english]
 created: 2026-07-03
-updated: 2026-09-30
+updated: 2026-10-02
 sources: [lib/i18n/, lib/content/resolve.ts, components/admin/admin-strings.ts]
 ---
 
@@ -32,3 +32,9 @@ sources: [lib/i18n/, lib/content/resolve.ts, components/admin/admin-strings.ts]
 ## Правило
 
 Новое поле контента добавляется в схему (`lib/content/schema.ts`) с подписью на трёх языках и в `resolveDictionary`/`Dictionary`, если его показывает сайт. Новая надпись админки - сразу во все три ветки `adminStrings`.
+
+## Много лендингов (2026-10-02)
+
+- Переводы наследуются от шаблона **по каждому языку** ([[multisite]]): пустой RUS в лендинге берёт RUS шаблона, а не KAZ лендинга; фолбэк на другой язык (`pickLocale`) срабатывает уже после наследования.
+- Тексты портала (`portal-schema.ts`) - на трёх языках; splash остаётся одноязычным.
+- Названия областей и районов на трёх языках приходят из [[kz-map]]; страница 404 не знает язык адреса и показывает все три.

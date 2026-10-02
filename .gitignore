@@ -43,3 +43,6 @@ next-env.d.ts
 
 # шаблон переменных окружения коммитится
 !.env.example
+
+# кэш скачанных границ OSM (scripts/geo/fetch-osm.mjs)
+/scripts/geo/.cache/

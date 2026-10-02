@@ -50,4 +50,4 @@ jobs:
           echo "keep_alive (write):"
           request -X POST "${base}/rest/v1/rpc/keep_alive" -d '{"p_source":"github-actions"}'
           echo "site_content (read):"
-          request "${base}/rest/v1/site_content?select=id&id=eq.main"
+          request "${base}/rest/v1/site_content?select=id&id=eq.template"

@@ -1,9 +1,8 @@
 /**
  * Засеивает Supabase:
  *  1) загружает все фото из supabase/seed-media в бакет site-media (пути сохраняются);
- *  2) записывает эталонный контент (lib/content/default-content.json), но ТОЛЬКО если
- *     в базе ещё нет контента - правки из /edit не затираются.
- *     Принудительная перезапись: pnpm db:seed --force-content
+ *  2) контент (шаблон, портал, лендинги) записывает следующий шаг - scripts/migrate-multisite.mts,
+ *     pnpm db:seed запускает его сам; существующие правки из /edit не затираются.
  *
  *   pnpm db:seed
  */
@@ -18,7 +17,6 @@ if (!url || !key) {
   console.error("Нужны NEXT_PUBLIC_SUPABASE_URL и SUPABASE_SERVICE_ROLE_KEY в .env");
   process.exit(1);
 }
-const forceContent = process.argv.includes("--force-content");
 const supabase = createClient(url, key, { auth: { persistSession: false } });
 
 const MIME = { ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp", ".gif": "image/gif", ".avif": "image/avif" };
@@ -67,25 +65,3 @@ for (const file of files) {
   }
 }
 console.log(`Фото загружено: ${uploaded}/${files.length}`);
-
-// 3. Контент
-const { data: existing, error: readError } = await supabase
-  .from("site_content")
-  .select("updated_at")
-  .eq("id", "main")
-  .maybeSingle();
-if (readError) {
-  console.error("Не удалось прочитать site_content (миграция применена?):", readError.message);
-  process.exit(1);
-}
-if (existing && !forceContent) {
-  console.log("Контент уже есть в базе - не трогаем (перезапись: --force-content)");
-} else {
-  const data = JSON.parse(await readFile(join(process.cwd(), "lib", "content", "default-content.json"), "utf8"));
-  const { error } = await supabase.from("site_content").upsert({ id: "main", data });
-  if (error) {
-    console.error("Не удалось записать контент:", error.message);
-    process.exit(1);
-  }
-  console.log(existing ? "Контент перезаписан эталонным" : "Контент записан в базу");
-}

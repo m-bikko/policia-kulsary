@@ -5,6 +5,7 @@ export type AdminErrorCode =
   | "conflict"
   | "invalid_file"
   | "file_too_large"
+  | "not_found"
   | "server";
 
 export type LoginState =

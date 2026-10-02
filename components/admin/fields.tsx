@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, memo, useContext, useState, type ReactNode } from "react";
-import { App, Button, Card, Collapse, Image, Input, Popconfirm, Tooltip, Upload } from "antd";
-import { ArrowDown, ArrowUp, ImageOff, Plus, Trash2, Upload as UploadIcon } from "lucide-react";
+import { App, Button, Card, Collapse, Image, Input, Popconfirm, Tag, Tooltip, Upload } from "antd";
+import { ArrowDown, ArrowUp, Copy, ImageOff, Layers, Plus, Trash2, Upload as UploadIcon } from "lucide-react";
 import {
   emptyValue,
   isRecord,
@@ -14,6 +14,7 @@ import {
   type TextNode,
 } from "@/lib/content/schema-dsl";
 import { mediaUrl } from "@/lib/content/media";
+import { getIn } from "@/lib/content/split";
 import { localeLabels, locales, type Locale } from "@/lib/i18n/config";
 import { ALLOWED_IMAGE_TYPES, type AdminErrorCode } from "@/lib/admin/types";
 import { uploadImageAction } from "@/app/(admin)/edit/actions";
@@ -32,6 +33,19 @@ export const EditorEnvContext = createContext<EditorEnv>({
   mediaBase: "",
   reportError: () => undefined,
 });
+
+/**
+ * Общий шаблон для лендинга: пустое поле лендинга берёт значение шаблона.
+ * null - редактируется сам шаблон или портал (наследования нет).
+ */
+export const InheritContext = createContext<Record<string, unknown> | null>(null);
+
+/** Значение шаблона для поля; внутри элементов списка наследования нет (списки берутся целиком) */
+function useInherited(path: string): unknown {
+  const base = useContext(InheritContext);
+  if (!base || path.split(".").some((key) => /^\d+$/.test(key))) return undefined;
+  return getIn(base, path);
+}
 
 type FieldProps<N extends SchemaNode> = {
   node: N;
@@ -74,12 +88,14 @@ const placeholders: Record<string, string> = {
 function TextField({ node, value, path, onChange, showLabel = true }: FieldProps<TextNode>) {
   const { lang } = useAdminLang();
   const text = asString(value);
+  const inherited = asString(useInherited(path));
   return (
     <FieldShell label={showLabel ? node.label[lang] : undefined} hint={node.hint?.[lang]}>
       {node.multiline ? (
         <Input.TextArea
           value={text}
           autoSize={{ minRows: 2, maxRows: 12 }}
+          placeholder={inherited || undefined}
           onChange={(event) => onChange(path, event.target.value)}
         />
       ) : (
@@ -87,7 +103,7 @@ function TextField({ node, value, path, onChange, showLabel = true }: FieldProps
           value={text}
           type={node.input === "url" ? "url" : node.input === "tel" ? "tel" : "text"}
           inputMode={node.input === "url" ? "url" : node.input === "tel" ? "tel" : undefined}
-          placeholder={node.input ? placeholders[node.input] : undefined}
+          placeholder={inherited || (node.input ? placeholders[node.input] : undefined)}
           onChange={(event) => onChange(path, event.target.value)}
         />
       )}
@@ -109,12 +125,16 @@ function LocalizedField({
   const texts = {} as Record<Locale, string>;
   for (const locale of locales) texts[locale] = asString(record[locale]);
   const anyFilled = locales.some((locale) => texts[locale].trim() !== "");
+  const inheritedValue = useInherited(path);
+  const inherited = isRecord(inheritedValue) ? inheritedValue : {};
 
   return (
     <FieldShell label={showLabel ? node.label[lang] : undefined} hint={node.hint?.[lang]}>
       <div className="flex flex-col gap-2">
         {locales.map((locale) => {
-          const missing = anyFilled && texts[locale].trim() === "";
+          const fromTemplate = asString(inherited[locale]);
+          // Пустой язык закрывает шаблон - предупреждаем, только если и там пусто
+          const missing = anyFilled && texts[locale].trim() === "" && fromTemplate.trim() === "";
           const fieldPath = `${path}.${locale}`;
           return (
             <div key={locale} className="flex items-start gap-2">
@@ -131,6 +151,7 @@ function LocalizedField({
                 <Input.TextArea
                   value={texts[locale]}
                   autoSize={{ minRows: 2, maxRows: 12 }}
+                  placeholder={fromTemplate || undefined}
                   status={missing ? "warning" : undefined}
                   lang={locale === "kz" ? "kk" : locale}
                   onChange={(event) => onChange(fieldPath, event.target.value)}
@@ -139,7 +160,7 @@ function LocalizedField({
                 <Input
                   value={texts[locale]}
                   type={node.input === "url" ? "url" : "text"}
-                  placeholder={node.input === "url" ? placeholders.url : undefined}
+                  placeholder={fromTemplate || (node.input === "url" ? placeholders.url : undefined)}
                   status={missing ? "warning" : undefined}
                   lang={locale === "kz" ? "kk" : locale}
                   onChange={(event) => onChange(fieldPath, event.target.value)}
@@ -161,7 +182,9 @@ function ImageField({ node, value, path, onChange, showLabel = true }: FieldProp
   const { message } = App.useApp();
   const [uploading, setUploading] = useState(false);
   const stored = asString(value);
-  const src = mediaUrl(stored, mediaBase);
+  const inherited = asString(useInherited(path));
+  const showsInherited = !stored && Boolean(inherited);
+  const src = mediaUrl(stored || inherited, mediaBase);
   const round = node.shape === "round";
 
   const upload = async (file: File) => {
@@ -192,9 +215,9 @@ function ImageField({ node, value, path, onChange, showLabel = true }: FieldProp
     <FieldShell label={showLabel ? node.label[lang] : undefined} hint={node.hint?.[lang]}>
       <div className="flex flex-wrap items-center gap-4">
         <div
-          className={`flex shrink-0 items-center justify-center overflow-hidden border border-gold-500/25 bg-navy-850 ${
-            round ? "h-24 w-24 rounded-full" : "h-24 w-40 rounded-xl"
-          }`}
+          className={`relative flex shrink-0 items-center justify-center overflow-hidden border bg-navy-850 ${
+            showsInherited ? "border-dashed border-ink-dim/50" : "border-gold-500/25"
+          } ${round ? "h-24 w-24 rounded-full" : "h-24 w-40 rounded-xl"}`}
         >
           {src ? (
             <Image
@@ -202,7 +225,7 @@ function ImageField({ node, value, path, onChange, showLabel = true }: FieldProp
               alt=""
               width={round ? 96 : 160}
               height={96}
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", opacity: showsInherited ? 0.55 : 1 }}
             />
           ) : (
             <span className="flex flex-col items-center gap-1 text-xs text-ink-dim">
@@ -212,6 +235,7 @@ function ImageField({ node, value, path, onChange, showLabel = true }: FieldProp
           )}
         </div>
         <div className="flex flex-col items-start gap-2">
+          {showsInherited && <Tag icon={<Layers size={12} aria-hidden className="mr-1 inline" />}>{a.inheritedPhoto}</Tag>}
           <Upload
             accept={ALLOWED_IMAGE_TYPES.join(",")}
             showUploadList={false}
@@ -292,6 +316,8 @@ function listItemTitle(node: ListNode, item: unknown, lang: Locale): string {
 function ListField({ node, value, path, onChange }: FieldProps<ListNode>) {
   const { lang, strings: a } = useAdminLang();
   const items = Array.isArray(value) ? value : [];
+  const inheritedValue = useInherited(path);
+  const inherited = Array.isArray(inheritedValue) ? inheritedValue : [];
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const itemLabel = node.itemLabel[lang];
 
@@ -377,7 +403,22 @@ function ListField({ node, value, path, onChange }: FieldProps<ListNode>) {
 
   return (
     <FieldShell label={node.label[lang]} hint={node.hint?.[lang]}>
-      {items.length === 0 && <p className="text-sm text-ink-dim">{a.emptyList}</p>}
+      {items.length === 0 &&
+        (inherited.length > 0 ? (
+          <div className="flex flex-wrap items-center gap-3 rounded-xl border border-dashed border-ink-dim/40 bg-navy-850 px-3 py-2.5">
+            <Layers size={16} className="text-ink-dim" aria-hidden />
+            <span className="mr-auto text-sm text-ink-soft">{a.inheritedList(inherited.length)}</span>
+            <Button
+              size="small"
+              icon={<Copy size={14} aria-hidden />}
+              onClick={() => onChange(path, structuredClone(inherited))}
+            >
+              {a.copyFromTemplate}
+            </Button>
+          </div>
+        ) : (
+          <p className="text-sm text-ink-dim">{a.emptyList}</p>
+        ))}
 
       {node.item.kind === "object" ? (
         items.length > 0 && (

@@ -1,4 +1,4 @@
-import { CONTENT_ROW_ID, CONTENT_TABLE, supabasePublicKey, supabaseUrl } from "./env";
+import { CONTENT_TABLE, TEMPLATE_ROW_ID, supabasePublicKey, supabaseUrl } from "./env";
 
 export type KeepAliveSource = "vercel-cron" | "github-actions" | "manual";
 
@@ -32,7 +32,7 @@ export async function pingDatabase(source: KeepAliveSource): Promise<PingResult>
     const pingedAt: unknown = await rpc.json();
 
     const read = await fetch(
-      `${url}/rest/v1/${CONTENT_TABLE}?id=eq.${CONTENT_ROW_ID}&select=id`,
+      `${url}/rest/v1/${CONTENT_TABLE}?id=eq.${TEMPLATE_ROW_ID}&select=id`,
       { headers, cache: "no-store", signal: AbortSignal.timeout(TIMEOUT_MS) },
     );
     if (!read.ok) return { ok: false, source, error: `read_${read.status}` };

@@ -29,9 +29,9 @@ export const contentSchema = obj(t("Сайт", "Сайт", "Site"), {
     logo: image(t("Логотип (эмблема)", "Логотип (эмблема)", "Logo (emblem)"), {
       shape: "round",
       hint: t(
-        "Тіл таңдау экранында, шапкада және браузер қойындысында көрсетіледі",
-        "Показывается на экране выбора языка, в шапке и во вкладке браузера",
-        "Shown on the language screen, in the header and in the browser tab",
+        "Шапкада және браузер қойындысында көрсетіледі",
+        "Показывается в шапке и во вкладке браузера",
+        "Shown in the header and in the browser tab",
       ),
     }),
     heroBackground: image(
@@ -39,23 +39,6 @@ export const contentSchema = obj(t("Сайт", "Сайт", "Site"), {
       { shape: "wide" },
     ),
   }),
-
-  splash: obj(
-    t("Тіл таңдау экраны", "Экран выбора языка", "Language screen"),
-    {
-      title: text(L.title),
-      subtitle: text(L.subtitle),
-      chooseLabel: text(t("«Тілді таңдаңыз» жазуы", "Надпись «Выберите язык»", "“Choose language” label")),
-      footerNote: text(t("Төменгі жазу", "Нижняя надпись", "Bottom note")),
-    },
-    {
-      hint: t(
-        "Тіл таңдалғанға дейін көрсетіледі, сондықтан бір тілде толтырылады",
-        "Показывается до выбора языка, поэтому заполняется одним текстом",
-        "Shown before a language is chosen, so it is filled in once",
-      ),
-    },
-  ),
 
   meta: obj(t("Іздеу жүйелері (SEO)", "Поисковики (SEO)", "Search engines (SEO)"), {
     title: loc(t("Қойынды атауы", "Название вкладки", "Tab title")),
@@ -280,10 +263,26 @@ export const contentSchema = obj(t("Сайт", "Сайт", "Site"), {
     comingSoon: loc(t("«Жақында» белгісі", "Метка «скоро»", "“Coming soon” badge")),
   }),
 
+  regionDistricts: obj(
+    t("Облыстың аудандары", "Районы области", "Region districts"),
+    {
+      title: loc(L.title),
+      subtitle: loc(L.subtitle),
+      comingSoon: loc(t("«Дайындалуда» белгісі", "Метка «готовится»", "“In preparation” badge")),
+    },
+    {
+      hint: t(
+        "Облыс лендингінде ғана көрсетіледі: тізім картадан автоматты түрде жасалады",
+        "Показывается только на лендинге области: список районов строится автоматически по карте",
+        "Shown only on a region landing: the district list is built automatically from the map",
+      ),
+    },
+  ),
+
   footer: obj(t("Сайт төменгі бөлігі", "Подвал сайта", "Footer"), {
     org: loc(t("Ұйым атауы", "Название организации", "Organization")),
     disclaimer: loc(t("Жедел нөмірлер жолы", "Строка экстренных номеров", "Emergency numbers line")),
-    backToLang: loc(t("«Тілді өзгерту» сілтемесі", "Ссылка «Сменить язык»", "“Change language” link")),
+    portalLink: loc(t("«Барлық бөлімшелер» сілтемесі", "Ссылка «Все подразделения»", "“All departments” link")),
   }),
 
   theme: obj(t("Интерфейс", "Интерфейс", "Interface"), {

@@ -11,7 +11,14 @@ import { useAdminLang } from "./AdminProviders";
 const initialState: LoginState = { status: "idle" };
 
 /** Экран ввода PIN-кода для входа в редактор */
-export default function LoginScreen({ adminConfigured }: { adminConfigured: boolean }) {
+export default function LoginScreen({
+  adminConfigured,
+  next = "/edit",
+}: {
+  adminConfigured: boolean;
+  /** Куда вернуть после входа */
+  next?: string;
+}) {
   const { strings: a, lang, setLang } = useAdminLang();
   const [state, formAction, pending] = useActionState(loginAction, initialState);
   const [pin, setPin] = useState("");
@@ -52,6 +59,7 @@ export default function LoginScreen({ adminConfigured }: { adminConfigured: bool
         )}
 
         <form action={formAction} className="mt-6 flex flex-col gap-3">
+          <input type="hidden" name="next" value={next} />
           <label htmlFor="pin" className="text-sm font-semibold text-ink">
             {a.pinLabel}
           </label>

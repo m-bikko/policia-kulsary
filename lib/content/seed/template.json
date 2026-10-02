@@ -1,0 +1,615 @@
+{
+  "media": {
+    "logo": "logo-mvd.png",
+    "heroBackground": ""
+  },
+  "meta": {
+    "title": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "description": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    }
+  },
+  "header": {
+    "name": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "department": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "location": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "official": {
+      "kz": "Мемлекеттік мекеме",
+      "ru": "Государственное учреждение",
+      "en": "State institution"
+    },
+    "logoAlt": {
+      "kz": "Қазақстан Республикасы Ішкі істер министрлігінің эмблемасы",
+      "ru": "Эмблема МВД Республики Казахстан",
+      "en": "Emblem of the Ministry of Internal Affairs of Kazakhstan"
+    }
+  },
+  "emergency": {
+    "police": {
+      "kz": "Полиция",
+      "ru": "Полиция",
+      "en": "Police"
+    },
+    "duty": {
+      "kz": "Кезекші бөлім",
+      "ru": "Дежурная часть",
+      "en": "Duty unit"
+    },
+    "dutyPhone": "",
+    "chief": {
+      "label": {
+        "kz": "Полиция басқармасының бастығы",
+        "ru": "Начальник управления полиции",
+        "en": "Head of the police department"
+      },
+      "name": {
+        "kz": "",
+        "ru": "",
+        "en": ""
+      },
+      "phone": ""
+    },
+    "address": {
+      "kz": "Мекенжай",
+      "ru": "Адрес",
+      "en": "Address"
+    },
+    "addressValue": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    }
+  },
+  "stats": {
+    "heading": {
+      "kz": "Қызмет сандармен",
+      "ru": "Служба в цифрах",
+      "en": "Service in numbers"
+    },
+    "items": [],
+    "source": {
+      "kz": "gov.kz, polisia.kz және өңірлік БАҚ деректері бойынша",
+      "ru": "По данным gov.kz, polisia.kz и региональных СМИ",
+      "en": "Data: gov.kz, polisia.kz and regional media"
+    }
+  },
+  "info": {
+    "title": {
+      "kz": "Ақпарат",
+      "ru": "Информация",
+      "en": "Information"
+    },
+    "subtitle": {
+      "kz": "Аудан бойынша ақпарат",
+      "ru": "Информация по району",
+      "en": "About the district"
+    },
+    "paragraphs": [],
+    "wikipedia": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "wikipediaUrl": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "govPortal": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "govPortalUrl": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    }
+  },
+  "points": {
+    "title": {
+      "kz": "Учаскелік полиция пункттері",
+      "ru": "Участковые пункты полиции",
+      "en": "Local police posts"
+    },
+    "subtitle": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "headquarters": {
+      "name": {
+        "kz": "",
+        "ru": "",
+        "en": ""
+      },
+      "note": {
+        "kz": "",
+        "ru": "",
+        "en": ""
+      },
+      "twoGis": "",
+      "google": ""
+    },
+    "open2gis": {
+      "kz": "2ГИС",
+      "ru": "2ГИС",
+      "en": "2GIS"
+    },
+    "openGoogle": {
+      "kz": "Google Maps",
+      "ru": "Google Maps",
+      "en": "Google Maps"
+    },
+    "openList": {
+      "kz": "Барлық пункттерді көру",
+      "ru": "Показать все пункты",
+      "en": "View all posts"
+    },
+    "modalTitle": {
+      "kz": "Учаскелік полиция пункттері",
+      "ru": "Участковые пункты полиции",
+      "en": "Local police posts"
+    },
+    "close": {
+      "kz": "Жабу",
+      "ru": "Закрыть",
+      "en": "Close"
+    },
+    "groups": []
+  },
+  "tracking": {
+    "title": {
+      "kz": "Бақылау жүйелері",
+      "ru": "Системы отслеживания",
+      "en": "Monitoring systems"
+    },
+    "subtitle": {
+      "kz": "Жол қауіпсіздігін қорғайтын арнайы құрылғылар",
+      "ru": "Специальные устройства на страже безопасности дорог",
+      "en": "Special devices guarding road safety"
+    },
+    "photoHint": {
+      "kz": "Фотоны көру",
+      "ru": "Посмотреть фото",
+      "en": "View photo"
+    },
+    "close": {
+      "kz": "Жабу",
+      "ru": "Закрыть",
+      "en": "Close"
+    },
+    "devices": [
+      {
+        "title": {
+          "kz": "Дрон",
+          "ru": "Дрон",
+          "en": "Drone"
+        },
+        "description": {
+          "kz": "DJI Matrice 350 RTK ұшқышсыз аппараты трассада қарсы жолаққа шығуды және қауіпті манёврларды тіркейді, жоғалған адамдарды іздеуге көмектеседі. Басқару қашықтығы - 20 км, ұшу уақыты - 55 минут, жылдамдығы - 82,8 км/сағ.",
+          "ru": "Беспилотник DJI Matrice 350 RTK фиксирует выезд на встречную полосу и опасные манёвры на трассах, помогает в поиске пропавших людей. Дальность управления - 20 км, время полёта - 55 минут, скорость - 82,8 км/ч.",
+          "en": "The DJI Matrice 350 RTK UAV records oncoming-lane violations and dangerous manoeuvres on highways and helps search for missing people. Control range - 20 km, flight time - 55 minutes, speed - 82.8 km/h."
+        },
+        "images": [
+          {
+            "src": "tracking/dji-matrice-350.jpg",
+            "caption": {
+              "kz": "DJI Matrice 350 RTK квадрокоптері",
+              "ru": "Квадрокоптер DJI Matrice 350 RTK",
+              "en": "DJI Matrice 350 RTK quadcopter"
+            }
+          }
+        ],
+        "link": {
+          "href": "",
+          "label": {
+            "kz": "",
+            "ru": "",
+            "en": ""
+          }
+        }
+      },
+      {
+        "title": {
+          "kz": "Кибер шериф",
+          "ru": "Кибер шериф",
+          "en": "Cyber Sheriff"
+        },
+        "description": {
+          "kz": "Патрульдік автокөлікке орнатылатын автоматты жүйе: 360° панорамалық бейнетіркеу, мемлекеттік нөмірлер мен жаяу жүргіншілердің жүзін іздеу базаларымен салыстыра тану, жылдамдықты асыруды, тұтас сызықты кесіп өтуді және тұрақ ережелерін бұзуды тіркеу, ЖКО орнынан онлайн-трансляция.",
+          "ru": "Автоматическая система на патрульном автомобиле: панорамная видеофиксация 360°, распознавание госномеров и лиц пешеходов со сверкой по базам розыска, фиксация превышения скорости, пересечения сплошной и нарушений парковки, онлайн-трансляция с места ДТП.",
+          "en": "An automatic system on a patrol car: 360° panoramic video recording, recognition of licence plates and pedestrians' faces checked against wanted databases, detection of speeding, solid-line crossing and parking violations, live streaming from accident scenes."
+        },
+        "images": [
+          {
+            "src": "tracking/cyber-sheriff-1.jpg",
+            "caption": {
+              "kz": "«Кибер шериф» жүйесі патрульдік автокөліктің шатырында",
+              "ru": "Система «Кибер шериф» на крыше патрульного автомобиля",
+              "en": "Cyber Sheriff system on a patrol car roof"
+            }
+          },
+          {
+            "src": "tracking/cyber-sheriff-2.jpg",
+            "caption": {
+              "kz": "«Кибер шериф» камера блогы",
+              "ru": "Камерный блок «Кибер шерифа»",
+              "en": "Cyber Sheriff camera unit"
+            }
+          },
+          {
+            "src": "tracking/cyber-sheriff-car.jpg",
+            "caption": {
+              "kz": "«Кибер шериф» патрульдік автокөлігі",
+              "ru": "Патрульный автомобиль «Кибер шериф»",
+              "en": "Cyber Sheriff patrol car"
+            }
+          }
+        ],
+        "link": {
+          "href": "https://msmax.kz/kiber_sherif/",
+          "label": {
+            "kz": "«Кибер шериф» туралы толығырақ (msmax.kz)",
+            "ru": "Подробнее о «Кибер шерифе» (msmax.kz)",
+            "en": "More about Cyber Sheriff (msmax.kz)"
+          }
+        }
+      },
+      {
+        "title": {
+          "kz": "Ekin Patrol G2",
+          "ru": "Ekin Patrol G2",
+          "en": "Ekin Patrol G2"
+        },
+        "description": {
+          "kz": "Жасанды интеллект қолданатын фото-бейнетіркеу мобильді кешені. Тәулік бойы қозғалыста да, тұрақта да жұмыс істейді: 100 метрге дейінгі радиуста 360° жылдамдық бақылауы (алдынан, артынан және бүйірден), нөмірлерді айдалған көліктер мен төленбеген айыппұлдар базасымен тексеру, тұрақты бақылау, әр жолаққа жеке жылдамдық шегі. Полицейге жылдамдық шегін енгізу жеткілікті - әрі қарай жүйе толық автономды.",
+          "ru": "Мобильный комплекс фото- и видеофиксации с искусственным интеллектом. Работает круглосуточно в движении и на стоянке: 360°-контроль скорости в радиусе до 100 метров (спереди, сзади и сбоку), проверка номеров по базам угнанных машин и неоплаченных штрафов, контроль парковки, отдельные лимиты скорости для каждой полосы. Полицейскому достаточно задать порог скорости - дальше система работает автономно.",
+          "en": "An AI-powered mobile photo and video enforcement system. It works around the clock, both moving and parked: 360° speed control within 100 metres (front, rear and side), plate checks against stolen-car and unpaid-fine databases, parking control, separate speed limits per lane. The officer only sets the speed threshold - the system runs autonomously."
+        },
+        "images": [
+          {
+            "src": "tracking/ekin-1.jpg",
+            "caption": {
+              "kz": "Ekin Patrol G2 жарық балкасы",
+              "ru": "Световая балка Ekin Patrol G2",
+              "en": "Ekin Patrol G2 light bar"
+            }
+          },
+          {
+            "src": "tracking/ekin-2.jpg",
+            "caption": {
+              "kz": "Ekin Patrol G2 камера модулі",
+              "ru": "Камерный модуль Ekin Patrol G2",
+              "en": "Ekin Patrol G2 camera module"
+            }
+          },
+          {
+            "src": "tracking/ekin-3.jpg",
+            "caption": {
+              "kz": "Ekin Patrol G2 патрульдік автокөлікте",
+              "ru": "Ekin Patrol G2 на патрульном автомобиле",
+              "en": "Ekin Patrol G2 on a patrol car"
+            }
+          },
+          {
+            "src": "tracking/ekin-patrol-bar.jpg",
+            "caption": {
+              "kz": "Ekin Patrol G2 кешені",
+              "ru": "Комплекс Ekin Patrol G2",
+              "en": "Ekin Patrol G2 system"
+            }
+          },
+          {
+            "src": "tracking/ekin-patrol-car.jpg",
+            "caption": {
+              "kz": "Ekin Patrol жүйесі бар патрульдік автокөлік",
+              "ru": "Патрульный автомобиль с системой Ekin Patrol",
+              "en": "Patrol car with the Ekin Patrol system"
+            }
+          }
+        ],
+        "link": {
+          "href": "",
+          "label": {
+            "kz": "",
+            "ru": "",
+            "en": ""
+          }
+        }
+      },
+      {
+        "title": {
+          "kz": "«Оракул-Инсайт»",
+          "ru": "«Оракул-Инсайт»",
+          "en": "Oracle-Insight"
+        },
+        "description": {
+          "kz": "Шағын оптикалық-радиолокациялық кешен жол ережесін бұзуды фото және бейне арқылы тіркейді. Патрульдік автокөлікке орнатылып, қозғалыста да, тұрған қалпында да - жасырын және ашық режимде жұмыс істейді.",
+          "ru": "Компактный оптико-радиолокационный комплекс фото- и видеофиксации нарушений ПДД. Устанавливается на патрульный автомобиль и работает как в движении, так и стационарно - в скрытом и открытом режиме.",
+          "en": "A compact optical-radar system for photo and video detection of traffic violations. Mounted on a patrol car, it works both in motion and stationary - in covert and open modes."
+        },
+        "images": [],
+        "link": {
+          "href": "https://olvia.ru/product/complex/oraculinside",
+          "label": {
+            "kz": "«Оракул-Инсайт» өндіруші сайтында (olvia.ru)",
+            "ru": "«Оракул-Инсайт» на сайте производителя (olvia.ru)",
+            "en": "Oracle-Insight on the manufacturer's site (olvia.ru)"
+          }
+        }
+      }
+    ]
+  },
+  "recruitment": {
+    "title": {
+      "kz": "Жұмысқа қабылдау",
+      "ru": "Приём на службу",
+      "en": "Join the police"
+    },
+    "subtitle": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "noTestNote": {
+      "kz": "Кіші басшы құрам (сержанттық) лауазымдарына әскери міндетін өтеген немесе әскери кафедра аяқтаған үміткерлер ҚР заңнамалары бойынша тест тапсырмай қабылданады.",
+      "ru": "Кандидаты на должности младшего начальствующего состава (сержантские), прошедшие воинскую службу или окончившие военную кафедру, принимаются без тестирования - в соответствии с законодательством РК.",
+      "en": "Candidates for junior command (sergeant) positions who have completed military service or a military department are accepted without testing, in accordance with the legislation of Kazakhstan."
+    },
+    "detailsLabel": {
+      "kz": "Толық ақпарат",
+      "ru": "Подробная информация",
+      "en": "Full details"
+    },
+    "modalTitle": {
+      "kz": "Қызметке қабылдау",
+      "ru": "Приём на службу",
+      "en": "Joining the service"
+    },
+    "close": {
+      "kz": "Жабу",
+      "ru": "Закрыть",
+      "en": "Close"
+    },
+    "benefitsTitle": {
+      "kz": "Жеңілдіктер мен кепілдіктер",
+      "ru": "Льготы и гарантии",
+      "en": "Benefits and guarantees"
+    },
+    "benefits": [],
+    "requirementsTitle": {
+      "kz": "Үміткерлерге қойылатын талаптар",
+      "ru": "Требования к кандидатам",
+      "en": "Candidate requirements"
+    },
+    "requirements": [
+      {
+        "kz": "18 жасқа толған, 35 жастан аспаған",
+        "ru": "Возраст от 18 до 35 лет",
+        "en": "Age 18 to 35"
+      },
+      {
+        "kz": "Денсаулық жағдайы бойынша қызметке жарамды",
+        "ru": "Годность к службе по состоянию здоровья",
+        "en": "Fit for service on health grounds"
+      },
+      {
+        "kz": "Арнаулы орта немесе жоғары білімі бар",
+        "ru": "Среднее специальное или высшее образование",
+        "en": "Specialized secondary or higher education"
+      }
+    ],
+    "documentsTitle": {
+      "kz": "Құжаттар тізбесі",
+      "ru": "Перечень документов",
+      "en": "List of documents"
+    },
+    "documents": [
+      {
+        "kz": "Қызметке қабылдау туралы өтініш",
+        "ru": "Заявление о приёме на службу",
+        "en": "Application for service"
+      },
+      {
+        "kz": "ҚР азаматының жеке куәлігі",
+        "ru": "Удостоверение личности гражданина РК",
+        "en": "National ID of a citizen of Kazakhstan"
+      },
+      {
+        "kz": "Білімі туралы құжаттар",
+        "ru": "Документы об образовании",
+        "en": "Education documents"
+      },
+      {
+        "kz": "Әскери есеп құжаттары",
+        "ru": "Документы воинского учёта",
+        "en": "Military registration documents"
+      },
+      {
+        "kz": "ӘДК медициналық қорытындысы",
+        "ru": "Медицинское заключение ВВК",
+        "en": "Medical commission conclusion"
+      },
+      {
+        "kz": "Табыстар мен мүлік туралы декларация",
+        "ru": "Декларация о доходах и имуществе",
+        "en": "Declaration of income and assets"
+      },
+      {
+        "kz": "Белгіленген үлгідегі фотосуреттер",
+        "ru": "Фотографии установленного образца",
+        "en": "Photographs of the established format"
+      }
+    ],
+    "downloadLabel": {
+      "kz": "Қызметке қабылдау нұсқаулығы (adilet.zan.kz)",
+      "ru": "Инструкция о приёме на службу (adilet.zan.kz)",
+      "en": "Recruitment instruction (adilet.zan.kz)"
+    },
+    "downloadUrl": {
+      "kz": "https://adilet.zan.kz/kaz/docs/V2100022478",
+      "ru": "https://adilet.zan.kz/rus/docs/V2100022478",
+      "en": "https://adilet.zan.kz/rus/docs/V2100022478"
+    },
+    "infoLabel": {
+      "kz": "«Құқық қорғау қызметі туралы» Заң",
+      "ru": "Закон «О правоохранительной службе»",
+      "en": "Law “On Law Enforcement Service”"
+    },
+    "infoUrl": {
+      "kz": "https://adilet.zan.kz/kaz/docs/Z1100000380",
+      "ru": "https://adilet.zan.kz/rus/docs/Z1100000380",
+      "en": "https://adilet.zan.kz/rus/docs/Z1100000380"
+    },
+    "contactLabel": {
+      "kz": "Кадр қызметіне хабарласыңыз",
+      "ru": "Обращайтесь в кадровую службу",
+      "en": "Contact the HR service"
+    },
+    "contactAddress": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "contactPhone": ""
+  },
+  "units": {
+    "title": {
+      "kz": "Бөлімшелер",
+      "ru": "Подразделения",
+      "en": "Units"
+    },
+    "subtitle": {
+      "kz": "Сіздің қауіпсіздігіңіз үшін кім жұмыс істейді",
+      "ru": "Кто работает для вашей безопасности",
+      "en": "Who works for your safety"
+    },
+    "officerLabel": {
+      "kz": "Жауапты тұлға",
+      "ru": "Ответственное лицо",
+      "en": "Officer in charge"
+    },
+    "items": []
+  },
+  "roadSafety": {
+    "title": {
+      "kz": "Апатты учаскелер",
+      "ru": "Аварийные участки",
+      "en": "Hazardous road sections"
+    },
+    "subtitle": {
+      "kz": "Аудан жолдарында сақ болыңыз",
+      "ru": "Будьте внимательны на дорогах района",
+      "en": "Stay alert on the district's roads"
+    },
+    "infoLabel": {
+      "kz": "Ақпарат",
+      "ru": "Информация",
+      "en": "Information"
+    },
+    "body": []
+  },
+  "video": {
+    "title": {
+      "kz": "Бейне",
+      "ru": "Видео",
+      "en": "Video"
+    },
+    "subtitle": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "watchLabel": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "url": ""
+  },
+  "social": {
+    "title": {
+      "kz": "Әлеуметтік желілерде",
+      "ru": "Мы в соцсетях",
+      "en": "Follow us"
+    },
+    "subtitle": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "instagram": "",
+    "facebook": "",
+    "tiktok": "",
+    "comingSoon": {
+      "kz": "жақында",
+      "ru": "скоро",
+      "en": "soon"
+    }
+  },
+  "regionDistricts": {
+    "title": {
+      "kz": "Аудандық полиция бөлімдері",
+      "ru": "Районные подразделения полиции",
+      "en": "District police departments"
+    },
+    "subtitle": {
+      "kz": "Өз ауданыңыздың полициясын таңдаңыз",
+      "ru": "Выберите полицию своего района",
+      "en": "Choose your district police"
+    },
+    "comingSoon": {
+      "kz": "дайындалуда",
+      "ru": "готовится",
+      "en": "coming soon"
+    }
+  },
+  "footer": {
+    "org": {
+      "kz": "",
+      "ru": "",
+      "en": ""
+    },
+    "disclaimer": {
+      "kz": "Полицияны жедел шақыру - 102, бірыңғай құтқару қызметі - 112",
+      "ru": "Экстренный вызов полиции - 102, единая служба спасения - 112",
+      "en": "Police emergency - 102, unified rescue service - 112"
+    },
+    "portalLink": {
+      "kz": "Қазақстанның барлық полиция бөлімшелері",
+      "ru": "Все подразделения полиции Казахстана",
+      "en": "All police departments of Kazakhstan"
+    }
+  },
+  "theme": {
+    "toDark": {
+      "kz": "Қараңғы тема",
+      "ru": "Тёмная тема",
+      "en": "Dark theme"
+    },
+    "toLight": {
+      "kz": "Жарық тема",
+      "ru": "Светлая тема",
+      "en": "Light theme"
+    }
+  }
+}

@@ -159,9 +159,14 @@ export type Dictionary = {
     tiktok: string;
     comingSoon: string;
   };
+  regionDistricts: {
+    title: string;
+    subtitle: string;
+    comingSoon: string;
+  };
   footer: {
     org: string;
     disclaimer: string;
-    backToLang: string;
+    portalLink: string;
   };
 };

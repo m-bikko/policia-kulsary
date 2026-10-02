@@ -1,19 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import { fontVariables } from "@/lib/fonts";
 import { themeInitScript } from "@/lib/theme-init";
-import { getContent } from "@/lib/content/get-content";
+import { getPortal, getTemplate } from "@/lib/content/get-content";
 import { faviconUrl, mediaUrl } from "@/lib/content/media";
 import { mediaBaseUrl } from "@/lib/supabase/env";
 import "../globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const content = await getContent();
-  const icon = faviconUrl(mediaUrl(content.media.logo, mediaBaseUrl()));
+  const [portal, template] = await Promise.all([getPortal(), getTemplate()]);
+  const icon = faviconUrl(mediaUrl(template.media.logo, mediaBaseUrl()));
   return {
-    title: [content.splash.title, content.header.name.ru, content.header.name.en]
-      .filter(Boolean)
-      .join(" · "),
-    description: content.meta.description.ru || content.meta.description.kz,
+    title: [portal.splash.title, portal.meta.title.ru, portal.meta.title.en].filter(Boolean).join(" · "),
+    description: portal.meta.description.ru || portal.meta.description.kz,
     icons: icon ? { icon } : undefined,
   };
 }

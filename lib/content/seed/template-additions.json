@@ -1,0 +1,14 @@
+{
+  "regionDistricts": {
+    "title": { "kz": "Аудандық полиция бөлімдері", "ru": "Районные подразделения полиции", "en": "District police departments" },
+    "subtitle": { "kz": "Өз ауданыңыздың полициясын таңдаңыз", "ru": "Выберите полицию своего района", "en": "Choose your district police" },
+    "comingSoon": { "kz": "дайындалуда", "ru": "готовится", "en": "coming soon" }
+  },
+  "footer": {
+    "portalLink": {
+      "kz": "Қазақстанның барлық полиция бөлімшелері",
+      "ru": "Все подразделения полиции Казахстана",
+      "en": "All police departments of Kazakhstan"
+    }
+  }
+}

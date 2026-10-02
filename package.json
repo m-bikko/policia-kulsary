@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "db:migrate": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/db-migrate.mjs",
-    "db:seed": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/seed-supabase.mjs"
+    "db:seed": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/seed-supabase.mjs && pnpm db:content",
+    "db:content": "tsx --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/migrate-multisite.mts",
+    "geo:fetch": "node scripts/geo/fetch-osm.mjs",
+    "geo:build": "node scripts/geo/build-map.mjs"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.3.0",
@@ -22,14 +25,18 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/d3-geo": "^3.1.1",
     "@types/node": "^20",
     "@types/pg": "^8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "d3-geo": "^3.1.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
+    "mapshaper": "^0.7.72",
     "pg": "^8.23.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

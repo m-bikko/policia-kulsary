@@ -2,7 +2,7 @@
 
 ## Проект
 
-Jylyoi Police - trilingual (kz/ru/en) taplink-сайт отдела полиции Жылыойского района (г. Кульсары, Атырауская область, МВД РК). Next.js 16 App Router + Tailwind v4 + motion; контент и фото - в Supabase, редактор `/edit` (PIN из `ADMIN_PIN`, antd v6). `pnpm dev` / `pnpm build` / `pnpm db:migrate` / `pnpm db:seed`.
+Jylyoi Police - trilingual (kz/ru/en) портал лендингов полиции Казахстана: карта на `/kz`, лендинги областей `/kz/atyrau` и районов `/kz/atyrau/zhylyoi` (общий taplink-дизайн, данные наследуются от общего шаблона). Первый наполненный лендинг - Жылыойский район (г. Кульсары, Атырауская область). Next.js 16 App Router + Tailwind v4 + motion; контент и фото - в Supabase, редактор `/edit` с картой (PIN из `ADMIN_PIN`, antd v6). `pnpm dev` / `pnpm build` / `pnpm db:migrate` / `pnpm db:seed` / `pnpm db:content` / `pnpm geo:build`.
 
 ## Wiki (База знаний)
 
@@ -22,7 +22,9 @@ Jylyoi Police - trilingual (kz/ru/en) taplink-сайт отдела полици
 
 ## Ключевые правила
 
-- Контент сайта - только через схему `lib/content/schema.ts` (переводимые поля `loc` = kz/ru/en, подписи полей тоже на трёх языках) и `resolveDictionary`. Хардкодить тексты в компонентах нельзя - их не отредактировать в /edit.
+- Контент сайта - только через схемы `lib/content/schema.ts` (лендинг) и `lib/content/portal-schema.ts` (портал): переводимые поля `loc` = kz/ru/en, подписи полей тоже на трёх языках. Хардкодить тексты в компонентах нельзя - их не отредактировать в /edit.
+- Поле, которое у каждого лендинга своё, добавляй в `SITE_FIELDS` (`lib/content/split.ts`), иначе в редакторе лендинга его видно только в режиме «Все поля».
+- Slug-и областей и районов (`lib/geo/kz-map.json`) - это id документов в базе и публичные адреса: не менять при пересборке карты.
 - Надписи админки - во все три ветки `components/admin/admin-strings.ts`.
 - Service-ключ Supabase - только на сервере (`lib/supabase/admin.ts`), никогда не `NEXT_PUBLIC_`.
 - Дизайн - только через токены из `app/globals.css` (navy+gold), карточки - `.card-official`.

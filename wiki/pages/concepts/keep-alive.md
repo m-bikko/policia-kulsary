@@ -3,7 +3,7 @@ title: Keep-alive базы Supabase
 type: concept
 tags: [supabase, cron, reliability, vercel, github-actions]
 created: 2026-10-01
-updated: 2026-10-01
+updated: 2026-10-02
 sources:
   - supabase/migrations/0002_keep_alive.sql
   - app/api/keep-alive/route.ts
@@ -20,7 +20,7 @@ sources:
 
 ## Что считается пингом
 
-Функция `public.keep_alive(p_source)` - `SECURITY DEFINER`, пишет строку в `public.heartbeat` (одна строка на источник: `last_ping_at`, `ping_count`). Каждый пинг = **запись** (rpc) + **чтение** (`site_content`) - два настоящих запроса к БД. Функция разрешена публичному ключу; таблица под RLS без политик (напрямую её не читает и не пишет никто, кроме service role). Неизвестный `p_source` превращается в `manual`.
+Функция `public.keep_alive(p_source)` - `SECURITY DEFINER`, пишет строку в `public.heartbeat` (одна строка на источник: `last_ping_at`, `ping_count`). Каждый пинг = **запись** (rpc) + **чтение** (строка `site_content.template` - она всегда есть и всегда публична) - два настоящих запроса к БД. Функция разрешена публичному ключу; таблица под RLS без политик (напрямую её не читает и не пишет никто, кроме service role). Неизвестный `p_source` превращается в `manual`.
 
 ## Три слоя защиты
 

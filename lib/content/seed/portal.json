@@ -1,0 +1,39 @@
+{
+  "splash": {
+    "title": "Қазақстан Республикасының полициясы",
+    "subtitle": "Қазақстан Республикасының Ішкі істер министрлігі",
+    "chooseLabel": "Тілді таңдаңыз",
+    "footerNote": "102 · Полиция · Police"
+  },
+  "meta": {
+    "title": {
+      "kz": "Қазақстан полициясы - облыстар мен аудандардың полиция бөлімдері",
+      "ru": "Полиция Казахстана - департаменты и районные управления",
+      "en": "Kazakhstan Police - regional and district departments"
+    },
+    "description": {
+      "kz": "Облыстар мен аудандардың полиция бөлімдерінің байланыстары, учаскелік пункттер және жаңалықтар. Жедел шақыру - 102.",
+      "ru": "Контакты департаментов и районных управлений полиции, участковые пункты и новости. Экстренный вызов - 102.",
+      "en": "Contacts of regional and district police departments, local police posts and news. Emergency - 102."
+    }
+  },
+  "directory": {
+    "title": { "kz": "Ауданыңыздың полициясын табыңыз", "ru": "Найдите полицию своего района", "en": "Find your district police" },
+    "subtitle": {
+      "kz": "Картадан облысты, содан кейін ауданды таңдаңыз",
+      "ru": "Выберите на карте область, затем район",
+      "en": "Pick a region on the map, then a district"
+    },
+    "searchPlaceholder": { "kz": "Облыс, аудан немесе қала", "ru": "Область, район или город", "en": "Region, district or city" },
+    "allRegions": { "kz": "Барлық облыстар", "ru": "Все регионы", "en": "All regions" },
+    "regionDepartment": { "kz": "Облыстың полиция департаменті", "ru": "Департамент полиции области", "en": "Regional police department" },
+    "districtsTitle": { "kz": "Аудандар мен қалалар", "ru": "Районы и города", "en": "Districts and cities" },
+    "comingSoon": { "kz": "дайындалуда", "ru": "готовится", "en": "coming soon" },
+    "notFound": { "kz": "Ештеңе табылмады", "ru": "Ничего не найдено", "en": "Nothing found" },
+    "emergencyNote": { "kz": "Жедел жағдайда 102-ге қоңырау шалыңыз", "ru": "В экстренной ситуации звоните 102", "en": "In an emergency call 102" }
+  },
+  "theme": {
+    "toDark": { "kz": "Қараңғы тема", "ru": "Тёмная тема", "en": "Dark theme" },
+    "toLight": { "kz": "Жарық тема", "ru": "Светлая тема", "en": "Light theme" }
+  }
+}

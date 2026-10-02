@@ -20,16 +20,13 @@ import {
   type SaveResult,
   type UploadResult,
 } from "@/lib/admin/types";
+import { docKind, isSiteKind, isSiteStatus } from "@/lib/admin/documents";
 import { coerce } from "@/lib/content/schema-dsl";
 import { contentSchema } from "@/lib/content/schema";
+import { portalSchema } from "@/lib/content/portal-schema";
 import { CONTENT_TAG } from "@/lib/content/get-content";
 import { createAdminClient } from "@/lib/supabase/admin";
-import {
-  CONTENT_ROW_ID,
-  CONTENT_TABLE,
-  MEDIA_BUCKET,
-  isSupabaseConfigured,
-} from "@/lib/supabase/env";
+import { CONTENT_TABLE, MEDIA_BUCKET, isSupabaseConfigured } from "@/lib/supabase/env";
 
 async function clientIp(): Promise<string> {
   const h = await headers();
@@ -58,7 +55,9 @@ export async function loginAction(
 
   registerSuccess(ip);
   await createSession();
-  redirect("/edit");
+  // Возврат на страницу, с которой пришли (только внутри редактора)
+  const next = String(formData.get("next") ?? "");
+  redirect(/^\/edit(\/[a-z0-9/-]*)?$/.test(next) ? next : "/edit");
 }
 
 export async function logoutAction(): Promise<void> {
@@ -67,40 +66,44 @@ export async function logoutAction(): Promise<void> {
 }
 
 /**
- * Сохраняет весь контент. `expectedVersion` - updated_at, с которым редактор
- * открыл данные: если кто-то успел сохранить раньше, вернётся conflict
- * (если не передан force). Прежняя версия автоматически уходит в историю.
+ * Сохраняет документ (шаблон, портал или лендинг). `expectedVersion` - updated_at,
+ * с которым редактор открыл данные: если кто-то успел сохранить раньше, вернётся
+ * conflict (если не передан force). Прежняя версия автоматически уходит в историю.
  */
-export async function saveContentAction(
+export async function saveDocumentAction(
+  id: string,
   input: unknown,
   expectedVersion: string | null,
   force: boolean,
 ): Promise<SaveResult> {
   if (!(await isAuthenticated())) return { ok: false, error: "unauthorized" };
   if (!isSupabaseConfigured()) return { ok: false, error: "not_configured" };
+  const kind = docKind(id);
+  if (!kind) return { ok: false, error: "not_found" };
 
-  const data = coerce(contentSchema, input);
+  const data = kind === "portal" ? coerce(portalSchema, input) : coerce(contentSchema, input);
   const supabase = createAdminClient();
 
   try {
     const { data: current, error: readError } = await supabase
       .from(CONTENT_TABLE)
       .select("updated_at")
-      .eq("id", CONTENT_ROW_ID)
+      .eq("id", id)
       .maybeSingle();
     if (readError) throw readError;
 
     let version: string;
     if (!current) {
+      // Новый лендинг (например, район появился на карте позже) - создаётся черновиком
       const { data: inserted, error } = await supabase
         .from(CONTENT_TABLE)
-        .insert({ id: CONTENT_ROW_ID, data })
+        .insert({ id, kind, status: "draft", data })
         .select("updated_at")
         .single();
       if (error) throw error;
       version = String(inserted.updated_at);
     } else {
-      let query = supabase.from(CONTENT_TABLE).update({ data }).eq("id", CONTENT_ROW_ID);
+      let query = supabase.from(CONTENT_TABLE).update({ data }).eq("id", id);
       // Оптимистичная блокировка: обновляем, только если версия не изменилась
       if (!force && expectedVersion) query = query.eq("updated_at", expectedVersion);
       const { data: updated, error } = await query.select("updated_at");
@@ -114,6 +117,40 @@ export async function saveContentAction(
     return { ok: true, version };
   } catch (error) {
     console.error("[edit] save failed", error);
+    return { ok: false, error: "server" };
+  }
+}
+
+/** Публикует лендинг или возвращает его в черновики (черновик не виден на сайте) */
+export async function setSiteStatusAction(id: string, status: unknown): Promise<SaveResult> {
+  if (!(await isAuthenticated())) return { ok: false, error: "unauthorized" };
+  if (!isSupabaseConfigured()) return { ok: false, error: "not_configured" };
+  const kind = docKind(id);
+  if (!kind || !isSiteKind(kind) || !isSiteStatus(status)) return { ok: false, error: "not_found" };
+
+  try {
+    const supabase = createAdminClient();
+    const { data: updated, error } = await supabase
+      .from(CONTENT_TABLE)
+      .update({ status })
+      .eq("id", id)
+      .select("updated_at");
+    if (error) throw error;
+    let version = updated?.[0]?.updated_at;
+    if (!version) {
+      const { data: inserted, error: insertError } = await supabase
+        .from(CONTENT_TABLE)
+        .insert({ id, kind, status, data: {} })
+        .select("updated_at")
+        .single();
+      if (insertError) throw insertError;
+      version = inserted.updated_at;
+    }
+    updateTag(CONTENT_TAG);
+    await createSession();
+    return { ok: true, version: String(version) };
+  } catch (error) {
+    console.error("[edit] status change failed", error);
     return { ok: false, error: "server" };
   }
 }
